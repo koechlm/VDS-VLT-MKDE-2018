@@ -1,0 +1,322 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DynamicProperties>
+  <DynamicPropertiesCategory Category="Folder" Type="Folder">
+    <DynamicProperty>Title</DynamicProperty>
+    <DynamicProperty>Description</DynamicProperty>
+  </DynamicPropertiesCategory>
+  <DynamicPropertiesCategory Category="Project" Type="Folder">
+    <DynamicProperty>Ident Number</DynamicProperty>
+    <DynamicProperty>Title</DynamicProperty>
+    <DynamicProperty>Description</DynamicProperty>
+    <DynamicProperty>Date Start</DynamicProperty>
+    <DynamicProperty>Date End</DynamicProperty>
+    <DynamicProperty>Customer</DynamicProperty>
+  </DynamicPropertiesCategory>
+  <DynamicPropertiesCategory Category="Electrical Drawing" Type="File">
+    <DynamicProperty>Project</DynamicProperty>
+    <DynamicProperty>Project Number</DynamicProperty>
+    <DynamicProperty>Project Revision</DynamicProperty>
+    <DynamicProperty>Description</DynamicProperty>
+    <DynamicProperty>Description 2</DynamicProperty>
+    <DynamicProperty>Description 3</DynamicProperty>
+    <DynamicProperty Hidden="True">ACADE</DynamicProperty>
+    <DynamicProperty>Installation Code</DynamicProperty>
+    <DynamicProperty>Location Code</DynamicProperty>
+    <DynamicProperty>Section</DynamicProperty>
+    <DynamicProperty>Sub-Section</DynamicProperty>
+    <DynamicProperty>Sheet</DynamicProperty>
+  </DynamicPropertiesCategory>
+  <DynamicPropertiesCategory Category="Drawing AutoCAD" Type="File">
+    <DynamicProperty>Title</DynamicProperty>
+    <DynamicProperty>Description</DynamicProperty>
+    <DynamicProperty>Ident Number</DynamicProperty>
+    <DynamicProperty>Part Number</DynamicProperty>
+    <DynamicProperty>Material</DynamicProperty>
+    <DynamicProperty>Dimensions/Size</DynamicProperty>
+    <DynamicProperty>Weight</DynamicProperty>
+    <DynamicProperty>Format</DynamicProperty>
+    <DynamicProperty>Scale</DynamicProperty>
+    <DynamicProperty>Sheet</DynamicProperty>
+  </DynamicPropertiesCategory>
+  <DynamicPropertiesCategory Category="Electrical Project" Type="File" />
+  <DynamicPropertiesCategory Category="Organisation" Type="CustomObject">
+    <DynamicProperty>Title</DynamicProperty>
+    <DynamicProperty>Description</DynamicProperty>
+    <DynamicProperty>Ident Number</DynamicProperty>
+  </DynamicPropertiesCategory>
+  <DynamicPropertiesCategory Category="Person" Type="CustomObject">
+    <DynamicProperty>Ident Number</DynamicProperty>
+    <DynamicProperty>First Name</DynamicProperty>
+    <DynamicProperty>Last Name</DynamicProperty>
+    <DynamicProperty>Email Recipient</DynamicProperty>
+    <DynamicProperty>Description</DynamicProperty>
+    <DynamicProperty>Titel</DynamicProperty>
+    <DynamicProperty>Beschreibung</DynamicProperty>
+    <DynamicProperty>Identnummer</DynamicProperty>
+    <DynamicProperty>Email Empfänger</DynamicProperty>
+    <DynamicProperty>Nachname</DynamicProperty>
+    <DynamicProperty>Vorname</DynamicProperty>
+    <DynamicProperty>PLZ und Ort</DynamicProperty>
+    <DynamicProperty>Adresse</DynamicProperty>
+  </DynamicPropertiesCategory>
+  <DynamicPropertiesCategory Category="Task" Type="CustomObject">
+    <DynamicProperty>Title</DynamicProperty>
+    <DynamicProperty>Description</DynamicProperty>
+    <DynamicProperty>Ident Number</DynamicProperty>
+  </DynamicPropertiesCategory>
+  <DynamicPropertiesCategory Category="Transmittal" Type="CustomObject">
+    <DynamicProperty>Title</DynamicProperty>
+    <DynamicProperty>Description</DynamicProperty>
+    <DynamicProperty>Ident Number</DynamicProperty>
+  </DynamicPropertiesCategory>
+  <DynamicPropertiesCategory Category="Ordner" Type="Folder">
+    <DynamicProperty>Titel</DynamicProperty>
+    <DynamicProperty>Beschreibung</DynamicProperty>
+    <DynamicProperty>Typbezeichnung</DynamicProperty>
+  </DynamicPropertiesCategory>
+  <DynamicPropertiesCategory Category="3D Komponenten" Type="File">
+    <DynamicProperty>Titel</DynamicProperty>
+    <DynamicProperty>Titel EN</DynamicProperty>
+    <DynamicProperty>Beschreibung</DynamicProperty>
+    <DynamicProperty>Material</DynamicProperty>
+    <DynamicProperty>Teilenummer</DynamicProperty>
+    <DynamicProperty>Halbzeugnummer</DynamicProperty>
+    <DynamicProperty>Identnummer</DynamicProperty>
+    <DynamicProperty>Abmessung/Halbzeug</DynamicProperty>
+    <DynamicProperty>Halbzeug</DynamicProperty>
+    <DynamicProperty>EV-Kennung</DynamicProperty>
+    <DynamicProperty>Gewicht</DynamicProperty>
+    <DynamicProperty>Entstanden aus</DynamicProperty>
+    <DynamicProperty>Länge (Zuschnitt)</DynamicProperty>
+    <DynamicProperty Hidden="True">Sub-Typ</DynamicProperty>
+    <DynamicProperty>Breite</DynamicProperty>
+    <DynamicProperty>Länge</DynamicProperty>
+    <DynamicProperty>Dicke/Durchm.</DynamicProperty>
+    <DynamicProperty>Werksnorm</DynamicProperty>
+    <DynamicProperty>Ersetzt durch</DynamicProperty>
+  </DynamicPropertiesCategory>
+  <DynamicPropertiesCategory Category="Dokumente" Type="File">
+    <DynamicProperty>Identnummer</DynamicProperty>
+    <DynamicProperty>Titel</DynamicProperty>
+    <DynamicProperty>Thema</DynamicProperty>
+    <DynamicProperty>Verfasser</DynamicProperty>
+    <DynamicProperty>Kommentare</DynamicProperty>
+    <DynamicProperty>Entstanden aus</DynamicProperty>
+    <DynamicProperty>Inhalts-Typ</DynamicProperty>
+    <DynamicProperty>Ersetzt durch</DynamicProperty>
+  </DynamicPropertiesCategory>
+  <DynamicPropertiesCategory Category="Änderungsantrag" Type="CustomObject">
+    <DynamicProperty>Identnummer</DynamicProperty>
+    <DynamicProperty>Titel</DynamicProperty>
+    <DynamicProperty>Änderungsgrund</DynamicProperty>
+    <DynamicProperty>Änderungsziel</DynamicProperty>
+    <DynamicProperty>Priorität</DynamicProperty>
+    <DynamicProperty>ECO bei Freigabe</DynamicProperty>
+    <DynamicProperty>Kommentare</DynamicProperty>
+  </DynamicPropertiesCategory>
+  <DynamicPropertiesCategory Category="Meilenstein" Type="CustomObject">
+    <DynamicProperty>Titel</DynamicProperty>
+    <DynamicProperty>Beschreibung</DynamicProperty>
+    <DynamicProperty>Identnummer</DynamicProperty>
+    <DynamicProperty>Erfüllungsgrad</DynamicProperty>
+    <DynamicProperty>Datum Start</DynamicProperty>
+    <DynamicProperty>Datum Ende</DynamicProperty>
+    <DynamicProperty>Verantwortlich</DynamicProperty>
+    <DynamicProperty>Kommentare</DynamicProperty>
+  </DynamicPropertiesCategory>
+  <DynamicPropertiesCategory Category="Begriff" Type="CustomObject">
+    <DynamicProperty>Identnummer</DynamicProperty>
+    <DynamicProperty>Begriff</DynamicProperty>
+    <DynamicProperty>Begriff EN</DynamicProperty>
+    <DynamicProperty>Begriff FR</DynamicProperty>
+    <DynamicProperty>Begriff IT</DynamicProperty>
+    <DynamicProperty>Segment</DynamicProperty>
+    <DynamicProperty>Hauptgruppe</DynamicProperty>
+    <DynamicProperty>Gruppe</DynamicProperty>
+    <DynamicProperty>Untergruppe</DynamicProperty>
+  </DynamicPropertiesCategory>
+  <DynamicPropertiesCategory Category="Projekt" Type="Folder">
+    <DynamicProperty>Titel</DynamicProperty>
+    <DynamicProperty>Beschreibung</DynamicProperty>
+    <DynamicProperty>Kunde</DynamicProperty>
+    <DynamicProperty>Datum Start</DynamicProperty>
+    <DynamicProperty>Datum Ende</DynamicProperty>
+    <DynamicProperty>Ansprechpartner</DynamicProperty>
+    <DynamicProperty>Identnummer</DynamicProperty>
+  </DynamicPropertiesCategory>
+  <DynamicPropertiesCategory Category="Serviceauftrag" Type="CustomObject">
+    <DynamicProperty>Titel</DynamicProperty>
+    <DynamicProperty>Beschreibung</DynamicProperty>
+    <DynamicProperty>Verantwortlich</DynamicProperty>
+    <DynamicProperty>Identnummer</DynamicProperty>
+    <DynamicProperty>Datum Start</DynamicProperty>
+    <DynamicProperty>Datum Ende</DynamicProperty>
+  </DynamicPropertiesCategory>
+  <DynamicPropertiesCategory Category="AnyCAD" Type="Folder">
+    <DynamicProperty>Titel</DynamicProperty>
+    <DynamicProperty>Beschreibung</DynamicProperty>
+    <DynamicProperty>Kunde</DynamicProperty>
+    <DynamicProperty>Identnummer</DynamicProperty>
+  </DynamicPropertiesCategory>
+  <DynamicPropertiesCategory Category="Produkt" Type="Folder">
+    <DynamicProperty>Identnummer</DynamicProperty>
+    <DynamicProperty>Titel</DynamicProperty>
+    <DynamicProperty>Beschreibung</DynamicProperty>
+  </DynamicPropertiesCategory>
+  <DynamicPropertiesCategory Category="Projekt-Konstruktion" Type="Folder">
+    <DynamicProperty>Titel</DynamicProperty>
+    <DynamicProperty>Beschreibung</DynamicProperty>
+    <DynamicProperty>Identnummer</DynamicProperty>
+    <DynamicProperty>Projekt Nummer</DynamicProperty>
+  </DynamicPropertiesCategory>
+  <DynamicPropertiesCategory Category="Personalakte" Type="Folder">
+    <DynamicProperty>Identnummer</DynamicProperty>
+    <DynamicProperty>Nachname</DynamicProperty>
+    <DynamicProperty>Vorname</DynamicProperty>
+    <DynamicProperty>Geburtsdatum</DynamicProperty>
+    <DynamicProperty>SV-Nummer</DynamicProperty>
+    <DynamicProperty>SV-Träger</DynamicProperty>
+    <DynamicProperty>Eintrittsdatum</DynamicProperty>
+    <DynamicProperty>Austrittsdatum</DynamicProperty>
+    <DynamicProperty>Lohngruppe</DynamicProperty>
+  </DynamicPropertiesCategory>
+  <DynamicPropertiesCategory Category="TechnicalSales" Type="Folder">
+    <DynamicProperty>Titel</DynamicProperty>
+    <DynamicProperty>Beschreibung</DynamicProperty>
+    <DynamicProperty>Abschluss-Status</DynamicProperty>
+    <DynamicProperty>Kunde</DynamicProperty>
+    <DynamicProperty>Kommentare</DynamicProperty>
+  </DynamicPropertiesCategory>
+  <DynamicPropertiesCategory Category="Zeichnung AutoCAD" Type="File">
+    <DynamicProperty>Identnummer</DynamicProperty>
+    <DynamicProperty>Titel</DynamicProperty>
+    <DynamicProperty>Beschreibung</DynamicProperty>
+    <DynamicProperty>Teilenummer</DynamicProperty>
+    <DynamicProperty>Material</DynamicProperty>
+    <DynamicProperty>Abmessung/Halbzeug</DynamicProperty>
+    <DynamicProperty>Gewicht</DynamicProperty>
+    <DynamicProperty>Format</DynamicProperty>
+    <DynamicProperty>Maßstab</DynamicProperty>
+    <DynamicProperty>Blatt</DynamicProperty>
+    <DynamicProperty>Entstanden aus</DynamicProperty>
+  </DynamicPropertiesCategory>
+  <DynamicPropertiesCategory Category="Basis" Type="File" />
+  <DynamicPropertiesCategory Category="Sonstige" Type="File">
+    <DynamicProperty>Kommentare</DynamicProperty>
+    <DynamicProperty>Verfasser</DynamicProperty>
+    <DynamicProperty>Titel</DynamicProperty>
+    <DynamicProperty>Thema</DynamicProperty>
+  </DynamicPropertiesCategory>
+  <DynamicPropertiesCategory Category="AutoCAD Plansatz" Type="File">
+    <DynamicProperty>Beschreibung</DynamicProperty>
+    <DynamicProperty>Projekt</DynamicProperty>
+    <DynamicProperty>Identnummer</DynamicProperty>
+  </DynamicPropertiesCategory>
+  <DynamicPropertiesCategory Category="AutoCAD Plansatz Zeichnung" Type="File">
+    <DynamicProperty>Identnummer</DynamicProperty>
+    <DynamicProperty>Titel</DynamicProperty>
+    <DynamicProperty>Beschreibung</DynamicProperty>
+    <DynamicProperty>Projekt</DynamicProperty>
+    <DynamicProperty>Format</DynamicProperty>
+    <DynamicProperty>Maßstab</DynamicProperty>
+    <DynamicProperty>Blatt</DynamicProperty>
+  </DynamicPropertiesCategory>
+  <DynamicPropertiesCategory Category="Aufgabe" Type="CustomObject">
+    <DynamicProperty>Identnummer</DynamicProperty>
+    <DynamicProperty>Titel</DynamicProperty>
+    <DynamicProperty>Beschreibung</DynamicProperty>
+    <DynamicProperty>Datum Start</DynamicProperty>
+    <DynamicProperty>Datum Ende</DynamicProperty>
+    <DynamicProperty>Erfüllungsgrad</DynamicProperty>
+    <DynamicProperty>Wiedervorlage</DynamicProperty>
+    <DynamicProperty>Verantwortlich</DynamicProperty>
+    <DynamicProperty>Kommentare</DynamicProperty>
+    <DynamicProperty>Thema</DynamicProperty>
+  </DynamicPropertiesCategory>
+  <DynamicPropertiesCategory Category="Reklamation" Type="CustomObject">
+    <DynamicProperty>Titel</DynamicProperty>
+    <DynamicProperty>Beschreibung</DynamicProperty>
+    <DynamicProperty>Datum Start</DynamicProperty>
+    <DynamicProperty>Datum Ende</DynamicProperty>
+    <DynamicProperty>Wiedervorlage</DynamicProperty>
+    <DynamicProperty>Storno Grund</DynamicProperty>
+    <DynamicProperty Hidden="True">Kommentare</DynamicProperty>
+    <DynamicProperty>Kunde</DynamicProperty>
+  </DynamicPropertiesCategory>
+  <DynamicPropertiesCategory Category="QM_Protokoll" Type="CustomObject">
+    <DynamicProperty>Titel</DynamicProperty>
+    <DynamicProperty>Beschreibung</DynamicProperty>
+    <DynamicProperty>Identnummer</DynamicProperty>
+    <DynamicProperty>Kunde</DynamicProperty>
+    <DynamicProperty>Wiedervorlage</DynamicProperty>
+    <DynamicProperty>Kommentare</DynamicProperty>
+  </DynamicPropertiesCategory>
+  <DynamicPropertiesCategory Category="Angebote" Type="File">
+    <DynamicProperty>Verfasser</DynamicProperty>
+    <DynamicProperty>Kommentare</DynamicProperty>
+    <DynamicProperty>Thema</DynamicProperty>
+    <DynamicProperty>Titel</DynamicProperty>
+    <DynamicProperty>Firma</DynamicProperty>
+    <DynamicProperty>Ansprechpartner</DynamicProperty>
+    <DynamicProperty>Adresse</DynamicProperty>
+    <DynamicProperty>PLZ und Ort</DynamicProperty>
+  </DynamicPropertiesCategory>
+  <DynamicPropertiesCategory Category="Werksnorm" Type="CustomObject">
+    <DynamicProperty>Werksnorm</DynamicProperty>
+    <DynamicProperty>Werksnorm Text</DynamicProperty>
+    <DynamicProperty>Werksnorm Text EN</DynamicProperty>
+  </DynamicPropertiesCategory>
+  <DynamicPropertiesCategory Category="3D component" Type="File">
+    <DynamicProperty>Material</DynamicProperty>
+    <DynamicProperty>Part Number</DynamicProperty>
+    <DynamicProperty>Spare-Wear Part</DynamicProperty>
+    <DynamicProperty>Description</DynamicProperty>
+    <DynamicProperty>Title</DynamicProperty>
+    <DynamicProperty>Weight</DynamicProperty>
+    <DynamicProperty>Length (Cut)</DynamicProperty>
+    <DynamicProperty>Semi finished</DynamicProperty>
+    <DynamicProperty>Dimensions/Size</DynamicProperty>
+    <DynamicProperty>Stock Number</DynamicProperty>
+    <DynamicProperty>Project Number</DynamicProperty>
+    <DynamicProperty>Ident Number</DynamicProperty>
+    <DynamicProperty>Source File</DynamicProperty>
+  </DynamicPropertiesCategory>
+  <DynamicPropertiesCategory Category="Zeichnung Inventor" Type="File">
+    <DynamicProperty>Teilenummer</DynamicProperty>
+    <DynamicProperty>Identnummer</DynamicProperty>
+    <DynamicProperty>EV-Kennung</DynamicProperty>
+    <DynamicProperty>Format</DynamicProperty>
+    <DynamicProperty>Maßstab</DynamicProperty>
+    <DynamicProperty>Blatt</DynamicProperty>
+    <DynamicProperty>Entstanden aus</DynamicProperty>
+    <DynamicProperty>Beschreibung</DynamicProperty>
+    <DynamicProperty>Titel</DynamicProperty>
+  </DynamicPropertiesCategory>
+  <DynamicPropertiesCategory Category="Konstruktion" Type="File">
+    <DynamicProperty>Verfasser</DynamicProperty>
+    <DynamicProperty>Herst. genehmigt von</DynamicProperty>
+    <DynamicProperty>Manager</DynamicProperty>
+    <DynamicProperty>Konstruktion gen. von</DynamicProperty>
+    <DynamicProperty>Ingenieur</DynamicProperty>
+    <DynamicProperty>Bestandsnummer</DynamicProperty>
+    <DynamicProperty>Beschreibung</DynamicProperty>
+    <DynamicProperty>Kosten</DynamicProperty>
+    <DynamicProperty>Firma</DynamicProperty>
+    <DynamicProperty>Thema</DynamicProperty>
+    <DynamicProperty>Schlüsselwörter</DynamicProperty>
+    <DynamicProperty>Kommentare</DynamicProperty>
+    <DynamicProperty>Konstrukteur</DynamicProperty>
+    <DynamicProperty>Teilenummer</DynamicProperty>
+    <DynamicProperty>Material</DynamicProperty>
+    <DynamicProperty>Titel</DynamicProperty>
+    <DynamicProperty>Projekt</DynamicProperty>
+    <DynamicProperty>Geprüft von</DynamicProperty>
+  </DynamicPropertiesCategory>
+  <DynamicPropertiesCategory Category="Änderungsanforderung" Type="File">
+    <DynamicProperty>Kommentare</DynamicProperty>
+    <DynamicProperty>Thema</DynamicProperty>
+    <DynamicProperty>Titel</DynamicProperty>
+    <DynamicProperty>Identnummer</DynamicProperty>
+    <DynamicProperty>Änderungskategorie</DynamicProperty>
+  </DynamicPropertiesCategory>
+</DynamicProperties>

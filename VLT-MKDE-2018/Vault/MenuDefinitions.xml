@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+Label: Label string for the command, must be quoted
+Description: Description text for the menucommand. Must be quoted
+Hint: Hint string, must be quoted
+PSFile: Name of the *ps1 file that contains the powershell script to execute when the menu command is invoked, value must be quoted.
+Image: Name of a bitmap file that contains the image for the menu command. Image should be 16x16 or 32x32, value must be quoted.
+ToolbarPaintStyle: Controls how the item is drawn on toolbars, values are Text, Glyph, TextAndGlyph
+NavigationTypes: comma separated list of entities for which this command should be active. Values are Bom, ChangeOrder, File, FileVersion, Folder, Item, Other
+MultiSelectEnabled: If true, command is active for multiple selections, can be true or false
+-->
+<mymenu>
+  <MenuItem>
+    <!--GoToSourceFile-GoToReplacement MenuItem Start-->
+    <GoToSourceFile Label = "$UIString[ADSK-GoToSource_MNU01]" Description = "$UIString[ADSK-GoToSource_MNU01]" Hint = "$UIString[ADSK-GoToSource_MNU01]"
+      PSFile = "GoToSourceFile.ps1" Image="GoToSource.ico" ToolbarPaintStyle = "TextAndGlyph"
+      MultiSelectEnabled = "false"/>
+    <GoToReplacedBy Label = "$UIString[ADSK-GoToSource_MNU02]" Description = "$UIString[ADSK-GoToSource_MNU02]" Hint = "GoToReplacedBy"
+      PSFile = "GoToReplacedBy.ps1" Image="GoToReplacedBy.ico" ToolbarPaintStyle = "TextAndGlyph"
+      MultiSelectEnabled = "false"/>
+    <!--GoToSourceFile-GoToReplacement MenuItem End-->
+
+    <newTermObject Label = "$UIString[ClassTerms_MNU10]" Description = "$UIString[ClassTerms_MNU11]" Hint = "$UIString[ClassTerms_MNU11]"
+      PSFile = "CreateCustomObjectTerm.ps1" Image="Term-add.ico" ToolbarPaintStyle = "TextAndGlyph"
+      NavigationTypes ="$UIString[ClassTerms_00]" MultiSelectEnabled = "false" />
+    <editTermObject Label = "$UIString[ClassTerms_MNU12]" Description = "$UIString[ClassTerms_MNU13]" Hint = "$UIString[ClassTerms_MNU13]"
+      PSFile = "EditCustomObjectTerm.ps1" Image="Term-edit.ico" ToolbarPaintStyle = "TextAndGlyph"
+      NavigationTypes ="$UIString[ClassTerms_00]" MultiSelectEnabled = "false"/>
+
+    <NewChangeRequest Label="$UIString[ChangeRequestMNU22]" Description="$UIString[ChangeRequestMNU17]" Hint="$UIString[ChangeRequestMNU18]"
+      PSFile="CreateCustomObject.ps1" Image="ECR-add.ico" ToolbarPaintStyle="TextAndGlyph"
+      NavigationTypes="ECR" MultiSelectEnabled="False" />
+    <EditChangeRequest Label="$UIString[ChangeRequestMNU21]" Description="$UIString[ChangeRequestMNU19]" Hint="$UIString[ChangeRequestMNU20]"
+      PSFile="EditCustomObject.ps1" Image="ECR-edit.ico" ToolbarPaintStyle="TextAndGlyph"
+      NavigationTypes="ECR" MultiSelectEnabled="False" />
+
+    <newMilestoneObject Label = "$UIString[VLT201x-MKDE_MNU07]" Description = "$UIString[VLT201x-MKDE_MNU06]" Hint = "$UIString[VLT201x-MKDE_MNU07]"
+      PSFile = "CreateCustomObject.ps1" NavigationTypes ="Meilenstein" MultiSelectEnabled = "false"
+      Image="Milestone-add.ico" ToolbarPaintStyle = "TextAndGlyph" />
+    <editMilestoneObject Label = "$UIString[VLT201x-MKDE_MNU09]" Description = "$UIString[VLT201x-MKDE_MNU08]" Hint = "$UIString[VLT201x-MKDE_MNU09]"
+      PSFile = "EditCustomObject.ps1" NavigationTypes ="Meilenstein" ToolbarPaintStyle = "TextAndGlyph"
+      MultiSelectEnabled = "false" Image="Milestone-edit.ico" />
+
+    <newCompanyStandardObject
+      Description = "Werksnorm anlegen" Hint = "Werksnorm anlegen" Label = "Werksnorm anlegen..." MultiSelectEnabled = "false"
+      NavigationTypes ="Werksnorm" ToolbarPaintStyle = "TextAndGlyph" PSFile = "CreateCustomObject.ps1" Image="CompanyStandard-add.ico"
+    />
+    <editCompanyStandardObject
+      Description = "Werksnorm bearbeiten" Hint = "Werksnorm bearbeiten" Label = "Werksnorm bearbeiten..." MultiSelectEnabled = "false"
+      NavigationTypes ="Werksnorm" ToolbarPaintStyle = "TextAndGlyph" PSFile = "EditCustomObject.ps1" Image="CompanyStandard-edit.ico"/>
+
+    <!--<Claim-ECO-Link> MenuItem Start-->
+    <newClaimObject Label = "$UIString[ADSK-ClaimMgr-08]" Description = "$UIString[ADSK-ClaimMgr-07]" Hint = "$UIString[ADSK-ClaimMgr-08]"
+      PSFile = "CreateCustomObject.ps1" Image="Claim-add.ico" ToolbarPaintStyle = "TextAndGlyph"
+      NavigationTypes ="$UIString[ADSK-ClaimMgr-00]" MultiSelectEnabled = "false"/>
+    <editClaimObject Label = "$UIString[ADSK-ClaimMgr-10]" Description = "$UIString[ADSK-ClaimMgr-09]" Hint = "$UIString[ADSK-ClaimMgr-10]"
+        PSFile = "EditCustomObject.ps1" Image="Claim-edit.ico" ToolbarPaintStyle = "TextAndGlyph"
+        NavigationTypes ="Reklamation" MultiSelectEnabled = "false"/>
+    <!--<Claim-ECO-Link> MenuItem End-->
+    
+    <newQualityReportObject Label = "$UIString[VLT201x-MKDE_MNU19]" Description = "$UIString[VLT201x-MKDE_MNU18]" Hint = "$UIString[VLT201x-MKDE_MNU19]"
+      PSFile = "CreateCustomObject.ps1" MultiSelectEnabled = "false" NavigationTypes ="QM Protokoll" ToolbarPaintStyle = "TextAndGlyph"
+      Image="QR-add.ico" />
+    <editQualityReportObject Label = "$UIString[VLT201x-MKDE_MNU21]" Description = "$UIString[VLT201x-MKDE_MNU20]" Hint = "$UIString[VLT201x-MKDE_MNU21]"
+      PSFile = "EditCustomObject.ps1" MultiSelectEnabled = "false" NavigationTypes ="QM Protokoll" ToolbarPaintStyle = "TextAndGlyph"
+      Image="QR-edit.ico" />
+    <newServiceObject Label = "$UIString[VLT201x-MKDE_MNU23]" Description = "$UIString[VLT201x-MKDE_MNU22]" Hint = "$UIString[VLT201x-MKDE_MNU23]"
+      PSFile = "CreateCustomObject.ps1" MultiSelectEnabled = "false" NavigationTypes ="Serviceauftrag" ToolbarPaintStyle = "TextAndGlyph" Image="Service-add.ico"
+    />
+    <editServiceObject Label = "$UIString[VLT201x-MKDE_MNU25]" Description = "$UIString[VLT201x-MKDE_MNU24]" Hint = "$UIString[VLT201x-MKDE_MNU25]"
+     PSFile = "EditCustomObject.ps1" MultiSelectEnabled = "false" NavigationTypes ="Serviceauftrag" ToolbarPaintStyle = "TextAndGlyph" Image="Service-edit.ico"
+    />
+
+    <!--ReserveNumbers Menu item start-->
+    <ReserveNumbers Label = "$UIString[ADSK-RSRVNUMBERS_MNU20]" Description = "$UIString[ADSK-RSRVNUMBERS_MNU20]" Hint = "$UIString[ADSK-RSRVNUMBERS_MNU20]"
+      PSFile = "ReserveNumbers.ps1" Image="ReserveNumbers.ico" ToolbarPaintStyle = "TextAndGlyph"
+      MultiSelectEnabled = "false"/>
+    <!--ReserveNumbers Menu item end-->
+    
+    <!--Quickstart Menu items start-->
+    <showCustomHelp Label = "$UIString[MSDCE_MNU19]" Description = "$UIString[MSDCE_MNU19]" Hint = "$UIString[MSDCE_MNU19]"
+      PSFile = "showCustomHelp.ps1" Image="CustomHelpDoc.ico" ToolbarPaintStyle = "TextAndGlyph"
+      MultiSelectEnabled = "false" />
+
+    <NewTask Label="$UIString[MSDCE_MNU01]" Description="$UIString[MSDCE_MNU01]" Hint="$UIString[MSDCE_MNU02]" PSFile="CreateCustomObject.ps1"
+      Image="Task-add.ico" ToolbarPaintStyle="TextAndGlyph" NavigationTypes="$UIString[MSDCE_CO03]" MultiSelectEnabled="False" />
+    <EditTask Label="$UIString[MSDCE_MNU04]" Description="$UIString[MSDCE_MNU04]" Hint="$UIString[MSDCE_MNU05]" PSFile="EditCustomObject.ps1"
+      Image="Task-edit.ico" ToolbarPaintStyle="TextAndGlyph" NavigationTypes="$UIString[MSDCE_CO03]" MultiSelectEnabled="False" />
+    
+    <newOrganisationObject Label = "$UIString[MSDCE_MNU08]" Description = "$UIString[MSDCE_MNU07]" Hint = "$UIString[MSDCE_MNU08]" PSFile = "CreateCustomObject.ps1"
+      Image="factory-add.ico" ToolbarPaintStyle = "TextAndGlyph" NavigationTypes ="$UIString[MSDCE_CO01]" MultiSelectEnabled = "false"/>
+    <editOrganisationObject Label = "$UIString[MSDCE_MNU10]" Description = "$UIString[MSDCE_MNU09]" Hint = "$UIString[MSDCE_MNU10]" PSFile = "EditCustomObject.ps1"
+      Image="factory-edit.ico" ToolbarPaintStyle = "TextAndGlyph" NavigationTypes ="$UIString[MSDCE_CO01]" MultiSelectEnabled = "false"/>
+    
+    <newPersonObject Label = "$UIString[MSDCE_MNU12]" Description = "$UIString[MSDCE_MNU11]" Hint = "$UIString[MSDCE_MNU12]" PSFile = "CreateCustomObject.ps1"
+      Image="user-w-add.ico" ToolbarPaintStyle = "TextAndGlyph" NavigationTypes ="$UIString[MSDCE_CO02]" MultiSelectEnabled = "false"/>
+    <editPersonObject Label = "$UIString[MSDCE_MNU14]" Description = "$UIString[MSDCE_MNU13]" Hint = "$UIString[MSDCE_MNU14]" PSFile = "EditCustomObject.ps1"
+      Image="user-w-edit.ico" ToolbarPaintStyle = "TextAndGlyph" NavigationTypes ="$UIString[MSDCE_CO02]" MultiSelectEnabled = "false"/>
+    
+    <newTransmittalObject Label = "$UIString[MSDCE_MNU16]" Description = "$UIString[MSDCE_MNU15]" Hint = "$UIString[MSDCE_MNU16]" PSFile = "CreateCustomObject.ps1"
+      Image="Transmittal-add.ico" ToolbarPaintStyle = "TextAndGlyph" NavigationTypes ="$UIString[MSDCE_CO04]" MultiSelectEnabled = "false"/>
+    <editTransmittalObject Label = "$UIString[MSDCE_MNU18]" Description = "$UIString[MSDCE_MNU17]" Hint = "$UIString[MSDCE_MNU18]" PSFile = "EditCustomObject.ps1"
+      Image="Transmittal-edit.ico" ToolbarPaintStyle = "TextAndGlyph" NavigationTypes ="$UIString[MSDCE_CO04]" MultiSelectEnabled = "false"/>
+
+    <!--<NewTask Label="$UIString[MNU22]" Description="$UIString[MNU17]" Hint="$UIString[MNU18]"
+             PSFile="CreateCustomObject.ps1" Image="NewCustomObject.ico" ToolbarPaintStyle="TextAndGlyph"
+             NavigationTypes="Task" MultiSelectEnabled="False" />
+    <EditTask Label="$UIString[MNU21]" Description="$UIString[MNU19]" Hint="$UIString[MNU20]"
+              PSFile="EditCustomObject.ps1" Image="EditCustomObject.ico" ToolbarPaintStyle="TextAndGlyph"
+              NavigationTypes="Task" MultiSelectEnabled="False" />-->
+    
+    <!--Quickstart Menu items end-->
+    
+    <NewFile Label="$UIString[MNU1]" Description="$UIString[MNU11]" Hint="$UIString[MNU7]" PSFile="CreateFile.ps1"
+             Image="NewStandardFile.ico" ToolbarPaintStyle="TextAndGlyph" NavigationTypes="File,Folder"
+             MultiSelectEnabled="False" />
+    <EditFile Label="$UIString[MNU2]" Description="$UIString[MNU12]" Hint="$UIString[MNU8]" PSFile="EditFile.ps1"
+              Image="EditFileDatasheet.ico" ToolbarPaintStyle="TextAndGlyph" NavigationTypes="File"
+              MultiSelectEnabled="False" />
+    <NewFolder Label="$UIString[MNU3]" Description="$UIString[MNU13]" Hint="$UIString[MNU9]" PSFile="CreateFolder.ps1"
+               Image="NewStandardFolder.ico" ToolbarPaintStyle="TextAndGlyph" NavigationTypes="Folder"
+               MultiSelectEnabled="False" />
+    <EditFolder Label="$UIString[MNU4]" Description="$UIString[MNU14]" Hint="$UIString[MNU10]" PSFile="EditFolder.ps1"
+                Image="EditFolderDatasheet.ico" ToolbarPaintStyle="TextAndGlyph" NavigationTypes="Folder"
+                MultiSelectEnabled="False" />
+    <ShowLog Label="$UIString[MNU5]" Description="$UIString[MNU15]" Hint="$UIString[MNU5]" PSFile="ShowLog.ps1"
+             Image="Log.ico" ToolbarPaintStyle="TextAndGlyph" MultiSelectEnabled="False" />
+    <AboutDialog Label="$UIString[MNU6]" Description="$UIString[MNU16]" Hint="$UIString[MNU6]"
+                 PSFile="ShowAboutDialog.ps1" Image="About.ico" ToolbarPaintStyle="TextAndGlyph"
+                 MultiSelectEnabled="False" />
+  </MenuItem>
+
+  <!--
+  Label:  String displayed as the label, e.g. for submenus, quoted
+  DeployAsPulldown: If true, used as submenu, values are true or false
+  Location: Specifies the location of the command site within the Vault CLient UI, values are
+  StandardToolbar, AdvancedToolbar, BehaviorsToolbar, ItemBomToolbar,
+  FileMenu, EditMenu, ActionsMenu, ToolsMenu, HelpMenu, FileContextMenu, FolderContextMenu, ChangeOrderContextMenu, ItemContextMenu
+  Items: list with MenuItems. Name should be same as the element name defined in the MenuItem.
+  -->
+
+  <CommandSite>
+
+    <FileContext Label="Navigation" DeployAsPullDown="True" Location="FileContextMenu">
+      <Item Name="GoToReplacedBy"></Item>
+      <Item Name="GoToSourceFile"></Item>
+    </FileContext>
+    
+    <FileContext Label="myMenu" DeployAsPullDown="False" Location="FileContextMenu">
+      <Item Name="NewFile"></Item>
+      <Item Name="EditFile"></Item>
+    </FileContext>
+    <FolderContex Label="myMenu" DeployAsPullDown="False" Location="FolderContextMenu">
+      <Item Name="NewFile"></Item>
+      <Item Name="NewFolder"></Item>
+      <Item Name="EditFolder"></Item>
+    </FolderContex>
+    <StandardToolbar Label="myMenu" DeployAsPullDown="False" Location="StandardToolbar">
+      <Item Name="NewFile"></Item>
+      <Item Name="EditFile"></Item>
+    </StandardToolbar>
+
+    <!--Quickstart Command Sites Start-->
+    
+    <!--<ToolsMenu Label="myMenu" DeployAsPullDown="False" Location="ToolsMenu">
+      <Item Name="ShowLog"></Item>
+    </ToolsMenu>
+    <HelpMenu Label="myMenu" DeployAsPullDown="False" Location="HelpMenu">
+      <Item Name="AboutDialog"></Item>
+    </HelpMenu>
+    <CustomObject Label="Task" DeployAsPullDown="False" Location="Task">
+      <Item Name="NewTask"></Item>
+      <Item Name="EditTask"></Item>
+    </CustomObject>-->
+    
+    <ToolsMenu Label="myMenu" DeployAsPullDown="False" Location="ToolsMenu">
+      <Item Name="ShowLog"></Item>
+      <Item Name="ReserveNumbers"></Item>>
+    </ToolsMenu>
+    <HelpMenu Label="myMenu" DeployAsPullDown="False" Location="HelpMenu">
+      <Item Name="AboutDialog"></Item>
+      <Item Name="showCustomHelp"></Item>
+    </HelpMenu>  
+    <CustomObject Label="$UIString[MSDCE_CO01]" DeployAsPullDown="False" Location="Organisation">
+      <Item Name="newOrganisationObject"></Item>
+      <Item Name="editOrganisationObject"></Item>
+    </CustomObject>
+    <CustomObject Label="$UIString[MSDCE_CO02]" DeployAsPullDown="False" Location="Person">
+      <Item Name="newPersonObject"></Item>
+      <Item Name="editPersonObject"></Item>
+    </CustomObject>
+    <CustomObject Label="$UIString[MSDCE_CO03]" DeployAsPullDown="False" Location="Aufgabe">
+      <Item Name="NewTask"></Item>
+      <Item Name="EditTask"></Item>
+    </CustomObject>
+    <CustomObject Label="$UIString[MSDCE_CO04]" DeployAsPullDown="False" Location="Sendung">
+      <Item Name="newTransmittalObject"></Item>
+      <Item Name="editTransmittalObject"></Item>
+    </CustomObject>
+    <CustomObject Label="$UIString[ClassTerms_00]" DeployAsPullDown="False" Location="Begriff">
+      <Item Name="newTermObject"></Item>
+      <Item Name="editTermObject"></Item>
+    </CustomObject>
+    <CustomObject Label="$UIString[ChangeRequestMNU23]" DeployAsPullDown="False" Location="ECR">
+      <Item Name="NewChangeRequest"></Item>
+      <Item Name="EditChangeRequest"></Item>
+    </CustomObject>
+    <CustomObject Label="Meilenstein" DeployAsPullDown="False" Location="Meilenstein">
+      <Item Name="newMilestoneObject"></Item>
+      <Item Name="editMilestoneObject"></Item>
+    </CustomObject>
+    <!-- <Claim-ECO-Link> MenuLocation Start-->
+    <CustomObject Label="Reklamation" DeployAsPullDown="False" Location="Reklamation">
+      <!--Note: Location must match your Custom Object definition name, e.g. "Claim" for en-US -->
+      <Item Name="newClaimObject"></Item>
+      <Item Name="editClaimObject"></Item>
+    </CustomObject>
+    <!-- <Claim-ECO-Link> MenuLocation End-->
+    <CustomObject Label="QM Protokoll" DeployAsPullDown="False" Location="QM Protokoll">
+      <Item Name="newQualityReportObject"></Item>
+      <Item Name="editQualityReportObject"></Item>
+    </CustomObject>
+    <CustomObject Label="Service" DeployAsPullDown="False" Location="Serviceauftrag">
+      <Item Name="newServiceObject"></Item>
+      <Item Name="editServiceObject"></Item>
+    </CustomObject>
+    <CustomObject Label="Werksnorm" DeployAsPullDown="False" Location="Werksnorm">
+      <Item Name="newCompanyStandardObject"></Item>
+      <Item Name="editCompanyStandardObject"></Item>
+    </CustomObject>
+
+    <!--Quickstart Command Sites End-->
+  </CommandSite>
+
+  <!--
+  Comma separated list
+  To suppress the command "New Library Folder" add the following two commands to the list below:
+    NewLibraryFolder,NewLibraryFolderForContextMenus
+  To suppress "Rename" for folder add this line:
+    Folder.Rename
+  -->
+  <SuppressMenuItems>
+    NewFolder,NewFolderGroupMenu,NewFolderGroupButton,NewFolderForContextMenus
+  </SuppressMenuItems>
+</mymenu>

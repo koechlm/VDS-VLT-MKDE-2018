@@ -1,0 +1,119 @@
+﻿<UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+              xmlns:behaviours="clr-namespace:Common.Wpf;assembly=Common"
+             behaviours:TabTitleBehavior.TabTitle="Jobs"
+             x:Name="MainWindow">
+    <UserControl.Resources>
+        <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource {x:Type TextBox}}">
+            <Setter Property="Margin" Value="0,0,0,0"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="Height" Value="Auto" />
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="IsReadOnly" Value="True"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsReadOnly, RelativeSource={RelativeSource Self}}" Value="True">
+                    <Setter Property="Background" Value="White" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="Required" TargetType="{x:Type TextBox}" BasedOn="{StaticResource {x:Type TextBox}}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Text, RelativeSource={RelativeSource Self}}" Value="">
+                    <Setter Property="BorderBrush" Value="Red"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="{x:Type Label}" BasedOn="{StaticResource {x:Type Label}}">
+            <Setter Property="Height" Value="Auto"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="0,0,0,0"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Content, RelativeSource={RelativeSource Self}}" Value="{x:Null}">
+                    <Setter Property="BorderThickness" Value="1"/>
+                    <Setter Property="BorderBrush" Value="#ff0000"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource {x:Type ComboBox}}">
+            <Setter Property="Height" Value="Auto"/>
+            <Setter Property="Margin" Value="0,0,0,0"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Stretch"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        </Style>
+        <Style x:Key="StateCommentStyle" TargetType="TextBlock">
+            <Setter Property="Text" >
+                <Setter.Value>
+                    <MultiBinding StringFormat="{}{0}-{1}" >
+                        <Binding Path="UIString[LBL33]" />
+                        <Binding Path="UIString[LBL33]" />
+                    </MultiBinding>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </UserControl.Resources>
+    <UserControl.InputBindings>
+        <KeyBinding Key="F1" Command="{Binding PsCmd[mHelp(600)]}"/>
+    </UserControl.InputBindings>
+    <ScrollViewer x:Name="scrView1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" >
+        <Grid x:Name="grdJobs" Margin="10,5" VerticalAlignment="Top" ScrollViewer.CanContentScroll="True">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="4"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="80"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <DataGrid x:Name="dtGrdJobs" AutoGenerateColumns="False" IsReadOnly="True" HorizontalGridLinesBrush="#FFABADB3" VerticalGridLinesBrush="#FFABADB3" Grid.Row="2" Grid.ColumnSpan="1" MinRowHeight="26" CanUserResizeRows="True" CanUserReorderColumns="False" BorderBrush="#FFABADB3" HeadersVisibility="Column" BorderThickness="1" MaxHeight="325" VerticalAlignment="Top">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding CreateDate}" MinWidth="140">
+                        <DataGridTextColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding DataContext.UIString[LBL33], RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, FallbackValue='Date Created'}"/>
+                            </DataTemplate>
+                        </DataGridTextColumn.HeaderTemplate>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding CreateUserName}" MinWidth="200">
+                        <DataGridTextColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding DataContext.UIString[LBL34], RelativeSource={RelativeSource AncestorType={x:Type DataGrid}},FallbackValue='Created by'}"/>
+                            </DataTemplate>
+                        </DataGridTextColumn.HeaderTemplate>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding Description}" MinWidth="200">
+                        <DataGridTextColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding DataContext.UIString[LBL3], RelativeSource={RelativeSource AncestorType={x:Type DataGrid}},FallbackValue='Description'}"/>
+                            </DataTemplate>
+                        </DataGridTextColumn.HeaderTemplate>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding StatusCode}" MinWidth="100">
+                        <DataGridTextColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding DataContext.UIString[LBL14], RelativeSource={RelativeSource AncestorType={x:Type DataGrid}},FallbackValue='Status'}"/>
+                            </DataTemplate>
+                        </DataGridTextColumn.HeaderTemplate>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding StatusMsg}" Width="Auto    " MinWidth="200">
+                        <DataGridTextColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal" >
+                                    <TextBlock Text="{Binding DataContext.UIString[LBL14], RelativeSource={RelativeSource AncestorType={x:Type DataGrid}},FallbackValue='Status'}"/>
+                                    <TextBlock Text="-"/>
+                                    <TextBlock Text="{Binding DataContext.UIString[LBL7], RelativeSource={RelativeSource AncestorType={x:Type DataGrid}},FallbackValue='Comment'}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTextColumn.HeaderTemplate>
+                    </DataGridTextColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+            <TextBlock x:Name="txtJobQueue" Height="21" Grid.Row="3" TextWrapping="Wrap" Text="No Pending Jobs" Width="394" TextAlignment="Center" FontSize="16" FontWeight="Bold"/>
+        </Grid>
+    </ScrollViewer>
+</UserControl>
