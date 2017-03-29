@@ -13,6 +13,18 @@ function mAddCoCombo ([String] $_CoName) {
 	$cmb.MinWidth = 140
 	$cmb.HorizontalContentAlignment = "Center"
 	$cmb.BorderThickness = "1,1,1,1"
+	$mWindowName = $dsWindow.Name
+		switch($mWindowName)
+		{
+			"CustomObjectTermWindow"
+			{
+				IF (($Prop["_CreateMode"].Value -eq $true) -or ($_Return -eq "Yes")) {$cmb.IsDropDownOpen = $true}
+			}
+			default
+			{
+				$cmb.IsDropDownOpen = $true
+			}
+		}
 	$cmb.add_SelectionChanged({
 			param($sender,$e)
 			$dsDiag.Trace("1. SelectionChanged, Sender = $sender, $e")
@@ -68,10 +80,21 @@ function mAddCoComboChild ($data) {
 	$cmb.Name = "cmbBreadCrumb_" + $breadCrumb.Children.Count.ToString();
 	$cmb.DisplayMemberPath = "Name";
 	$cmb.ItemsSource = @($children)	
-	IF (($Prop["_CreateMode"].Value -eq $true) -or ($_Return -eq "Yes")) {$cmb.IsDropDownOpen = $true}
 	$cmb.BorderThickness = "1,1,1,1"
 	$cmb.HorizontalContentAlignment = "Center"
 	$cmb.MinWidth = 140
+	$mWindowName = $dsWindow.Name
+		switch($mWindowName)
+		{
+			"CustomObjectTermWindow"
+			{
+				IF (($Prop["_CreateMode"].Value -eq $true) -or ($_Return -eq "Yes")) {$cmb.IsDropDownOpen = $true}
+			}
+			default
+			{
+				$cmb.IsDropDownOpen = $true
+			}
+		}
 	$cmb.add_SelectionChanged({
 			param($sender,$e)
 			$dsDiag.Trace("next. SelectionChanged, Sender = $sender")
@@ -131,7 +154,7 @@ function mAddCoComboChild ($data) {
 
 function mgetCustomEntityList ([String] $_CoName) {
 	try {
-		$dsDiag.Trace(">> m_getCustomEntityList started")
+		$dsDiag.Trace(">> mgetCustomEntityList started")
 		$srchConds = New-Object autodesk.Connectivity.WebServices.SrchCond[] 1
 		$srchCond = New-Object autodesk.Connectivity.WebServices.SrchCond
 		$propDefs = $vault.PropertyService.GetPropertyDefinitionsByEntityClassId("CUSTENT")
@@ -150,12 +173,12 @@ function mgetCustomEntityList ([String] $_CoName) {
 		$srchSort = New-Object autodesk.Connectivity.WebServices.SrchSort
 		$searchStatus = New-Object autodesk.Connectivity.WebServices.SrchStatus
 		$bookmark = ""
-		$global:_CustomEnts = $vault.CustomEntityService.FindCustomEntitiesBySearchConditions($srchConds,$null,[ref]$bookmark,[ref]$searchStatus)
-		$dsDiag.Trace(".. m_getCustomEntityList finished - returns $_CustomEnts <<")
+		$_CustomEnts = $vault.CustomEntityService.FindCustomEntitiesBySearchConditions($srchConds,$null,[ref]$bookmark,[ref]$searchStatus)
+		$dsDiag.Trace(".. mgetCustomEntityList finished - returns $_CustomEnts <<")
 		return $_CustomEnts
 	}
 	catch { 
-		$dsDiag.Trace("!! Error in m_getCustomEntityList")
+		$dsDiag.Trace("!! Error in mgetCustomEntityList")
 	}
 }
 
@@ -166,7 +189,16 @@ function mGetCustomEntityUsesList ($sender) {
 		$_i = $breadCrumb.Children.Count -1
 		$_CurrentCmbName = "cmbBreadCrumb_" + $breadCrumb.Children.Count.ToString()
 		$_CurrentClass = $breadCrumb.Children[$_i].SelectedValue.Name
-		$_customObjects = mgetCustomEntityList -_CoName "*"
+		#[System.Windows.MessageBox]::Show("Currentclass: $_CurrentClass and Level# is $_i")
+        switch($_i-1)
+		        {
+			        0 { $mSearchFilter = $UIString["Class_00"]}
+			        1 { $mSearchFilter = $UIString["Class_01"]}
+			        2 { $mSearchFilter = $UIString["Class_02"]}
+					3 { $mSearchFilter = $UIString["Class_03"]}
+			        default { $mSearchFilter = "*"}
+		        }
+		$_customObjects = mgetCustomEntityList -_CoName $mSearchFilter
 		$_Parent = $_customObjects | Where-Object { $_.Name -eq $_CurrentClass }
 		try {
 			$links = $vault.DocumentService.GetLinksByParentIds(@($_Parent.Id),@("CUSTENT"))
@@ -174,8 +206,7 @@ function mGetCustomEntityUsesList ($sender) {
 			$links | ForEach-Object { $linkIds += $_.ToEntId }
 			$mLinkedCustObjects = $vault.CustomEntityService.GetCustomEntitiesByIds($linkIds);
 			#todo: check that we need to filter the list returned
-			$dsDiag.Trace(".. m_getCustomEntityUsesList finished - returns $_CustomEnts <<")
-
+			$dsDiag.Trace(".. mgetCustomEntityUsesList finished - returns $mLinkedCustObjects <<")
 			return $mLinkedCustObjects #$global:_Groups
 		}
 		catch {
@@ -208,29 +239,42 @@ function mCoComboSelectionChanged ($sender) {
 	mAddCoComboChild -sender $sender.SelectedItem
 }
 
-function mResetFilter
+function mResetClassFilter
 {
-	$dsDiag.Trace(">> Reset Filter started...")
-	IF ($Prop["_EditMode"].Value -eq $true)
-	{
-		try
+    $dsDiag.Trace(">> Reset Filter started...")
+	$mWindowName = $dsWindow.Name
+        switch($mWindowName)
 		{
-			IF ($dsWindow.Name -eq "CustomObjectTermWindow")
+			"CustomObjectTermWindow"
 			{
-				$Global:_Return=[System.Windows.MessageBox]::Show("You are going to change the selected classification, are you sure?", "Autodesk Vault - Catalog", 4)
-				If($_Return -eq "No") { return }
+				IF ($Prop["_EditMode"].Value -eq $true)
+				{
+					try
+					{
+						$Global:_Return=[System.Windows.MessageBox]::Show("You are going to change the selected classification, are you sure?", "Autodesk Vault - Catalog", 4)
+						If($_Return -eq "No") { return }
+					}
+					catch
+					{
+						$dsDiag.Trace("Error - Reset Terms Classification Filter")
+					}
+			}
+				IF (($Prop["_CreateMode"].Value -eq $true) -or ($_Return -eq "Yes"))
+				{
+					$breadCrumb = $dsWindow.FindName("wrpFilter")
+					$breadCrumb.Children[1].SelectedIndex = -1
+				}
+			}
+			default
+			{
+				$breadCrumb = $dsWindow.FindName("wrpFilter")
+				$breadCrumb.Children[1].SelectedIndex = -1
 			}
 		}
-		catch
-		{
-			$dsDiag.Trace("Error - Reset Filter")
-		}
-	}
-	IF (($Prop["_CreateMode"].Value -eq $true) -or ($_Return -eq "Yes"))
-	{
-		$breadCrumb = $dsWindow.FindName("wrpFilter")
-		$breadCrumb.Children[1].SelectedIndex = -1
-		#$breadCrumb.Children[1].IsDropDownOpen = $true
-	}
+      
+
+
+	
+	
 	$dsDiag.Trace("...Reset Filter finished <<")
 }

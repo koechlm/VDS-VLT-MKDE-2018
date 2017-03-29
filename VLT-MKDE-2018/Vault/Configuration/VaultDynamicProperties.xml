@@ -125,8 +125,8 @@
     <DynamicProperty>Kommentare</DynamicProperty>
   </DynamicPropertiesCategory>
   <DynamicPropertiesCategory Category="Begriff" Type="CustomObject">
-    <DynamicProperty>Identnummer</DynamicProperty>
-    <DynamicProperty>Begriff</DynamicProperty>
+    <DynamicProperty Hidden="True">Identnummer</DynamicProperty>
+    <DynamicProperty>Begriff DE</DynamicProperty>
     <DynamicProperty>Begriff EN</DynamicProperty>
     <DynamicProperty>Begriff FR</DynamicProperty>
     <DynamicProperty>Begriff IT</DynamicProperty>

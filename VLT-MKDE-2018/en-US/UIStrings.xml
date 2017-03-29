@@ -241,6 +241,36 @@
   <UIString ID="ADSK-DocStructure_00">Dokumentstruktur</UIString>
   <!--Document Structure Tab Extension End-->
 
+  <!--Classification & Terms-->
+  <UIString ID="Class_00">Segment</UIString>
+  <UIString ID="Class_01">Main Group</UIString>
+  <UIString ID="Class_02">Group</UIString>
+  <UIString ID="Class_03">Sub Group</UIString>
+  <UIString ID="ClassTerms_MNU10">New Term...</UIString>
+  <UIString ID="ClassTerms_MNU11">Create new term</UIString>
+  <UIString ID="ClassTerms_MNU12">Edit Term...</UIString>
+  <UIString ID="ClassTerms_MNU13">Edit existing term</UIString>
+  <UIString ID="ClassTerms_00">Term</UIString>
+  <UIString ID="ClassTerms_01">Terms Catalog</UIString>
+  <UIString ID="ClassTerms_02">German</UIString>
+  <UIString ID="ClassTerms_03">English</UIString>
+  <UIString ID="ClassTerms_04">French</UIString>
+  <UIString ID="ClassTerms_05">Italian</UIString>
+  <UIString ID="ClassTerms_06">No matching term(s) found.</UIString>
+  <UIString ID="ClassTerms_07">Classification</UIString>
+  <UIString ID="ClassTerms_08">Category Name</UIString>
+  <UIString ID="ClassTerms_09">Term DE</UIString>
+  <UIString ID="ClassTerms_10">Term EN</UIString>
+  <UIString ID="ClassTerms_11">Term FR</UIString>
+  <UIString ID="ClassTerms_12">Term IT</UIString>
+  <UIString ID="ClassTerms_BTN9">Inherit Term to Title</UIString>
+  <UIString ID="ClassTerms_BTN10">Inherit</UIString>
+  <UIString ID="ClassTerms_TT00">Inherit Term(s) to Title DE (EN, FR, IT)</UIString>
+  <UIString ID="ClassTerms_TT01">Limit search to hierarchy level</UIString>
+  <UIString ID="ClassTerms_TT02">Name = 'TERM EN' if not typed manually</UIString>
+  <UIString ID="ClassTerms_TT03">Assigned by classification</UIString>
+  <!--Classification & Terms End-->
+  
   <!--Claims Management Extension Start-->
   <UIString ID="ADSK-ClaimMgr-00">Claim</UIString>
   <UIString ID="ADSK-ClaimMgr-01">Linked Claims</UIString>

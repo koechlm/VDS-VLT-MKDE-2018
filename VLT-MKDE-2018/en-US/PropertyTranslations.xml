@@ -45,6 +45,8 @@
   <!--Quickstart 2018 end-->
 
   <!--Classification & Terms-->
+  <!--Note the default term is set according the language-->
+  <PropertyTranslation Name="TERM">Term EN</PropertyTranslation>
   <PropertyTranslation Name="TERM-DE">Term DE</PropertyTranslation>
   <PropertyTranslation Name="TERM-EN">Term EN</PropertyTranslation>
   <PropertyTranslation Name="TERM-FR">Term FR</PropertyTranslation>

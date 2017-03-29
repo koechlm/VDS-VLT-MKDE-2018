@@ -135,34 +135,38 @@ function InitializeWindow
 			}
 
 			#region CatalogTerm
-				If ($dsWindow.FindName("TabMain")) {$dsDiag.Trace("--TabMain exists--")}
-				If ($dsWindow.FindName("tabTerms")) {$dsDiag.Trace("--tabTerms exists--")}
-				Try 
+				If ($dsWindow.FindName("expTermCatalog"))
 				{
-					$dsWindow.FindName("SearchText").text = $Prop["_XLTN_TITLE"].Value
+					$dsWindow.FindName("expTermCatalog").Visibility = "Collapsed"
+					$dsWindow.FindName("expTermCatalog").IsExpanded = $false
+					$dsWindow.FindName("expTermCatalog").IsEnabled = $false
+					
+					Try 
+					{
+						$dsWindow.FindName("SearchText").text = $Prop["_XLTN_TITLE"].Value
 				
-					$Prop["_XLTN_TITLE"].add_PropertyChanged({
-							param( $parameter)
-							$dsWindow.FindName("SearchText").text = $Prop["_XLTN_TITLE"].Value
-						})
+						$Prop["_XLTN_TITLE"].add_PropertyChanged({
+								param( $parameter)
+								$dsWindow.FindName("SearchText").text = $Prop["_XLTN_TITLE"].Value
+							})
 
-					mAddCoCombo -_CoName "Segment" #enables classification filter for catalog of terms
+						mAddCoCombo -_CoName $UIString["Class_00"] #enables classification filter for catalog of terms starting with segment
 
-					$dsWindow.FindName("TabMain").add_SelectionChanged({
+					$dsWindow.FindName("expTermCatalog").add_Expanded({
 						param($sender, $SelectionChangedEventArgs)
-						if ($dsWindow.FindName("tabTerms").IsSelected -eq $true) 
+						if ($dsWindow.FindName("expTermCatalog").IsExpanded -eq $true) 
 						{
 							$dsWindow.FindName("btnOK").IsDefault = $false
 							$dsWindow.FindName("btnSearchTerm").IsDefault = $true
 							#$dsWindow.FindName("fileNameExpander").Visibility = "Collapsed"
-							$dsWindow.FindName("ButtonGrid").Visibility = "Collapsed"
+							#$dsWindow.FindName("ButtonGrid").Visibility = "Collapsed"
 						}
 						Else 
 						{
 							#$dsWindow.FindName("fileNameExpander").Visibility = "Visible"
 							$dsWindow.FindName("btnOK").IsDefault = $true
 							$dsWindow.FindName("btnSearchTerm").IsDefault = $false
-							$dsWindow.FindName("ButtonGrid").Visibility = "Visible"
+							#$dsWindow.FindName("ButtonGrid").Visibility = "Visible"
 						}
 					
 					})
@@ -181,9 +185,9 @@ function InitializeWindow
 					})
 
 				}
-				catch { $dsDiag.Trace("WARNING Tab TermSearch is not present")}
-				#endregionCatalogTerm
-
+				catch { $dsDiag.Trace("WARNING expander TermCatalog is not present")}
+			}
+			#endregionCatalogTerm
 		}
 		"FolderWindow"
 		{
@@ -233,11 +237,6 @@ function InitializeWindow
 
 				IF($Prop["_XLTN_IDENTNUMBER"]){ $Prop["_XLTN_IDENTNUMBER"].Value = $UIString["LBL27"]}
 			}
-#show current runspace ID as input parameter to be used in step by step debugging
-
-            $id = [runspace]::DefaultRunspace.Id
-            $app = [System.Diagnostics.Process]::GetCurrentProcess()
-            [System.Windows.Forms.MessageBox]::Show("application: $($app.name)"+[Environment]::NewLine+"runspace ID: $id")
 
 			#region EditMode
 			IF ($Prop["_EditMode"].Value -eq $true) 
@@ -416,6 +415,10 @@ function GetNewCustomObjectName
 					$Prop["_XLTN_IDENTNUMBER"].Value = $Prop["_GeneratedNumber"].Value
 				}
 				$customObjectName = $Prop["_XLTN_TERM-DE"].Value
+
+$_DataContext = $dsWindow.DataContext
+$dsDiag.Inspect()
+
 				return $customObjectName
 			}
 
@@ -796,37 +799,6 @@ function mHelp ([Int] $mHContext) {
 
 #endregion quickstart
 
-#region Claims-ECO-Link
-function mgetCustomEntityList ([String] $_CoName) {
-	try {
-		$dsDiag.Trace(">> m_getCustomEntityList started")
-		$srchConds = New-Object autodesk.Connectivity.WebServices.SrchCond[] 1
-		$srchCond = New-Object autodesk.Connectivity.WebServices.SrchCond
-		$propDefs = $vault.PropertyService.GetPropertyDefinitionsByEntityClassId("CUSTENT")
-		$propNames = @("CustomEntityName")
-		$propDefIds = @{}
-		foreach($name in $propNames) {
-			$propDef = $propDefs | Where-Object { $_.SysName -eq $name }
-			$propDefIds[$propDef.Id] = $propDef.DispName
-		}
-		$srchCond.PropDefId = $propDef.Id
-		$srchCond.SrchOper = 3
-		$srchCond.SrchTxt = $_CoName
-		$srchCond.PropTyp = [Autodesk.Connectivity.WebServices.PropertySearchType]::SingleProperty
-		$srchCond.SrchRule = [Autodesk.Connectivity.WebServices.SearchRuleType]::Must
-		$srchConds[0] = $srchCond
-		$srchSort = New-Object autodesk.Connectivity.WebServices.SrchSort
-		$searchStatus = New-Object autodesk.Connectivity.WebServices.SrchStatus
-		$bookmark = ""
-		$global:_CustomEnts = $vault.CustomEntityService.FindCustomEntitiesBySearchConditions($srchConds,$null,[ref]$bookmark,[ref]$searchStatus)
-		$dsDiag.Trace(".. m_getCustomEntityList finished - returns $_CustomEnts <<")
-		return $_CustomEnts
-	}
-	catch { 
-		$dsDiag.Trace("!! Error in m_getCustomEntityList")
-	}
-}
-#endregion Claims-ECO-Links
 
 #region CAD-BOMExportToCsvOrXML
 function mExportCSV ()
@@ -872,3 +844,10 @@ function mSetFileName($initialDirectory, $mFileName, $mFileType)
 	$SaveFileDialog.Dispose()#dispose as you are done.
 }
 #endregion CAD-BOMExportToCsvOrXML
+
+function mCatalogClick
+{
+	$dsWindow.FindName("expTermCatalog").Visibility = "Visible"
+	$dsWindow.FindName("expTermCatalog").IsExpanded = $true
+	$dsWindow.FindName("expTermCatalog").IsEnabled = $true
+}

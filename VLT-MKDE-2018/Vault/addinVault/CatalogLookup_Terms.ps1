@@ -58,6 +58,7 @@ function m_SearchTerms ([STRING] $mSearchText1) {
 	Try {
 		$dsDiag.Trace(">> search COs terms")
 		$mSearchText1 = $dsWindow.FindName("SearchText").Text
+		If(!$mSearchText1) { $mSearchText1 = "*"}
 
 		# the search conditions depend on the filters set (4 groups, 4 languages; the number has to match
 		$_NumConds = 1 #we have one condition as minimum, as we search for custom entities of category "term" 		
@@ -80,45 +81,45 @@ function m_SearchTerms ([STRING] $mSearchText1) {
 		$_i = 0
 
 		#the default search condition object type is custom object "term"
-		$srchConds[$_i]= mCreateSearchCond "Category Name" "Term" "AND" #ToDo: replace by UIString
+		$srchConds[$_i]= mCreateSearchCond $UIString["ClassTerms_08"] $UIString["ClassTerms_00"] "AND" #Search in "Category Name" = "Term"
 		$_i += 1
 
 		#add other conditions by settings read from dialog
 		IF ($dsWindow.FindName("chkDE").IsChecked -eq $true) {
-			$srchConds[$_i]= mCreateSearchCond "Term EN" $mSearchText1 "OR" #ToDo: replace by UIString
+			$srchConds[$_i]= mCreateSearchCond $UIString["ClassTerms_09"] $mSearchText1 "OR" #ToDo: replace by UIString
 			$_i += 1
 		}
 		IF ($dsWindow.FindName("chkEN").IsChecked -eq $true) {
-			$srchConds[$_i]= mCreateSearchCond "Term DE" $mSearchText1 "OR" #ToDo: replace by UIString
+			$srchConds[$_i]= mCreateSearchCond $UIString["ClassTerms_10"] $mSearchText1 "OR" #ToDo: replace by UIString
 			$_i += 1
 		}
 		IF ($dsWindow.FindName("chkFR").IsChecked -eq $true) {
-			$srchConds[$_i]= mCreateSearchCond "Term FR" $mSearchText1 "OR" #ToDo: replace by UIString
+			$srchConds[$_i]= mCreateSearchCond $UIString["ClassTerms_11"] $mSearchText1 "OR" #ToDo: replace by UIString
 			$_i += 1
 		}
 		IF ($dsWindow.FindName("chkIT").IsChecked -eq $true) {
-			$srchConds[$_i]= mCreateSearchCond "Term IT" $mSearchText1 "OR" #ToDo: replace by UIString
+			$srchConds[$_i]= mCreateSearchCond $UIString["ClassTerms_12"] $mSearchText1 "OR" #ToDo: replace by UIString
 			$_i += 1
 		}
 		# if filters are used limit the search to the classification groups. Apply AND conditions
 		IF ($breadCrumb.Children[1].SelectedIndex -ge 0) {
 			$mSearchGroupName = $breadCrumb.Children[1].Text
-			$srchConds[$_i]= mCreateSearchCond "Segment" $mSearchGroupName "AND" #ToDo: replace by UIString
+			$srchConds[$_i]= mCreateSearchCond $UIString["Class_00"] $mSearchGroupName "AND" #search in Segment class
 			$_i += 1
 		}
 				IF ($breadCrumb.Children[2].SelectedIndex -ge 0) {
 			$mSearchGroupName = $breadCrumb.Children[2].Text
-			$srchConds[$_i]= mCreateSearchCond "Main Group" $mSearchGroupName "AND" #ToDo: replace by UIString
+			$srchConds[$_i]= mCreateSearchCond $UIString["Class_01"] $mSearchGroupName "AND" #ToDo: replace by UIString
 			$_i += 1
 		}
 		IF ($breadCrumb.Children[3].SelectedIndex -ge 0) {
 			$mSearchGroupName = $breadCrumb.Children[3].Text
-			$srchConds[$_i]= mCreateSearchCond "Group" $mSearchGroupName "AND" #ToDo: replace by UIString
+			$srchConds[$_i]= mCreateSearchCond $UIString["Class_02"] $mSearchGroupName "AND" #ToDo: replace by UIString
 			$_i += 1
 		}
 		IF ($breadCrumb.Children[4].SelectedIndex -ge 0) {
 			$mSearchGroupName = $breadCrumb.Children[4].Text
-			$srchConds[$_i]= mCreateSearchCond "Sub Group" $mSearchGroupName "AND" #ToDo: replace by UIString
+			$srchConds[$_i]= mCreateSearchCond $UIString["Class_03"] $mSearchGroupName "AND" #ToDo: replace by UIString
 			$_i += 1
 		}
 		$dsDiag.Trace(" search conditions build") 
@@ -147,13 +148,13 @@ function m_SearchTerms ([STRING] $mSearchText1) {
 				catch { $dsDiag.Trace("ERROR ---iterates search result for properties failed !! ---") }
 			}
 
-			$dsDiag.Trace(" ---iterates search result for properties...") 
+			$dsDiag.Trace(" ---iterates search result for properties finished") 
 			#create a row for the element and it's properties
 			$row = New-Object CatalogData
-			$row.Term_DE = $props["Term DE"]
-			$row.Term_EN = $props["Term EN"]
-			$row.Term_FR = $props["Term FR"]
-			$row.Term_IT = $props["Term IT"]
+			$row.Term_DE = $props[$UIString["ClassTerms_09"]] #toDo: replace "Begriff xx" by UIString
+			$row.Term_EN = $props[$UIString["ClassTerms_10"]]
+			$row.Term_FR = $props[$UIString["ClassTerms_11"]]
+			$row.Term_IT = $props[$UIString["ClassTerms_12"]]
 		
 			$_data += $row
 			$dsDiag.Trace("...iterates search result for properties finished.") 
@@ -227,17 +228,21 @@ function m_SelectTerm {
 			$Prop["Part Number"].Value = $mSelectedItem.Item
 		}
 		IF ($dsWindow.Name -eq "FileWindow") {
-			$Prop["_XLTN_TITLE"].Value = $mSelectedItem.Term_EN
+			$Prop["_XLTN_TITLE"].Value = $mSelectedItem.Term_DE
 			Try {
-				$Prop["Title DE"].Value = $mSelectedItem.Term_DE
+				$Prop["_XLTN_TITLE-DE"].Value = $mSelectedItem.Term_DE
 			}
 			catch { $dsDiag.Trace("Title DE does not exist")}
 			Try {
-				$Prop["Title FR"].Value = $mSelectedItem.Term_FR
+				$Prop["_XLTN_TITLE-EN"].Value = $mSelectedItem.Term_EN
+			}
+			catch { $dsDiag.Trace("Title EN does not exist")}
+			Try {
+				$Prop["_XLTN_TITLE-FR"].Value = $mSelectedItem.Term_FR
 			}
 			catch { $dsDiag.Trace("Title FR does not exist")}
 			Try {
-				$Prop["Title IT"].Value = $mSelectedItem.Term_IT
+				$Prop["_XLTN_TITLE-IT"].Value = $mSelectedItem.Term_IT
 			}
 			catch { $dsDiag.Trace("Title IT does not exist")}
 		}
@@ -257,6 +262,8 @@ function m_SelectTerm {
 		$dsDiag.Trace("Error writing term.value(s) to property field")
 	}
 	
-	$dsWindow.FindName("tabFileProp").IsSelected = $true
+	$dsWindow.FindName("expTermCatalog").Visibility = "Collapsed"
+	$dsWindow.FindName("expTermCatalog").IsExpanded = $false
+	$dsWindow.FindName("expTermCatalog").IsEnabled = $false
 }
 
