@@ -260,7 +260,9 @@
     <Resource Include="CAD\Configuration\AutoCadDynamicProperties.xml" />
     <Resource Include="CAD\Configuration\InventorDynamicProperties.xml" />
     <Resource Include="de-DE\PropertyTranslations.xml" />
-    <Resource Include="de-DE\UIStrings.xml" />
+    <Resource Include="de-DE\UIStrings.xml">
+      <SubType>Designer</SubType>
+    </Resource>
     <Resource Include="en-US\PropertyTranslations.xml" />
     <Resource Include="en-US\UIStrings.xml" />
     <Content Include="HelpFiles\C.1GeneralInformation.html" />
@@ -518,9 +520,9 @@
     <Resource Include="Vault\About.ico" />
     <Content Include="Vault\addinVault\Microsoft.ReportViewer.Common.dll" />
     <Content Include="Vault\addinVault\Microsoft.ReportViewer.WinForms.dll" />
+    <Content Include="Vault\addinVault\QuickstartUtilityLibrary.dll" />
     <Content Include="Vault\addinVault\UsesWhereUsed.dll" />
     <Content Include="Vault\addinVault\VDSReportViewer.dll" />
-    <Content Include="Vault\addinVault\VDSUtils.dll" />
     <Resource Include="Vault\Claim-add.ico" />
     <Resource Include="Vault\Claim-edit.ico" />
     <Resource Include="Vault\Claim-info.ico" />
