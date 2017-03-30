@@ -106,10 +106,10 @@ function InitializeWindow
     })
 
 	Try {
-		$dsWindow.FindName("SearchText").text = $Prop["_XLTN_TITLE"].Value
+		$dsWindow.FindName("mSearchTermText").text = $Prop["_XLTN_TITLE"].Value
 		$Prop["_XLTN_TITLE"].add_PropertyChanged({
 				param( $parameter)
-				$dsWindow.FindName("SearchText").text = $Prop["_XLTN_TITLE"].Value
+				$dsWindow.FindName("mSearchTermText").text = $Prop["_XLTN_TITLE"].Value
 			})
 	}
 	catch { $dsDiag.Trace("WARNING Tab TermSearch is not present")}
@@ -143,11 +143,11 @@ function InitializeWindow
 					
 					Try 
 					{
-						$dsWindow.FindName("SearchText").text = $Prop["_XLTN_TITLE"].Value
+						$dsWindow.FindName("mSearchTermText").text = $Prop["_XLTN_TITLE"].Value
 				
 						$Prop["_XLTN_TITLE"].add_PropertyChanged({
 								param( $parameter)
-								$dsWindow.FindName("SearchText").text = $Prop["_XLTN_TITLE"].Value
+								$dsWindow.FindName("mSearchTermText").text = $Prop["_XLTN_TITLE"].Value
 							})
 
 						mAddCoCombo -_CoName $UIString["Class_00"] #enables classification filter for catalog of terms starting with segment
@@ -158,23 +158,19 @@ function InitializeWindow
 						{
 							$dsWindow.FindName("btnOK").IsDefault = $false
 							$dsWindow.FindName("btnSearchTerm").IsDefault = $true
-							#$dsWindow.FindName("fileNameExpander").Visibility = "Collapsed"
-							#$dsWindow.FindName("ButtonGrid").Visibility = "Collapsed"
 						}
 						Else 
 						{
-							#$dsWindow.FindName("fileNameExpander").Visibility = "Visible"
 							$dsWindow.FindName("btnOK").IsDefault = $true
 							$dsWindow.FindName("btnSearchTerm").IsDefault = $false
-							#$dsWindow.FindName("ButtonGrid").Visibility = "Visible"
+							$dsWindow.FindName("expTermCatalog").Visibility = "Collapsed"
 						}
-					
 					})
 
-					$dsWindow.FindName("ItemsFound").add_SelectionChanged({
+					$dsWindow.FindName("dataGrdTermsFound").add_SelectionChanged({
 						param($sender, $SelectionChangedEventArgs)
-						$dsDiag.Trace(".. ItemsFoundSelection")
-						IF($dsWindow.FindName("ItemsFound").SelectedItem){
+						$dsDiag.Trace(".. TermsFoundSelection")
+						IF($dsWindow.FindName("dataGrdTermsFound").SelectedItem){
 							$dsWindow.FindName("btnAdopt").IsEnabled = $true
 							$dsWindow.FindName("btnAdopt").IsDefault = $true
 						}
@@ -188,6 +184,47 @@ function InitializeWindow
 				catch { $dsDiag.Trace("WARNING expander TermCatalog is not present")}
 			}
 			#endregionCatalogTerm
+
+			#region ItemLookUp
+			If ($dsWindow.FindName("expItemLookup"))
+				{$dsWindow.FindName("cmbItemCategories").ItemsSource = mGetItemCategories
+					$dsWindow.FindName("expItemLookup").Visibility = "Collapsed"
+					$dsWindow.FindName("expItemLookup").IsExpanded = $false
+					$dsWindow.FindName("expItemLookup").IsEnabled = $false
+
+					Try
+					{
+						$dsWindow.FindName("expItemLookup").add_Expanded({
+							param($sender, $SelectionChangedEventArgs)
+							if ($dsWindow.FindName("expItemLookup").IsExpanded -eq $true) 
+							{
+								$dsWindow.FindName("btnOK").IsDefault = $false
+								$dsWindow.FindName("btnSearchItem").IsDefault = $true
+							}
+							Else 
+							{
+								$dsWindow.FindName("btnOK").IsDefault = $true
+								$dsWindow.FindName("btnSearchItem").IsDefault = $false
+								$dsWindow.FindName("expItemLookup").Visibility = "Collapsed"
+							}
+							})
+
+					$dsWindow.FindName("ItemsFound").add_SelectionChanged({
+						param()
+						$dsDiag.Trace(".. ItemsFoundSelection")
+						IF($dsWindow.FindName("ItemsFound").SelectedItem){
+							$dsWindow.FindName("btnAdoptItem").IsEnabled = $true
+							$dsWindow.FindName("btnAdoptItem").IsDefault = $true
+						}
+						Else {
+							$dsWindow.FindName("btnAdoptItem").IsEnabled = $false
+							$dsWindow.FindName("btnSearchItem").IsDefault = $true
+						}
+						})
+					}
+					catch{ $dsDiag.Trace("WARNING expander exItemLookup is not present") }
+					}
+			#endregion
 		}
 		"FolderWindow"
 		{
@@ -727,7 +764,7 @@ function m_CategoryChanged
 		{
 			#Quickstart uses the default numbering scheme for files; GoTo GetNumSchms function to disable this filter incase you'd like to apply numbering per category for files as well
 			$dsWindow.FindName("TemplateCB").add_SelectionChanged({
-				m_TemplateChanged
+				#m_TemplateChanged
 			})
 			$Prop['_XLTN_AUTHOR'].Value = $VaultConnection.UserName
 		}
@@ -850,4 +887,24 @@ function mCatalogClick
 	$dsWindow.FindName("expTermCatalog").Visibility = "Visible"
 	$dsWindow.FindName("expTermCatalog").IsExpanded = $true
 	$dsWindow.FindName("expTermCatalog").IsEnabled = $true
+}
+
+function mItemLookUpClick
+{
+	$dsWindow.FindName("expItemLookup").Visibility = "Visible"
+	$dsWindow.FindName("expItemLookup").IsExpanded = $true
+	$dsWindow.FindName("expItemLookup").IsEnabled = $true
+}
+
+
+function mGetItemCategories
+{
+	$mItemCats = $vault.CategoryService.GetCategoriesByEntityClassId("ITEM", $true)
+	$mItemCatNames = @()
+	Foreach ($item in $mItemCats)
+	{
+		$mItemCatNames += $item.Name
+
+	}
+	return $mItemCatNames
 }

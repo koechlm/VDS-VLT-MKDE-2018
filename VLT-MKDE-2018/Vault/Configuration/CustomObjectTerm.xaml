@@ -354,8 +354,8 @@
         </Grid.ColumnDefinitions>
         <GroupBox Header="{Binding UIString[ClassTerms_07],FallbackValue=Classification}" Grid.ColumnSpan="2" BorderThickness="1">
             <Grid x:Name="grdContentFilter">
-                <WrapPanel x:Name="wrpFilter" Grid.Row="2">
-                    <Button x:Name="btnReset" Width="26" Command="{Binding PsCmd[mResetClassFilter]}" Content="X" FontWeight="Bold" ToolTip="{Binding UIString[MSDCE_TT15], FallbackValue='Reset Selection'}" Foreground="Red" IsEnabled="{Binding IsNotReadonly}" Height="24"/>
+                <WrapPanel x:Name="wrpClassification" Grid.Row="2">
+                    <Button x:Name="btnClsReset" Width="26" Command="{Binding PsCmd[mResetClassFilter]}" Content="X" FontWeight="Bold" ToolTip="{Binding UIString[MSDCE_TT15], FallbackValue='Reset Selection'}" Foreground="Red" IsEnabled="{Binding IsNotReadonly}" Height="24"/>
                 </WrapPanel>
             </Grid>
         </GroupBox>

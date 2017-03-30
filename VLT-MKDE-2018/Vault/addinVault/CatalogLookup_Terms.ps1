@@ -1,9 +1,3 @@
-<#
-[System.Reflection.Assembly]::LoadFrom("C:\Program Files\Autodesk\Vault Professional 2016\Explorer\Autodesk.Connectivity.WebServices.dll")
-$cred = New-Object Autodesk.Connectivity.WebServicesTools.UserPasswordCredentials("localhost", "MFG-2016-PRO-DE", "Administrator", "")
-$vault = New-Object Autodesk.Connectivity.WebServicesTools.WebServiceManager($cred)
-
-#>
 
 
 Add-Type @"
@@ -18,7 +12,7 @@ public class CatalogData
 
 function mSearchTerm() {
 	try {
-		$dsDiag.Trace(">> catalog search for terms started... SearchText = $mSearchText")
+		$dsDiag.Trace(">> catalog search for terms started... mSearchTermText = $mSearchText")
 		$dsWindow.Cursor = "Wait" #search might take some time...
 
 		#region tab-rendering 
@@ -30,7 +24,7 @@ function mSearchTerm() {
 			$_temp41 = $dsWindow.FindName("btnOK").IsEnabled
 		#endregion
 
-		$dsWindow.FindName("ItemsFound").ItemsSource = $null
+		$dsWindow.FindName("dataGrdTermsFound").ItemsSource = $null
 		
 		try
 		{
@@ -57,12 +51,12 @@ function mSearchTerm() {
 function m_SearchTerms ([STRING] $mSearchText1) {
 	Try {
 		$dsDiag.Trace(">> search COs terms")
-		$mSearchText1 = $dsWindow.FindName("SearchText").Text
+		$mSearchText1 = $dsWindow.FindName("mSearchTermText").Text
 		If(!$mSearchText1) { $mSearchText1 = "*"}
 
 		# the search conditions depend on the filters set (4 groups, 4 languages; the number has to match
 		$_NumConds = 1 #we have one condition as minimum, as we search for custom entities of category "term" 		
-		$breadCrumb = $dsWindow.FindName("wrpFilter")
+		$breadCrumb = $dsWindow.FindName("wrpClassification")
 		$_t1 = $breadCrumb.Children[1].SelectedIndex
 		IF ($breadCrumb.Children[1].SelectedIndex -ge 0) { $_NumConds +=1}
 		IF ($breadCrumb.Children[2].SelectedIndex -ge 0) { $_NumConds +=1}
@@ -159,10 +153,10 @@ function m_SearchTerms ([STRING] $mSearchText1) {
 			$_data += $row
 			$dsDiag.Trace("...iterates search result for properties finished.") 
 		}
-		IF ($_data) { $dsWindow.FindName("txtNoResult").Visibility = "Collapsed"}
-		ELSE { $dsWindow.FindName("txtNoResult").Visibility = "Visible"}
+		IF ($_data) { $dsWindow.FindName("txtNoTermFound").Visibility = "Collapsed"}
+		ELSE { $dsWindow.FindName("txtNoTermFound").Visibility = "Visible"}
 
-		$dsWindow.FindName("ItemsFound").ItemsSource = $_data 
+		$dsWindow.FindName("dataGrdTermsFound").ItemsSource = $_data 
 	}
 	catch {
 		$dsDiag.Trace("ERROR --- in m_SearchTerms function") 
@@ -210,7 +204,7 @@ function m_SelectTerm {
 			$_temp41 = $dsWindow.FindName("btnOK").IsEnabled
 		#endregion
 		
-		$mSelectedItem = $dsWindow.FindName("ItemsFound").SelectedItem
+		$mSelectedItem = $dsWindow.FindName("dataGrdTermsFound").SelectedItem
 
 		IF ($dsWindow.Name -eq "AutoCADWindow")
 		{

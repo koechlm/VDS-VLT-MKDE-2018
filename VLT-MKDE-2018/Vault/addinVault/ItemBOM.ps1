@@ -1,6 +1,6 @@
 
 Add-Type @"
-public class itemData
+public class ItemBomData
 {
 	public string Item {get;set;}
 	public string Revision {get;set;}
@@ -13,7 +13,7 @@ public class itemData
 
 function SetItemData($itemId)
 {
-	$dsDiag.Trace(">> SetItemData($itemId)")
+	$dsDiag.Trace(">> SetItemBomData($itemId)")
 	Try
 	{
 	$properyDefinitions = $vault.PropertyService.GetPropertyDefinitionsByEntityClassId("ITEM")
@@ -23,7 +23,7 @@ function SetItemData($itemId)
 		$propDef = $properyDefinitions | Where-Object { $_.Id -eq $property.PropDefId }
 		$props[$propDef.DispName] = $property.Val
 	}
-	$item = New-Object itemData
+	$item = New-Object ItemBomData
 	$item.Item = $props["Nummer"]
 	$item.Revision = $props["Revision"]
 	$item.Title = $props["Titel (Artikel, ECO)"]
@@ -31,20 +31,20 @@ function SetItemData($itemId)
 	$item.State = $props["Status"]
 	$item.Category = $props["Kategoriename"]
 	
-	$dsWindow.FindName("ItemData").DataContext = $item
+	$dsWindow.FindName("ItemBomData").DataContext = $item
 	
-	$dsDiag.Trace("<< SetItemData")
+	$dsDiag.Trace("<< SetItemBomData")
 	}
 	Catch
 	{
-		$dsDiag.Trace(" no linked Item exists - SetItemData <<")
+		$dsDiag.Trace(" no linked Item exists - SetItemBomData <<")
 	}
 }
 
-function ResetItemData($itemId)
+function ResetItemBomData($itemId)
 {
-		$item = New-Object itemData
-		$dsWindow.FindName("ItemData").DataContext = $item
+		$item = New-Object ItemBomData
+		$dsWindow.FindName("ItemBomData").DataContext = $item
 		$dsWindow.FindName("bomList").ItemsSource = $null
 		$dsWindow.FindName("AssoicatedFiles").ItemsSource = $null
 }
@@ -72,7 +72,7 @@ function SetItemBomData($itemId)
 				$props[$propDef.DispName] = $property.Val
 			}
 			
-			$item = New-Object itemData
+			$item = New-Object ItemBomData
 			$item.Item = $props["Nummer"]
 			$item.Revision = $props["Revision"]
 			$item.Title = $props["Titel (Artikel, ECO)"]

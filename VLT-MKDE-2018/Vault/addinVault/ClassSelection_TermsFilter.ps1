@@ -3,7 +3,7 @@
 function mAddCoCombo ([String] $_CoName) {
 	$children = mgetCustomEntityList -_CoName $_CoName
 	if($children -eq $null) { return }
-	$breadCrumb = $dsWindow.FindName("wrpFilter")
+	$breadCrumb = $dsWindow.FindName("wrpClassification")
 	$cmb = New-Object System.Windows.Controls.ComboBox
 	$cmb.Name = "cmbBreadCrumb_" + $breadCrumb.Children.Count.ToString();
 	$cmb.DisplayMemberPath = "Name";
@@ -75,7 +75,7 @@ function mAddCoComboChild ($data) {
 	$children = mGetCustomEntityUsesList -sender $data
 	$dsDiag.Trace("check data object: $children")
 	if($children -eq $null) { return }
-	$breadCrumb = $dsWindow.FindName("wrpFilter")
+	$breadCrumb = $dsWindow.FindName("wrpClassification")
 	$cmb = New-Object System.Windows.Controls.ComboBox
 	$cmb.Name = "cmbBreadCrumb_" + $breadCrumb.Children.Count.ToString();
 	$cmb.DisplayMemberPath = "Name";
@@ -185,7 +185,7 @@ function mgetCustomEntityList ([String] $_CoName) {
 function mGetCustomEntityUsesList ($sender) {
 	try {
 		$dsDiag.Trace(">> mGetCustomEntityUsesList started")
-		$breadCrumb = $dsWindow.FindName("wrpFilter")
+		$breadCrumb = $dsWindow.FindName("wrpClassification")
 		$_i = $breadCrumb.Children.Count -1
 		$_CurrentCmbName = "cmbBreadCrumb_" + $breadCrumb.Children.Count.ToString()
 		$_CurrentClass = $breadCrumb.Children[$_i].SelectedValue.Name
@@ -218,7 +218,7 @@ function mGetCustomEntityUsesList ($sender) {
 }
 
 function mCoComboSelectionChanged ($sender) {
-	$breadCrumb = $dsWindow.FindName("wrpFilter")
+	$breadCrumb = $dsWindow.FindName("wrpClassification")
 	$position = [int]::Parse($sender.Name.Split('_')[1]);
 	$children = $breadCrumb.Children.Count - 1
 	while($children -gt $position )
@@ -261,13 +261,13 @@ function mResetClassFilter
 			}
 				IF (($Prop["_CreateMode"].Value -eq $true) -or ($_Return -eq "Yes"))
 				{
-					$breadCrumb = $dsWindow.FindName("wrpFilter")
+					$breadCrumb = $dsWindow.FindName("wrpClassification")
 					$breadCrumb.Children[1].SelectedIndex = -1
 				}
 			}
 			default
 			{
-				$breadCrumb = $dsWindow.FindName("wrpFilter")
+				$breadCrumb = $dsWindow.FindName("wrpClassification")
 				$breadCrumb.Children[1].SelectedIndex = -1
 			}
 		}
