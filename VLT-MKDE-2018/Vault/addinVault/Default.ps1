@@ -859,15 +859,3 @@ function mItemLookUpClick
 	$dsWindow.FindName("tabItemLookup").IsSelected = $true
 }
 
-
-function mGetItemCategories
-{
-	$mItemCats = $vault.CategoryService.GetCategoriesByEntityClassId("ITEM", $true)
-	$mItemCatNames = @()
-	Foreach ($item in $mItemCats)
-	{
-		$mItemCatNames += $item.Name
-
-	}
-	return $mItemCatNames
-}

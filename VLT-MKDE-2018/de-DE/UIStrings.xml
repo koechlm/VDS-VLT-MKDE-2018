@@ -185,6 +185,7 @@
   
     <!--Quickstart Inventor Dialog-->
       <UIString ID="MSDCE_MSG00">Modellansicht fehlt! Sie verwenden die Vault Option, dass IPN/IDW/DWG identisch zum Modell benannt und abgelegt werden. Fügen sie entweder ein Model hinzu, oder ändern sie die Vault Option "Dateinummern für IPN/IDW/DWG generieren".</UIString>
+      <UIString ID="MSDCE_MSG01">Nummer von Modell</UIString>
     <!--Quickstart Inventor Dialog end-->
   
     <!--Quickstart Custom Object Names-->
@@ -337,7 +338,12 @@
   <UIString ID="ADSK-ClaimMgr-09">Reklamation bearbeiten...</UIString>
   <UIString ID="ADSK-ClaimMgr-10">Vorhandene Reklamation bearbeiten</UIString>
   <!--Claims Management Extension End-->
-  
-  
+
+  <!--Vault Item Lookup Tab-->
+  <UIString ID="ADSK-ItemTab-00">Artikel Suche</UIString>
+  <UIString ID="ADSK-ItemTab-01">Artikel Suchen und Verknüpfen</UIString>
+  <UIString ID="ADSK-ItemTab-02">Artikeldaten übernehmen</UIString>
+  <UIString ID="ADSK-ItemTab-03">Halbzeugdaten übernehmen</UIString>
+  <!--Vault Item Lookup Tab End-->
 
 </UIStrings>

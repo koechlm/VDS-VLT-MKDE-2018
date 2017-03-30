@@ -80,7 +80,10 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="CAD\addins\breadCrumb.ps1" />
+    <None Include="CAD\addins\CatalogLookupTerms_CAD.ps1" />
+    <None Include="CAD\addins\ClassSelectionTermsFilter_CAD.ps1" />
     <None Include="CAD\addins\Default.ps1" />
+    <None Include="CAD\addins\ItemLookup.ps1" />
     <None Include="CAD\Configuration\AutoCAD.cfg" />
     <None Include="CAD\Configuration\Inventor.cfg" />
     <None Include="HelpFiles\debug.log" />
@@ -197,6 +200,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Vault\Configuration\File\Jobs.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Vault\Configuration\File_.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

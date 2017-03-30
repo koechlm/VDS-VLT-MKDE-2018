@@ -292,14 +292,14 @@
         	Grid.ColumnSpan="2" Margin="6,5,0,0" MaxWidth="680">
             <TabItem x:Name="tabFileProp" Header="{Binding UIString[LBL63], FallbackValue=Category Properties}">
                 <Grid x:Name="DSDynCatPropGrid"
-        			ToolTip="{Binding UIString[LBL63], FallbackValue=Category Properties}">
+        			ToolTip="{Binding UIString[LBL63], FallbackValue=Category Properties}" MinHeight="300">
                     <DataGrid x:Name="DSDynamicCategoryProperties"
         				AutoGenerateColumns="False"
         				HeadersVisibility="Column"
         				ItemsSource="{Binding DynamicProperties}"
         				ScrollViewer.CanContentScroll="False"
         				HorizontalGridLinesBrush="WhiteSmoke"
-        				VerticalGridLinesBrush="WhiteSmoke" VerticalAlignment="Top" MaxHeight="350">
+        				VerticalGridLinesBrush="WhiteSmoke" MaxHeight="350" Background="White">
                         <DataGrid.Columns>
                             <DataGridTextColumn Binding="{Binding DispName}"
         						CellStyle="{StaticResource DynamicDataGridLabelStyle}" MinWidth="140"

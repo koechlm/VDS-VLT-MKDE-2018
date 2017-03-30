@@ -11,6 +11,9 @@ public class itemData
 function mSearchItem()
 {
 	$dsDiag.Trace(">> Item search started... SearchText = $mSearchText")
+	#Try
+	#{$dsWindow.FindName("ItemsFound").ItemsSource = $null}
+	#catch{}
 	$dsWindow.FindName("ItemsFound").ItemsSource = $null
 	$dsWindow.FindName("txtBlockNoItemsFound").Visibility = "Collapsed"
 	$mSearchText = $dsWindow.FindName("SearchText").Text
@@ -63,6 +66,7 @@ function mSearchItem()
 			$dsWindow.FindName("ItemsFound").ItemsSource = $results
 			$dsWindow.FindName("txtBlockNoItemsFound").Visibility = "Collapsed"
 		}
+		Else{ $dsWindow.FindName("txtBlockNoItemsFound").Visibility = "Visible" }
 		#region workaround 
 		#		workaround as the combo looses the selection as soon as the search command is used !?
 		$dsWindow.FindName("Categories").SelectedIndex = $_temp1 
@@ -77,6 +81,7 @@ function mSearchItem()
 	finally
 	{
 		$dsWindow.Cursor = "" #reset to default
+		$results = $null
 	}
 }
 
@@ -106,13 +111,18 @@ function mCreateItemSearchCond ([String] $PropName, [String] $mSearchTxt, [Strin
 	return $srchCond
 } 
 
+
 function mSelectItem {
 	$dsDiag.Trace("Item selected to write it's number to the file part number field")
 	try 
 	{
 		$_temp1 = $dsWindow.FindName("Categories").SelectedIndex #workaround as the combo looses the selection as soon as the search command is used !?
-		$global:mSelectedTemplate = $dsWindow.FindName("TemplateCB").SelectedIndex
+		#$_temp2 = $dsWindow.FindName("cmbFolder").SelectedIndex
+		#$_temp3 = $dsWindow.FindName("cmbClassification").SelectedIndex
+		#$_temp4 = $dsWindow.FindName("cmbClass").SelectedIndex
+
 		$mSelectedItem = $dsWindow.FindName("ItemsFound").SelectedItem
+
 
 		IF ($dsWindow.Name -eq "AutoCADWindow")
 		{
@@ -128,22 +138,21 @@ function mSelectItem {
 		IF ($dsWindow.Name -eq "InventorWindow")
 		{
 			$Prop["Part Number"].Value = $mSelectedItem.Item
+			$Prop["Title"].Value = $mSelectedItem.Title
 		}
-
-		IF ($dsWindow.Name -eq "FileWindow")
-		{
-			$Prop["_XLTN_PARTNUMBER"].Value = $mSelectedItem.Item
-		}
+		#$dsWindow.FindName("txtPartNumber").Text = $mSelectedItem.Item
+		$dsWindow.FindName("tabFileProp").IsSelected = $true
 
 		$dsWindow.FindName("btnSearchItem").IsDefault = $false
 		$dsWindow.FindName("btnOK").IsDefault = $true
 
 		#region tab rendering
 		#returnin to tab 1 causes it's rendering with reset controls; we stored the selections made before
-		$dsWindow.FindName("Categories").SelectedIndex = $_temp1
-		$dsWindow.FindName("TemplateCB").SelectedIndex = $global:mSelectedTemplate
+		$dsWindow.FindName("Categories").SelectedIndex = $_temp1 
+		#IF ($_temp2) { $dsWindow.FindName("cmbFolder").SelectedIndex = $_temp2}
+		#IF ($_temp3) { $dsWindow.FindName("cmbClassification").SelectedIndex = $_temp3}
+		#IF ($_temp4) { $dsWindow.FindName("cmbClass").SelectedIndex = $_temp4}
 		#endregion workaround
-		$dsWindow.FindName("tabFileProperties").IsSelected = $true
 	}
 	Catch 
 	{
@@ -173,10 +182,9 @@ function mSelectStockItem {
 		IF ($dsWindow.Name -eq "InventorWindow")
 		{
 			$Prop["Stock Number"].Value = $mSelectedItem.Item
-			$Prop["Halbzeug"].Value = $mSelectedItem.Title
-# 			$dsDiag.Inspect()
+			# Stock designation is custom prop; cautiously try to fill :)
+			Try { $Prop["Halbzeug"].Value = $mSelectedItem.Title} Catch{}
 		}
-
 		#$dsWindow.FindName("txtPartNumber").Text = $mSelectedItem.Item
 		$dsWindow.FindName("tabFileProp").IsSelected = $true
 

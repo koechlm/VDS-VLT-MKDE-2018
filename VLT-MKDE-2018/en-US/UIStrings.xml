@@ -172,6 +172,7 @@
   
     <!--Quickstart Inventor Dialog-->
       <UIString ID="MSDCE_MSG00">Missing Model View! Your system is set to save IPN/IDW/DWG depending on model's name and location. Either add a model or change the Vault option to generate numbers for IPN/IDW/DWG.</UIString>
+      <UIString ID="MSDCE_MSG01">Number of Model</UIString>
     <!--Quickstart Inventor Dialog end-->
   
     <!--Quickstart Custom Object Names-->
@@ -285,4 +286,10 @@
   <UIString ID="ADSK-ClaimMgr-10">Edit Claim</UIString>
   <!--Claims Management Extension End-->
   
+  <!--Vault Item Lookup Tab-->
+  <UIString ID="ADSK-ItemTab-00">Item Lookup</UIString>
+  <UIString ID="ADSK-ItemTab-01">Lookup and link Item</UIString>
+  <UIString ID="ADSK-ItemTab-02">Adopt Item Data</UIString>
+  <UIString ID="ADSK-ItemTab-02">Adopt Stock Data</UIString>
+  <!--Vault Item Lookup Tab End-->
 </UIStrings>

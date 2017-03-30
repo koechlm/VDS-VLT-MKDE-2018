@@ -114,7 +114,7 @@ function InitializeWindow
 						if (($Prop["_FileExt"].Value -eq "idw") -or ($Prop["_FileExt"].Value -eq "dwg" )) 
 						{
 							[System.Reflection.Assembly]::LoadFrom($Env:ProgramData + "\Autodesk\Vault 2018\Extensions\DataStandard" + '\Vault\addinVault\QuickstartUtilityLibrary.dll')
-							$_mInvHelpers = New-Object VDSUtils.InvHelpers #NEW 2018 hand over the parent inventor application, to ensure the correct instance
+							$_mInvHelpers = New-Object QuickstartUtilityLibrary.InvHelpers #NEW 2018 hand over the parent inventor application, to ensure the correct instance
 							$_ModelFullFileName = $_mInvHelpers.m_GetMainViewModelPath($Application)#NEW 2018 hand over the parent inventor application, to ensure the correct instance
 							$Prop["Title"].Value = $_mInvHelpers.m_GetMainViewModelPropValue($Application, $_ModelFullFileName,"Title")
 							$Prop["Description"].Value = $_mInvHelpers.m_GetMainViewModelPropValue($Application, $_ModelFullFileName,"Description")
@@ -136,6 +136,8 @@ function InitializeWindow
 									$_ModelFile = Get-ChildItem $_ModelFullFileName
 									$_ModelPath = $_ModelFile.DirectoryName	
 									$Prop["DocNumber"].Value = $_ModelName
+									$dsWindow.FindName("NumSchms").Visibility = "Collapsed"
+									$dsWindow.FindName("DSNumSchmsCtrl").Visibility = "Collapsed"
 									#retrieve the matching folder selection of the model's path
 									$_localPath = $VaultConnection.WorkingFoldersManager.GetWorkingFolder($mappedRootPath)
 									$Prop["Folder"].Value = $_ModelPath.Replace($_localPath, "")
@@ -146,7 +148,7 @@ function InitializeWindow
 						if ($Prop["_FileExt"].Value -eq "ipn") 
 						{
 							[System.Reflection.Assembly]::LoadFrom($Env:ProgramData + "\Autodesk\Vault 2018\Extensions\DataStandard" + '\Vault\addinVault\QuickstartUtilityLibrary.dll')
-							$_mInvHelpers = New-Object VDSUtils.InvHelpers #NEW 2018 hand over the parent inventor application, to ensure the correct instance
+							$_mInvHelpers = New-Object QuickstartUtilityLibrary.InvHelpers #NEW 2018 hand over the parent inventor application, to ensure the correct instance
 							$_ModelFullFileName = $_mInvHelpers.m_GetMainViewModelPath($Application)#NEW 2018 hand over the parent inventor application, to ensure the correct instance
 							$Prop["Title"].Value = $_mInvHelpers.m_GetMainViewModelPropValue($Application, $_ModelFullFileName,"Title")
 							$Prop["Description"].Value = $_mInvHelpers.m_GetMainViewModelPropValue($Application, $_ModelFullFileName,"Description")
@@ -171,6 +173,8 @@ function InitializeWindow
 									$_ModelFile = Get-ChildItem $_ModelFullFileName
 									$_ModelPath = $_ModelFile.DirectoryName	
 									$Prop["DocNumber"].Value = $_ModelName
+									$dsWindow.FindName("NumSchms").Visibility = "Collapsed" 
+									$dsWindow.FindName("DSNumSchmsCtrl").Visibility = "Collapsed"
 									#retrieve the matching folder selection of the model's path
 									$_localPath = $VaultConnection.WorkingFoldersManager.GetWorkingFolder($mappedRootPath)
 									$Prop["Folder"].Value = $_ModelPath.Replace($_localPath, "")
@@ -220,7 +224,7 @@ function InitializeWindow
 								If ($Application.ActiveDocument.DocumentType -eq '12292') # = kDrawingDocument, get the main view's model path / name
 								{
 									[System.Reflection.Assembly]::LoadFrom($Env:ProgramData + "\Autodesk\Vault 2018\Extensions\DataStandard" + '\Vault\addinVault\QuickstartUtilityLibrary.dll')
-									$_mInvHelpers = New-Object VDSUtils.InvHelpers
+									$_mInvHelpers = New-Object QuickstartUtilityLibrary.InvHelpers
 									$_ModelFullFileName = $_mInvHelpers.m_GetMainViewModelPath($Application)
 									$_ModelName = [System.IO.Path]::GetFileNameWithoutExtension($_ModelFullFileName)
 									$_ModelFile = Get-ChildItem $_ModelFullFileName
@@ -248,6 +252,56 @@ function InitializeWindow
 				}
 			} #end switch Create / Edit Mode
 			#endregion Quickstart
+
+			#region CatalogTerm
+				If ($dsWindow.FindName("tabTermsCatalog"))
+				{					
+					Try 
+					{
+						$dsWindow.FindName("mSearchTermText").text = $Prop["Title"].Value
+				
+						$Prop["Title"].add_PropertyChanged({
+								param( $parameter)
+								$dsWindow.FindName("mSearchTermText").text = $Prop["Title"].Value
+							})
+
+						mAddCoCombo -_CoName $UIString["Class_00"] #enables classification filter for catalog of terms starting with segment
+
+					$dsWindow.FindName("dataGrdTermsFound").add_SelectionChanged({
+						param($sender, $SelectionChangedEventArgs)
+						$dsDiag.Trace(".. TermsFoundSelection")
+						IF($dsWindow.FindName("dataGrdTermsFound").SelectedItem){
+							$dsWindow.FindName("btnAdopt").IsEnabled = $true
+							$dsWindow.FindName("btnAdopt").IsDefault = $true
+						}
+						Else {
+							$dsWindow.FindName("btnAdopt").IsEnabled = $false
+							$dsWindow.FindName("btnSearchTerm").IsDefault = $true
+						}
+					})
+
+				}
+				catch { $dsDiag.Trace("WARNING expander TermCatalog is not present")}
+			}
+			#endregionCatalogTerm
+
+			#region ItemLookUp
+			If ($dsWindow.FindName("tabItemLookup"))
+				{$dsWindow.FindName("cmbItemCategories").ItemsSource = mGetItemCategories
+				Try
+				{
+					$dsWindow.FindName("tabCtrlMain").add_SelectionChanged({
+					param($sender, $SelectionChangedEventArgs)
+					if ($dsWindow.FindName("tabFileProperties").IsSelected -eq $true)
+					{
+						$dsWindow.FindName("TemplateCB").SelectedIndex = $global:mSelectedTemplate
+					}
+				})
+
+				}
+				catch{ $dsDiag.Trace("WARNING expander exItemLookup is not present") }
+				}
+			#endregion
 		}
 		"AutoCADWindow"
 		{
@@ -733,6 +787,19 @@ function mReadGFN4S
 		return $_Option.Value
 	}
 	#$dsDiag.Trace("...finished reading Vault AddIn Options with ERROR!")
+}
+
+#endregion
+
+#region DynGridCommands
+function mCatalogClick
+{
+	$dsWindow.FindName("tabTermsCatalog").IsSelected = $true
+}
+
+function mItemLookUpClick
+{
+	$dsWindow.FindName("tabItemLookup").IsSelected = $true
 }
 
 #endregion
