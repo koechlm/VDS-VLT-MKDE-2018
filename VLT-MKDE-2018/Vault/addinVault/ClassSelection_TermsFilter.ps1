@@ -22,7 +22,7 @@ function mAddCoCombo ([String] $_CoName) {
 			}
 			default
 			{
-				$cmb.IsDropDownOpen = $true
+				$cmb.IsDropDownOpen = $false
 			}
 		}
 	$cmb.add_SelectionChanged({

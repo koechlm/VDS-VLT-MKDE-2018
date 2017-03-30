@@ -198,7 +198,7 @@ function m_SelectTerm {
 		#region tab-rendering 
 			# the tab is rendered with each activation and would re-read sources or require again user input in controls; property values are in runspace memory
 			# note - using the tabTerms in different windows (xaml) might require to add a switch node here
-			$_temp1 = $dsWindow.FindName("Categories").Text
+			#$_temp1 = $dsWindow.FindName("Categories").Text
 			$_temp10 = $dsWindow.FindName("DocTypeCombo").SelectedIndex
 			$_temp40 = $dsWindow.FindName("NumSchms").IsEnabled
 			$_temp41 = $dsWindow.FindName("btnOK").IsEnabled
@@ -245,7 +245,7 @@ function m_SelectTerm {
 		$dsWindow.FindName("btnOK").IsDefault = $true
 
 		#region tab-rendering restore
-			$dsWindow.FindName("Categories").Text = $_temp1
+			#$dsWindow.FindName("Categories").Text = $_temp1
 			IF ($_temp10) { $dsWindow.FindName("DocTypeCombo").SelectedIndex = $_temp10}
 			IF ($_temp40) { $dsWindow.FindName("NumSchms").IsEnabled = $_temp40}
 			IF ($_temp41) { $dsWindow.FindName("btnOK") = $_temp41} 
@@ -256,8 +256,6 @@ function m_SelectTerm {
 		$dsDiag.Trace("Error writing term.value(s) to property field")
 	}
 	
-	$dsWindow.FindName("expTermCatalog").Visibility = "Collapsed"
-	$dsWindow.FindName("expTermCatalog").IsExpanded = $false
-	$dsWindow.FindName("expTermCatalog").IsEnabled = $false
+	$dsWindow.FindName("tabFileProperties").IsSelected = $true
 }
 

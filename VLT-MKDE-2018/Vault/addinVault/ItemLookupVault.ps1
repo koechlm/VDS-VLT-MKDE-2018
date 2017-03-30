@@ -112,7 +112,7 @@ function mSelectItem {
 	try 
 	{
 		$_temp1 = $dsWindow.FindName("Categories").SelectedIndex #workaround as the combo looses the selection as soon as the search command is used !?
-
+		$global:mSelectedTemplate = $dsWindow.FindName("TemplateCB").SelectedIndex
 		$mSelectedItem = $dsWindow.FindName("ItemsFound").SelectedItem
 
 		IF ($dsWindow.Name -eq "AutoCADWindow")
@@ -141,14 +141,10 @@ function mSelectItem {
 
 		#region tab rendering
 		#returnin to tab 1 causes it's rendering with reset controls; we stored the selections made before
-		$dsWindow.FindName("Categories").SelectedIndex = $_temp1 
+		$dsWindow.FindName("Categories").SelectedIndex = $_temp1
+		$dsWindow.FindName("TemplateCB").SelectedIndex = $global:mSelectedTemplate
 		#endregion workaround
-
-		$dsWindow.FindName("expItemLookup").Visibility = "Collapsed"
-		$dsWindow.FindName("expItemLookup").IsExpanded = $false
-		$dsWindow.FindName("expItemLookup").IsEnabled = $false
-
-
+		$dsWindow.FindName("tabFileProperties").IsSelected = $true
 	}
 	Catch 
 	{

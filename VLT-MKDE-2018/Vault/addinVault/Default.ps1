@@ -135,12 +135,8 @@ function InitializeWindow
 			}
 
 			#region CatalogTerm
-				If ($dsWindow.FindName("expTermCatalog"))
-				{
-					$dsWindow.FindName("expTermCatalog").Visibility = "Collapsed"
-					$dsWindow.FindName("expTermCatalog").IsExpanded = $false
-					$dsWindow.FindName("expTermCatalog").IsEnabled = $false
-					
+				If ($dsWindow.FindName("tabTermsCatalog"))
+				{					
 					Try 
 					{
 						$dsWindow.FindName("mSearchTermText").text = $Prop["_XLTN_TITLE"].Value
@@ -151,21 +147,6 @@ function InitializeWindow
 							})
 
 						mAddCoCombo -_CoName $UIString["Class_00"] #enables classification filter for catalog of terms starting with segment
-
-					$dsWindow.FindName("expTermCatalog").add_Expanded({
-						param($sender, $SelectionChangedEventArgs)
-						if ($dsWindow.FindName("expTermCatalog").IsExpanded -eq $true) 
-						{
-							$dsWindow.FindName("btnOK").IsDefault = $false
-							$dsWindow.FindName("btnSearchTerm").IsDefault = $true
-						}
-						Else 
-						{
-							$dsWindow.FindName("btnOK").IsDefault = $true
-							$dsWindow.FindName("btnSearchTerm").IsDefault = $false
-							$dsWindow.FindName("expTermCatalog").Visibility = "Collapsed"
-						}
-					})
 
 					$dsWindow.FindName("dataGrdTermsFound").add_SelectionChanged({
 						param($sender, $SelectionChangedEventArgs)
@@ -186,44 +167,33 @@ function InitializeWindow
 			#endregionCatalogTerm
 
 			#region ItemLookUp
-			If ($dsWindow.FindName("expItemLookup"))
+			If ($dsWindow.FindName("tabItemLookup"))
 				{$dsWindow.FindName("cmbItemCategories").ItemsSource = mGetItemCategories
-					$dsWindow.FindName("expItemLookup").Visibility = "Collapsed"
-					$dsWindow.FindName("expItemLookup").IsExpanded = $false
-					$dsWindow.FindName("expItemLookup").IsEnabled = $false
-
-					Try
+				Try
+				{
+					$dsWindow.FindName("tabCtrlMain").add_SelectionChanged({
+					param($sender, $SelectionChangedEventArgs)
+					if ($dsWindow.FindName("tabFileProperties").IsSelected -eq $true)
 					{
-						$dsWindow.FindName("expItemLookup").add_Expanded({
-							param($sender, $SelectionChangedEventArgs)
-							if ($dsWindow.FindName("expItemLookup").IsExpanded -eq $true) 
-							{
-								$dsWindow.FindName("btnOK").IsDefault = $false
-								$dsWindow.FindName("btnSearchItem").IsDefault = $true
-							}
-							Else 
-							{
-								$dsWindow.FindName("btnOK").IsDefault = $true
-								$dsWindow.FindName("btnSearchItem").IsDefault = $false
-								$dsWindow.FindName("expItemLookup").Visibility = "Collapsed"
-							}
-							})
+						$dsWindow.FindName("TemplateCB").SelectedIndex = $global:mSelectedTemplate
+					}
+				})
 
-					$dsWindow.FindName("ItemsFound").add_SelectionChanged({
-						param()
-						$dsDiag.Trace(".. ItemsFoundSelection")
-						IF($dsWindow.FindName("ItemsFound").SelectedItem){
-							$dsWindow.FindName("btnAdoptItem").IsEnabled = $true
-							$dsWindow.FindName("btnAdoptItem").IsDefault = $true
-						}
-						Else {
-							$dsWindow.FindName("btnAdoptItem").IsEnabled = $false
-							$dsWindow.FindName("btnSearchItem").IsDefault = $true
-						}
-						})
+				$dsWindow.FindName("ItemsFound").add_SelectionChanged({
+					param()
+					$dsDiag.Trace(".. ItemsFoundSelection")
+					IF($dsWindow.FindName("ItemsFound").SelectedItem){
+						$dsWindow.FindName("btnAdoptItem").IsEnabled = $true
+						$dsWindow.FindName("btnAdoptItem").IsDefault = $true
 					}
-					catch{ $dsDiag.Trace("WARNING expander exItemLookup is not present") }
+					Else {
+						$dsWindow.FindName("btnAdoptItem").IsEnabled = $false
+						$dsWindow.FindName("btnSearchItem").IsDefault = $true
 					}
+					})
+				}
+				catch{ $dsDiag.Trace("WARNING expander exItemLookup is not present") }
+				}
 			#endregion
 		}
 		"FolderWindow"
@@ -452,9 +422,6 @@ function GetNewCustomObjectName
 					$Prop["_XLTN_IDENTNUMBER"].Value = $Prop["_GeneratedNumber"].Value
 				}
 				$customObjectName = $Prop["_XLTN_TERM-DE"].Value
-
-$_DataContext = $dsWindow.DataContext
-$dsDiag.Inspect()
 
 				return $customObjectName
 			}
@@ -884,16 +851,12 @@ function mSetFileName($initialDirectory, $mFileName, $mFileType)
 
 function mCatalogClick
 {
-	$dsWindow.FindName("expTermCatalog").Visibility = "Visible"
-	$dsWindow.FindName("expTermCatalog").IsExpanded = $true
-	$dsWindow.FindName("expTermCatalog").IsEnabled = $true
+	$dsWindow.FindName("tabTermsCatalog").IsSelected = $true
 }
 
 function mItemLookUpClick
 {
-	$dsWindow.FindName("expItemLookup").Visibility = "Visible"
-	$dsWindow.FindName("expItemLookup").IsExpanded = $true
-	$dsWindow.FindName("expItemLookup").IsEnabled = $true
+	$dsWindow.FindName("tabItemLookup").IsSelected = $true
 }
 
 
