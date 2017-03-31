@@ -199,6 +199,8 @@
     <DynamicProperty>Maßstab</DynamicProperty>
     <DynamicProperty>Blatt</DynamicProperty>
     <DynamicProperty>Entstanden aus</DynamicProperty>
+    <DynamicProperty>Werksnorm</DynamicProperty>
+    <DynamicProperty>Ersetzt durch</DynamicProperty>
   </DynamicPropertiesCategory>
   <DynamicPropertiesCategory Category="Basis" Type="File" />
   <DynamicPropertiesCategory Category="Sonstige" Type="File">
@@ -252,14 +254,14 @@
     <DynamicProperty>Kommentare</DynamicProperty>
   </DynamicPropertiesCategory>
   <DynamicPropertiesCategory Category="Angebote" Type="File">
-    <DynamicProperty>Verfasser</DynamicProperty>
-    <DynamicProperty>Kommentare</DynamicProperty>
-    <DynamicProperty>Thema</DynamicProperty>
-    <DynamicProperty>Titel</DynamicProperty>
     <DynamicProperty>Firma</DynamicProperty>
+    <DynamicProperty>Titel</DynamicProperty>
+    <DynamicProperty>Thema</DynamicProperty>
     <DynamicProperty>Ansprechpartner</DynamicProperty>
     <DynamicProperty>Adresse</DynamicProperty>
     <DynamicProperty>PLZ und Ort</DynamicProperty>
+    <DynamicProperty>Verfasser</DynamicProperty>
+    <DynamicProperty>Kommentare</DynamicProperty>
   </DynamicPropertiesCategory>
   <DynamicPropertiesCategory Category="Werksnorm" Type="CustomObject">
     <DynamicProperty>Werksnorm</DynamicProperty>
@@ -282,15 +284,16 @@
     <DynamicProperty>Source File</DynamicProperty>
   </DynamicPropertiesCategory>
   <DynamicPropertiesCategory Category="Zeichnung Inventor" Type="File">
-    <DynamicProperty>Teilenummer</DynamicProperty>
     <DynamicProperty>Identnummer</DynamicProperty>
+    <DynamicProperty>Titel</DynamicProperty>
+    <DynamicProperty>Beschreibung</DynamicProperty>
+    <DynamicProperty>Teilenummer</DynamicProperty>
     <DynamicProperty>EV-Kennung</DynamicProperty>
     <DynamicProperty>Format</DynamicProperty>
     <DynamicProperty>Maßstab</DynamicProperty>
     <DynamicProperty>Blatt</DynamicProperty>
     <DynamicProperty>Entstanden aus</DynamicProperty>
-    <DynamicProperty>Beschreibung</DynamicProperty>
-    <DynamicProperty>Titel</DynamicProperty>
+    <DynamicProperty>Ersetzt durch</DynamicProperty>
   </DynamicPropertiesCategory>
   <DynamicPropertiesCategory Category="Konstruktion" Type="File">
     <DynamicProperty>Verfasser</DynamicProperty>

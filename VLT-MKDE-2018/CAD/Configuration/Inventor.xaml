@@ -90,7 +90,7 @@
                                             <ColumnDefinition Width="Auto"/>
                                         </Grid.ColumnDefinitions>
                                         <TextBox Text="{WPF:ValidatedBinding Value}" HorizontalAlignment="Stretch" BorderThickness="0" 
-                                            IsReadOnly="True" Background="WhiteSmoke" ToolTipService.ShowOnDisabled="True" 
+                                            IsReadOnly="False" Background="WhiteSmoke" ToolTipService.ShowOnDisabled="True" 
                                             ToolTip="{Binding DataContext.UIString[ClassTerms_TT04], FallbackValue=No hand typed values\, select from Catalog..., RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
                                             IsTabStop="False" IsHitTestVisible="True"/>
                                         <Button Content="{Binding DataContext.UIString[ClassTerms_13], FallbackValue=Catalog..., RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" 
@@ -122,6 +122,52 @@
                                     </Grid>
 
 
+                                </DockPanel>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Name}" Value="Halbzeug">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate>
+                                <DockPanel>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBox Text="{WPF:ValidatedBinding Value}" HorizontalAlignment="Stretch" BorderThickness="0" 
+                                            IsReadOnly="True" Background="WhiteSmoke" ToolTipService.ShowOnDisabled="True" 
+                                            ToolTip="{Binding DataContext.UIString[LBL27], FallbackValue='No hand typed values select from Catalog...', RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
+                                            IsTabStop="False" IsHitTestVisible="True"/>
+                                        <Button Content="{Binding DataContext.UIString[], FallbackValue=Lookup..., RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" 
+                                            Command="{Binding DataContext.PsCmd[mItemLookupClick], RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" HorizontalAlignment="Right"
+                                            ToolTip="{Binding DataContext.UIString[], FallbackValue=No hand typed values\, select from Catalog..., RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" Grid.Column="1" Padding="10,1" Background="#FFDDDDDD"/>
+                                    </Grid>
+                                </DockPanel>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Name}" Value="Stock Number">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate>
+                                <DockPanel>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBox Text="{WPF:ValidatedBinding Value}" HorizontalAlignment="Stretch" BorderThickness="0" 
+                                            IsReadOnly="True" Background="WhiteSmoke" ToolTipService.ShowOnDisabled="True" 
+                                            ToolTip="{Binding DataContext.UIString[LBL27], FallbackValue='No hand typed values select from Catalog...', RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
+                                            IsTabStop="False" IsHitTestVisible="True"/>
+                                        <Button Content="{Binding DataContext.UIString[], FallbackValue=Lookup..., RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" 
+                                            Command="{Binding DataContext.PsCmd[mItemLookupClick], RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" HorizontalAlignment="Right"
+                                            ToolTip="{Binding DataContext.UIString[], FallbackValue=No hand typed values\, select from Catalog..., RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" Grid.Column="1" Padding="10,1"/>
+                                    </Grid>
                                 </DockPanel>
                             </ControlTemplate>
                         </Setter.Value>
@@ -436,15 +482,21 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <GroupBox Header="{Binding UIString[], FallbackValue=Filter}"  Grid.Row="0" BorderThickness="0" Margin="-6,0">
-                        <Grid>
+                        <Grid Margin="2,0,0,0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="24"/>
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
-                            <Button x:Name="btnItemCategoryFilterReset" Command="{Binding PsCmd[mResetItemCatFilter]}" Content="X" FontWeight="Bold" ToolTip="{Binding UIString[MSDCE_TT15]}" Foreground="Red" Width="24" Height="24"/>
+                            <Button x:Name="btnItemCategoryFilterReset" Command="{Binding PsCmd[mResetItemCatFilter]}" Content="X" FontWeight="Bold" ToolTip="{Binding UIString[MSDCE_TT15]}" Foreground="Red" Width="24" Height="24">
+                                <Button.Template>
+                                    <ControlTemplate>
+                                        <Image Source="C:\ProgramData\Autodesk\Vault 2018\Extensions\DataStandard\Vault\filter-delete.ico" Margin="2" />
+                                    </ControlTemplate>
+                                </Button.Template>
+                            </Button>
                             <ComboBox x:Name="cmbItemCategories" 
                                 SelectedIndex="0"
-                                Grid.Column="1" BorderThickness="1"/>
+                                Grid.Column="1" BorderThickness="1" Margin="5,0,0,0"/>
                         </Grid>
                     </GroupBox>
                     <Grid Grid.Row="1">
@@ -478,7 +530,13 @@
                     <GroupBox x:Name="grpClassification" Header="Filter" Grid.Row="0">
                         <Grid x:Name="grdContentFilter">
                             <WrapPanel x:Name="wrpClassification" Grid.Row="2">
-                                <Button x:Name="btnClsReset" Command="{Binding PsCmd[mResetClassFilter]}" Content="X" FontWeight="Bold" ToolTip="{Binding UIString[MSDCE_TT15]}" Foreground="Red" Width="24" Height="24"/>
+                                <Button x:Name="btnClsReset" Command="{Binding PsCmd[mResetClassFilter]}" Content="X" FontWeight="Bold" ToolTip="{Binding UIString[MSDCE_TT15]}" Foreground="Red" Width="24" Height="24">
+                                    <Button.Template>
+                                        <ControlTemplate>
+                                            <Image Source="C:\ProgramData\Autodesk\Vault 2018\Extensions\DataStandard\Vault\filter-delete.ico" Margin="2" />
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                </Button>
                             </WrapPanel>
                         </Grid>
                     </GroupBox>

@@ -5,7 +5,7 @@ function mAddCoCombo ([String] $_CoName) {
 	if($children -eq $null) { return }
 	$breadCrumb = $dsWindow.FindName("wrpClassification")
 	$cmb = New-Object System.Windows.Controls.ComboBox
-	$cmb.Name = "cmbBreadCrumb_" + $breadCrumb.Children.Count.ToString();
+	$cmb.Name = "cmbClassBreadCrumb_" + $breadCrumb.Children.Count.ToString();
 	$cmb.DisplayMemberPath = "Name";
 	$cmb.Tooltip = $UIString["ClassTerms_TT01"] #"Suche auf Hierarchieebene begrenzen..."
 	$cmb.ItemsSource = @($children)
@@ -77,7 +77,7 @@ function mAddCoComboChild ($data) {
 	if($children -eq $null) { return }
 	$breadCrumb = $dsWindow.FindName("wrpClassification")
 	$cmb = New-Object System.Windows.Controls.ComboBox
-	$cmb.Name = "cmbBreadCrumb_" + $breadCrumb.Children.Count.ToString();
+	$cmb.Name = "cmbClassBreadCrumb_" + $breadCrumb.Children.Count.ToString();
 	$cmb.DisplayMemberPath = "Name";
 	$cmb.ItemsSource = @($children)	
 	$cmb.BorderThickness = "1,1,1,1"
@@ -187,7 +187,7 @@ function mGetCustomEntityUsesList ($sender) {
 		$dsDiag.Trace(">> mGetCustomEntityUsesList started")
 		$breadCrumb = $dsWindow.FindName("wrpClassification")
 		$_i = $breadCrumb.Children.Count -1
-		$_CurrentCmbName = "cmbBreadCrumb_" + $breadCrumb.Children.Count.ToString()
+		$_CurrentCmbName = "cmbClassBreadCrumb_" + $breadCrumb.Children.Count.ToString()
 		$_CurrentClass = $breadCrumb.Children[$_i].SelectedValue.Name
 		#[System.Windows.MessageBox]::Show("Currentclass: $_CurrentClass and Level# is $_i")
         switch($_i-1)

@@ -18,7 +18,11 @@ function mSearchItem()
 	#region tab-rendering
 	# workaround as the tab is new rendered with activation 
 	# and would reread sources or require again user input in controls; property values are in runspace memory
-	$_temp1 = $dsWindow.FindName("Categories").SelectedIndex 
+	$_temp1 = $dsWindow.FindName("Categories").SelectedIndex
+	$mNewTemplateSource = @($dsWindow.DataContext.SelectedTemplate)
+		#$dsWindow.FindName("TemplateCB").ItemsSource = $mNewTemplateSource
+	#$dsWindow.FindName("btnTemplateReset").IsEnabled = $true
+	#$dsWindow.FindName("btnTemplateReset").Opacity = 1
 	#endregion workaround
 
 	if($mSearchText -eq "") #no searchparameters
@@ -65,7 +69,8 @@ function mSearchItem()
 		}
 		#region workaround 
 		#		workaround as the combo looses the selection as soon as the search command is used !?
-		$dsWindow.FindName("Categories").SelectedIndex = $_temp1 
+		$dsWindow.FindName("Categories").SelectedIndex = $_temp1
+		$dsWindow.FindName("TemplatesCB").ItemsSource = $_temp2
 		#endregion workaround
 		$dsDiag.Trace(" -- Item search returned")
 		#		$dsWindow.Cursor = $null
@@ -204,4 +209,10 @@ function mGetItemCategories
 
 	}
 	return $mItemCatNames
+}
+
+function mResetItemCatFilter
+{
+	
+
 }

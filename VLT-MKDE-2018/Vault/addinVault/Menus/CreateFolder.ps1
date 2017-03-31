@@ -24,52 +24,51 @@ if($result)
 	$path = $folder.FullName+"/"+$dialog.CurrentFolder.Name
 	If ($NewFolder.cat.CatName -eq "Projekt") {
 		#get Ids of all entities and definitions
-		$mCat = mGetCategoryDef "FLDR" "Folder" #change the name according category of 1st level's subfolders
+		$mCat = mGetCategoryDef "FLDR" "Ordner" #change the name according category of 1st level's subfolders
 		$mCat2 = mGetCategoryDef "FLDR" "Projekt-Konstruktion" #change the name according category of 2nd level's subfolders
 		#region create folder level 1
-			$_SubFolder = $vault.DocumentService.AddFolder("1000", $NewFolder.Id, $false)
+			$_SubFolder = $vault.DocumentService.AddFolder("CAD", $NewFolder.Id, $false)
 			$vault.DocumentServiceExtensions.UpdateFolderCategories(@($_SubFolder.Id), @($mCat2))
-			$mFldPropUpdated = mUpdateFldrProperties $_SubFolder.Id "Titel" "CAD Files"
-			#region create folder level 2
-				$_SubFldr2 = $vault.DocumentService.AddFolder("1010", $_SubFolder.Id, $false)
-				$vault.DocumentServiceExtensions.UpdateFolderCategories(@($_SubFldr2.Id), @($mCat))
-				$mFldPropUpdated = mUpdateFldrProperties $_SubFldr2.Id "Titel" "3D Components"
-			#endregion
-			#region create folder level 2
-				$_SubFldr2 = $vault.DocumentService.AddFolder("1020", $_SubFolder.Id, $false)
-				$vault.DocumentServiceExtensions.UpdateFolderCategories(@($_SubFldr2.Id), @($mCat))
-				$mFldPropUpdated = mUpdateFldrProperties $_SubFldr2.Id "Titel" "2D Drawings"
-			#endregion
-			#region create folder level 2
-				$_SubFldr2 = $vault.DocumentService.AddFolder("1030", $_SubFolder.Id, $false)
-				$vault.DocumentServiceExtensions.UpdateFolderCategories(@($_SubFldr2.Id), @($mCat))
-				$mFldPropUpdated = mUpdateFldrProperties $_SubFldr2.Id "Titel" "Images"
-			#endregion
+			$mFldPropUpdated = mUpdateFldrProperties $_SubFolder.Id "Titel" "CAD Mechanik"
+			$mFldPropUpdated = mUpdateFldrProperties $_SubFolder.Id "Beschreibung" "2D, 3D CAD, Berechnungen etc."
 		#endregion
 
 		#region create folder level 1
-			$_SubFolder =$vault.DocumentService.AddFolder("1100", $NewFolder.Id, $false)
+			$_SubFolder =$vault.DocumentService.AddFolder("CAE", $NewFolder.Id, $false)
 			$vault.DocumentServiceExtensions.UpdateFolderCategories(@($_SubFolder.Id), @($mCat2))
-			$mFldPropUpdated = mUpdateFldrProperties $_SubFolder.Id "Titel" "CAE Files"
+			$mFldPropUpdated = mUpdateFldrProperties $_SubFolder.Id "Titel" "CAE Elektrotechnik"
+			$mFldPropUpdated = mUpdateFldrProperties $_SubFolder.Id "Beschreibung" "Elektro-, SPS-, Fluid- Schemata"
 		#endregion
 
 		#region create folder level 1
-			$_SubFolder =$vault.DocumentService.AddFolder("1200", $NewFolder.Id, $false)
+			$_SubFolder =$vault.DocumentService.AddFolder("Spezifikationen", $NewFolder.Id, $false)
 			$vault.DocumentServiceExtensions.UpdateFolderCategories(@($_SubFolder.Id), @($mCat))
-			$mFldPropUpdated = mUpdateFldrProperties $_SubFolder.Id "Titel" "Office Files"
+			$mFldPropUpdated = mUpdateFldrProperties $_SubFolder.Id "Titel" "Spezifikationen"
+			$mFldPropUpdated = mUpdateFldrProperties $_SubFolder.Id "Beschreibung" "Beschreibende Dokumente, Berechnungen, etc."
+		#endregion
+
+		#region create folder level 1
+			$_SubFolder =$vault.DocumentService.AddFolder("Schriftverkehr", $NewFolder.Id, $false)
+			$vault.DocumentServiceExtensions.UpdateFolderCategories(@($_SubFolder.Id), @($mCat))
+			$mFldPropUpdated = mUpdateFldrProperties $_SubFolder.Id "Titel" "Schriftverkehr"
+			$mFldPropUpdated = mUpdateFldrProperties $_SubFolder.Id "Beschreibung" "Office Dokumente, Email, Scan-Dateien"
+
 			#region create folder level 2
-				$_SubFldr2 = $vault.DocumentService.AddFolder("1210", $_SubFolder.Id, $false)
+				$_SubFldr2 = $vault.DocumentService.AddFolder("Kunde", $_SubFolder.Id, $false)
 				$vault.DocumentServiceExtensions.UpdateFolderCategories(@($_SubFldr2.Id), @($mCat))
-				$mFldPropUpdated = mUpdateFldrProperties $_SubFldr2.Id "Titel" "Customer Communication"
+				$mFldPropUpdated = mUpdateFldrProperties $_SubFldr2.Id "Titel" "Schriftverkehr Kunden"
 
-				$_SubFldr2 = $vault.DocumentService.AddFolder("1220", $_SubFolder.Id, $false)
+				$_SubFldr2 = $vault.DocumentService.AddFolder("Lieferanten", $_SubFolder.Id, $false)
 				$vault.DocumentServiceExtensions.UpdateFolderCategories(@($_SubFldr2.Id), @($mCat))
-				$mFldPropUpdated = mUpdateFldrProperties $_SubFldr2.Id "Titel" "Internal Communication"
-
-				$_SubFldr2 = $vault.DocumentService.AddFolder("1230", $_SubFolder.Id, $false)
-				$vault.DocumentServiceExtensions.UpdateFolderCategories(@($_SubFldr2.Id), @($mCat))
-				$mFldPropUpdated = mUpdateFldrProperties $_SubFldr2.Id "Titel" "Quality Management"
+				$mFldPropUpdated = mUpdateFldrProperties $_SubFldr2.Id "Titel" "Schriftverkehr Lieferanten"
 			#endregion
+		#endregion
+
+		#region create folder level 1
+			$_SubFolder =$vault.DocumentService.AddFolder("Techn Dokumentation", $NewFolder.Id, $false)
+			$vault.DocumentServiceExtensions.UpdateFolderCategories(@($_SubFolder.Id), @($mCat))
+			$mFldPropUpdated = mUpdateFldrProperties $_SubFolder.Id "Titel" "Technische Dokumentation"
+			$mFldPropUpdated = mUpdateFldrProperties $_SubFolder.Id "Beschreibung" "Ersatzteilverzeichnisse, Montage- und Wartungsanleitungen, etc..."
 		#endregion
 	}
 

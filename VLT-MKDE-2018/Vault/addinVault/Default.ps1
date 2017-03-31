@@ -95,6 +95,7 @@ function InitializeTabWindow
 function InitializeWindow
 {	      
 	#begin rules applying commonly
+
 	$Prop["_Category"].add_PropertyChanged({
         if ($_.PropertyName -eq "Value")
         {
@@ -134,6 +135,18 @@ function InitializeWindow
 				}
 			}
 
+			#region workaround template selection reset
+				$dsWindow.FindName("DocTypeCombo").add_SelectionChanged({
+					mResetTemplates
+				})
+
+				#$dsWindow.FindName("btnTemplateReset").IsEnabled = $false
+				$dsWindow.FindName("btnTemplateReset").Opacity = 0.3
+				$dsWindow.FindName("TemplateCB").add_SelectionChanged({
+				m_TemplateChanged
+			})
+			#endregion workaround template selection reset
+			
 			#region CatalogTerm
 				If ($dsWindow.FindName("tabTermsCatalog"))
 				{					
@@ -171,25 +184,25 @@ function InitializeWindow
 				{$dsWindow.FindName("cmbItemCategories").ItemsSource = mGetItemCategories
 				Try
 				{
-					$dsWindow.FindName("tabCtrlMain").add_SelectionChanged({
-					param($sender, $SelectionChangedEventArgs)
-					if ($dsWindow.FindName("tabFileProperties").IsSelected -eq $true)
-					{
-						$dsWindow.FindName("TemplateCB").SelectedIndex = $global:mSelectedTemplate
-					}
-				})
+					#$dsWindow.FindName("tabCtrlMain").add_SelectionChanged({
+					#	param($sender, $SelectionChangedEventArgs)
+					#	if ($dsWindow.FindName("tabFileProperties").IsSelected -eq $true)
+					#	{
+					#		$dsWindow.FindName("TemplateCB").SelectedIndex = $global:mSelectedTemplate
+					#	}
+					#})
 
-				$dsWindow.FindName("ItemsFound").add_SelectionChanged({
-					param()
-					$dsDiag.Trace(".. ItemsFoundSelection")
-					IF($dsWindow.FindName("ItemsFound").SelectedItem){
-						$dsWindow.FindName("btnAdoptItem").IsEnabled = $true
-						$dsWindow.FindName("btnAdoptItem").IsDefault = $true
-					}
-					Else {
-						$dsWindow.FindName("btnAdoptItem").IsEnabled = $false
-						$dsWindow.FindName("btnSearchItem").IsDefault = $true
-					}
+					$dsWindow.FindName("ItemsFound").add_SelectionChanged({
+						param()
+						$dsDiag.Trace(".. ItemsFoundSelection")
+						IF($dsWindow.FindName("ItemsFound").SelectedItem){
+							$dsWindow.FindName("btnAdoptItem").IsEnabled = $true
+							$dsWindow.FindName("btnAdoptItem").IsDefault = $true
+						}
+						Else {
+							$dsWindow.FindName("btnAdoptItem").IsEnabled = $false
+							$dsWindow.FindName("btnSearchItem").IsDefault = $true
+						}
 					})
 				}
 				catch{ $dsDiag.Trace("WARNING expander exItemLookup is not present") }
@@ -704,9 +717,16 @@ function ItemDescription
 
 #region Quickstart 
 function m_TemplateChanged {
-	#$dsDiag.Trace(">> Template Changed ...")
+	$dsDiag.Trace(">> Template Changed ...")
 	$mContext = $dsWindow.DataContext
 	$mTemplatePath = $mContext.TemplatePath
+	#region workaround to block a selected template
+	$global:_tcCounter += 1
+	If($global:_tcCounter -eq 2)
+	{
+		
+	}
+	#endregion workaround to block a selected template
 	$mTemplateFile = $mContext.SelectedTemplate
 	$mTemplate = $mTemplatePath + "/" + $mTemplateFile
 	$mFolder = $vault.DocumentService.GetFolderByPath($mTemplatePath)
@@ -719,7 +739,7 @@ function m_TemplateChanged {
 	{
 		$dsWindow.FindName("Categories").IsEnabled = $false #comment out this line if admins like to release the choice to the user
 	}
-	#$dsDiag.Trace(" ... TemplateChanged finished <<")
+	$dsDiag.Trace(" ... TemplateChanged finished <<")
 }
 
 function m_CategoryChanged 
@@ -730,9 +750,9 @@ function m_CategoryChanged
 		"FileWindow"
 		{
 			#Quickstart uses the default numbering scheme for files; GoTo GetNumSchms function to disable this filter incase you'd like to apply numbering per category for files as well
-			$dsWindow.FindName("TemplateCB").add_SelectionChanged({
-				#m_TemplateChanged
-			})
+			#$dsWindow.FindName("TemplateCB").add_SelectionChanged({
+			#	#m_TemplateChanged
+			#})
 			$Prop['_XLTN_AUTHOR'].Value = $VaultConnection.UserName
 		}
 
@@ -859,3 +879,9 @@ function mItemLookUpClick
 	$dsWindow.FindName("tabItemLookup").IsSelected = $true
 }
 
+function mResetTemplates
+{
+	$dsWindow.FindName("TemplateCB").ItemsSource = $dsWindow.DataContext.Templates
+	#$dsWindow.FindName("btnTemplateReset").IsEnabled = $false
+	$dsWindow.FindName("btnTemplateReset").Opacity = 0.3
+}

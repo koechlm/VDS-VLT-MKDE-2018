@@ -217,6 +217,7 @@ function m_SelectTerm {
 		IF ($dsWindow.Name -eq "InventorWindow")
 		{
 			$Prop["Title"].Value = $mSelectedItem.Term_DE
+			$Prop["Title_EN"].Value = $mSelectedItem.Term_EN
 		}
 		IF ($dsWindow.Name -eq "FileWindow") {
 			$Prop["_XLTN_TITLE"].Value = $mSelectedItem.Term_DE

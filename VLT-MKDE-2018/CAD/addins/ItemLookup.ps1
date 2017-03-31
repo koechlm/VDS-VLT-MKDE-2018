@@ -31,7 +31,7 @@ function mSearchItem()
 		return 
 	}
 	$_NumConds = 1 # Minimum number of search condition = search text in all item properties
-	If($dsWindow.FindName("cmbItemCategories").SelectedIndex -ne -1) {$_NumConds = 2}
+	If($dsWindow.FindName("cmbItemCategories").SelectedValue -ne "") {$_NumConds = 2}
 	$srchConds = New-Object autodesk.Connectivity.WebServices.SrchCond[] $_NumConds
 	$_i = 0
 
@@ -117,12 +117,8 @@ function mSelectItem {
 	try 
 	{
 		$_temp1 = $dsWindow.FindName("Categories").SelectedIndex #workaround as the combo looses the selection as soon as the search command is used !?
-		#$_temp2 = $dsWindow.FindName("cmbFolder").SelectedIndex
-		#$_temp3 = $dsWindow.FindName("cmbClassification").SelectedIndex
-		#$_temp4 = $dsWindow.FindName("cmbClass").SelectedIndex
 
 		$mSelectedItem = $dsWindow.FindName("ItemsFound").SelectedItem
-
 
 		IF ($dsWindow.Name -eq "AutoCADWindow")
 		{
@@ -149,9 +145,6 @@ function mSelectItem {
 		#region tab rendering
 		#returnin to tab 1 causes it's rendering with reset controls; we stored the selections made before
 		$dsWindow.FindName("Categories").SelectedIndex = $_temp1 
-		#IF ($_temp2) { $dsWindow.FindName("cmbFolder").SelectedIndex = $_temp2}
-		#IF ($_temp3) { $dsWindow.FindName("cmbClassification").SelectedIndex = $_temp3}
-		#IF ($_temp4) { $dsWindow.FindName("cmbClass").SelectedIndex = $_temp4}
 		#endregion workaround
 	}
 	Catch 
@@ -213,3 +206,9 @@ function mGetItemCategories
 	}
 	return $mItemCatNames
 }
+
+function mResetItemCatFilter
+{
+	$dsWindow.FindName("cmbItemCategories").SelectedIndex = -1
+}
+

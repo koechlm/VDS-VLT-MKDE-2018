@@ -355,7 +355,13 @@
         <GroupBox Header="{Binding UIString[ClassTerms_07],FallbackValue=Classification}" Grid.ColumnSpan="2" BorderThickness="1">
             <Grid x:Name="grdContentFilter">
                 <WrapPanel x:Name="wrpClassification" Grid.Row="2">
-                    <Button x:Name="btnClsReset" Width="26" Command="{Binding PsCmd[mResetClassFilter]}" Content="X" FontWeight="Bold" ToolTip="{Binding UIString[MSDCE_TT15], FallbackValue='Reset Selection'}" Foreground="Red" IsEnabled="{Binding IsNotReadonly}" Height="24"/>
+                    <Button x:Name="btnClsReset" Width="26" Command="{Binding PsCmd[mResetClassFilter]}" Content="X" FontWeight="Bold" ToolTip="{Binding UIString[MSDCE_TT15], FallbackValue='Reset Selection'}" Foreground="Red" IsEnabled="{Binding IsNotReadonly}" Height="24">
+                        <Button.Template>
+                            <ControlTemplate>
+                                <Image x:Name="imgTemplateReset" Source="C:\ProgramData\Autodesk\Vault 2018\Extensions\DataStandard\Vault\filter-delete.ico" Margin="2" />
+                            </ControlTemplate>
+                        </Button.Template>
+                    </Button>
                 </WrapPanel>
             </Grid>
         </GroupBox>

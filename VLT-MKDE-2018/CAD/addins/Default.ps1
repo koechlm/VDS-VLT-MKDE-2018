@@ -13,8 +13,8 @@
 
 function InitializeWindow
 {
-	#$dsDiag.ShowLog()
-	#$dsDiag.Clear()
+	$dsDiag.ShowLog()
+	$dsDiag.Clear()
 
 	#begin rules applying commonly
     $dsWindow.Title = SetWindowTitle		
@@ -212,7 +212,7 @@ function InitializeWindow
 									$_lastCopyfileName = Get-Content $m_TempFile
 									if ($_ModelFullFileName -ne $_lastCopyfileName)
 									{
-										#$dsDiag.Trace("............... processing a 'replace incl. Drawing' copy drawing creation.............")
+										$dsDiag.Trace("............... processing a 'replace incl. Drawing' copy drawing creation.............")
 										$_ModelFullFileName = $_lastCopyfileName
 									}
 									$_ModelName = [System.IO.Path]::GetFileNameWithoutExtension($_ModelFullFileName)
@@ -220,6 +220,7 @@ function InitializeWindow
 									$_ModelPath = $_ModelFile.DirectoryName
 									$Prop["_FilePath"].Value = $_ModelPath
 									$Prop["DocNumber"].Value = $_ModelName
+									$dsDiag.Trace("...all set to fill the drawing copy dialog...")
 								}
 								If ($Application.ActiveDocument.DocumentType -eq '12292') # = kDrawingDocument, get the main view's model path / name
 								{
@@ -281,7 +282,7 @@ function InitializeWindow
 					})
 
 				}
-				catch { $dsDiag.Trace("WARNING expander TermCatalog is not present")}
+				catch { $dsDiag.Trace("WARNING tab TermCatalog is not present")}
 			}
 			#endregionCatalogTerm
 
@@ -444,13 +445,14 @@ function OnPostCloseDialog
 					#register the model's copy to derive it's drawings copy name subsequently
 					if (($Prop["_CopyMode"].Value -eq $true) -and ($global:mGFN4Special -eq $false) -and ($Prop["_FileExt"].Value -ne "idw") -and ($Prop["_FileExt"].Value -ne "dwg")) 
 					{
-						#$dsDiag.Trace("copy of iam, ipt, ipn and no new number for drawings")
+						$dsDiag.Trace("copy of iam, ipt, ipn and no new number for drawings")
 						$m_TempFile = $env:TEMP + "\VDSTempModel.txt"
 						$Prop["DocNumber"].Value | Out-File $m_TempFile
 						$m_TempFile = $env:TEMP + "\VDSTempModelPath.txt"
 						$dsWindow.DataContext.PathAndFileNameHandler.FullFileName | Out-File $m_TempFile
 					}
 			}
+			$dsDiag.Trace("..finished Inventor OnPostCloseActions.")
 			#endregion
 		}
 		"AutoCADWindow"
