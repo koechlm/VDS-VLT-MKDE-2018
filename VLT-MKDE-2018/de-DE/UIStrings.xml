@@ -143,14 +143,13 @@
   <UIString ID="GEN-TITLE-SCA">Maßstab</UIString>
   <!--Inventor custom iProperties overrides / localization-->
   <UIString ID="Title_EN">Titel EN</UIString>
-  <!--Inventor custom iProperties overrides / localization-->
-
-  <!--Inventor custom iProperties done have localized display names, for PS1 files we can use these mappings-->
   <UIString ID="iProp_SourceFile">Entstanden aus</UIString>
   <UIString ID="iProp_IdentNumber">Identnummer</UIString>
   <UIString ID="iProp_SemiFinished">Halbzeug</UIString>
   <UIString ID="iProp_SpearWearPart">EV-Kennung</UIString>
-
+  <UIString ID="G_L">Länge (Zuschnitt)</UIString>
+  <!--Inventor custom iProperties overrides / localization-->
+  
   <!--Vault Categories-->
   <UIString ID="CAT1">Konstruktion</UIString>
   <UIString ID="CAT2">Büro</UIString>
@@ -344,6 +343,8 @@
   <UIString ID="ADSK-ItemTab-01">Artikel Suchen und Verknüpfen</UIString>
   <UIString ID="ADSK-ItemTab-02">Artikeldaten übernehmen</UIString>
   <UIString ID="ADSK-ItemTab-03">Halbzeugdaten übernehmen</UIString>
+  <UIString ID="ADSK-ItemTab-04">Suche...</UIString>
+  <UIString ID="ADSK-ItemTab-05">Aus Katalog übernehmen...</UIString>
   <!--Vault Item Lookup Tab End-->
 
 </UIStrings>

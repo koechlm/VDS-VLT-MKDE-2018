@@ -51,7 +51,6 @@
     <DynamicProperty>Source File</DynamicProperty>
   </DynamicPropertiesCategory>
   <DynamicPropertiesCategory Category="3D Komponenten">
-    <DynamicProperty>Name des Bauteiltyps</DynamicProperty>
     <DynamicProperty>Titel</DynamicProperty>
     <DynamicProperty>Titel EN</DynamicProperty>
     <DynamicProperty>Beschreibung</DynamicProperty>
@@ -60,6 +59,7 @@
     <DynamicProperty>Abmessung/Halbzeug</DynamicProperty>
     <DynamicProperty>Halbzeug</DynamicProperty>
     <DynamicProperty>Bestandsnummer</DynamicProperty>
+    <DynamicProperty>Länge (Zuschnitt)</DynamicProperty>
     <DynamicProperty>Gewicht</DynamicProperty>
     <DynamicProperty>EV-Kennung</DynamicProperty>
     <DynamicProperty>Dicke/Durchmesser</DynamicProperty>
@@ -68,7 +68,8 @@
     <DynamicProperty>Länge</DynamicProperty>
     <DynamicProperty Hidden="True">Identnummer</DynamicProperty>
     <DynamicProperty>Entstanden aus</DynamicProperty>
-    <DynamicProperty Hidden="True">G_L</DynamicProperty>
+    <DynamicProperty Hidden="True">Name des Bauteiltyps</DynamicProperty>
+    <DynamicProperty>Letzte Aktualisierung mit</DynamicProperty>
   </DynamicPropertiesCategory>
   <DynamicPropertiesCategory Category="Zeichnung Inventor">
     <DynamicProperty>Identnummer</DynamicProperty>
@@ -80,5 +81,6 @@
     <DynamicProperty>Format</DynamicProperty>
     <DynamicProperty>Blatt</DynamicProperty>
     <DynamicProperty>Entstanden aus</DynamicProperty>
+    <DynamicProperty>Letzte Aktualisierung mit</DynamicProperty>
   </DynamicPropertiesCategory>
 </DynamicsProperties>

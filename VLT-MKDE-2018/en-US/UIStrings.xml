@@ -135,7 +135,12 @@
   <UIString ID="GEN-TITLE-DES2">Drawing Subtitle</UIString>
   <!--Inventor custom iProperties Displaynames for dynamic properties-->
   <!--use to change display name for localization or user friendly naming-->
-  <!--<UIString ID="aim_description1">Description</UIString>-->
+  <UIString ID="Title_EN">Title EN</UIString>
+  <UIString ID="iProp_SourceFile">Source file</UIString>
+  <UIString ID="iProp_IdentNumber">Identnummer</UIString>
+  <UIString ID="iProp_SemiFinished">Semi-finished</UIString>
+  <UIString ID="iProp_SpearWearPart">Spear-Wear Part</UIString>
+  <UIString ID="G_L">Length (Cut)</UIString>
   <!--Inventor custom iProperties Displaynames for dynamic properties-->
   
   <!--Vault Categories-->
@@ -290,6 +295,8 @@
   <UIString ID="ADSK-ItemTab-00">Item Lookup</UIString>
   <UIString ID="ADSK-ItemTab-01">Lookup and link Item</UIString>
   <UIString ID="ADSK-ItemTab-02">Adopt Item Data</UIString>
-  <UIString ID="ADSK-ItemTab-02">Adopt Stock Data</UIString>
+  <UIString ID="ADSK-ItemTab-03">Adopt Stock Data</UIString>
+  <UIString ID="ADSK-ItemTab-04">Lookup...</UIString>
+  <UIString ID="ADSK-ItemTab-05">No hand typed values select from Catalog...</UIString>
   <!--Vault Item Lookup Tab End-->
 </UIStrings>
