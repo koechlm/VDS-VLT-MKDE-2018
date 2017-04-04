@@ -94,6 +94,7 @@
     <DynamicProperty>Dicke/Durchm.</DynamicProperty>
     <DynamicProperty>Werksnorm</DynamicProperty>
     <DynamicProperty>Ersetzt durch</DynamicProperty>
+    <DynamicProperty>Anwendungsversion</DynamicProperty>
   </DynamicPropertiesCategory>
   <DynamicPropertiesCategory Category="Dokumente" Type="File">
     <DynamicProperty>Identnummer</DynamicProperty>

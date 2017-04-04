@@ -377,7 +377,7 @@ function OnTabContextChanged
 		$mCoId = $VaultContext.SelectedObject.Id
 		
 		[System.Reflection.Assembly]::LoadFrom($Env:ProgramData + "\Autodesk\Vault 2018\Extensions\DataStandard" + '\Vault\addinVault\QuickstartUtilityLibrary.dll')
-		$_mVltHelpers = New-Object VDSUtils.VltHelpers
+		$_mVltHelpers = New-Object QuickstartUtilityLibrary.VltHelpers
 
 		#to get links of COs to CUSTENT we need to analyse the CUSTENTS for linked children of type CO
 		#get all CUSTENTS of category $_CoName first, then iterate the result and analyse each items links: do they link to the current CO id?
