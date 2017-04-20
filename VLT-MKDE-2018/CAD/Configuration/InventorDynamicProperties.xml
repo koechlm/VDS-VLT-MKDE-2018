@@ -15,6 +15,7 @@
     <DynamicProperty Hidden="True">G_L</DynamicProperty>
     <DynamicProperty Hidden="True">PL</DynamicProperty>
     <DynamicProperty>Source File</DynamicProperty>
+    <DynamicProperty Hidden="True">Length (Cut)</DynamicProperty>
   </DynamicPropertiesCategory>
   <DynamicPropertiesCategory Category="Engineering">
     <DynamicProperty>Title</DynamicProperty>

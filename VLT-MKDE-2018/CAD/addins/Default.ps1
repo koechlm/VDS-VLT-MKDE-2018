@@ -44,7 +44,7 @@ function InitializeWindow
         }
 
 		#region quickstart
-			$Global:CAx_Root = $mappedRootPath #we need the path for the run time of the dialog
+			$global:CAx_Root = $mappedRootPath #we need the path for the run time of the dialog
     	#endregion
 
 		try
@@ -338,7 +338,7 @@ function InitializeWindow
 
 	$global:expandBreadCrumb = $true
 	
-	#$dsDiag.Trace("... Initialize window end <<")
+	$dsDiag.Trace("... Initialize window end <<")
 }#end InitializeWindow
 
 function AddinLoaded
@@ -348,7 +348,7 @@ function AddinLoaded
 		$m_File = $env:TEMP + "\Folder2018.xml"
 		if (!(Test-Path $m_File)){
 			$source = $Env:ProgramData + "\Autodesk\Vault 2018\Extensions\DataStandard\Vault\Folder2018.xml"
-			Copy-Item $source $env:TEMP\Folder2017.xml
+			Copy-Item $source $env:TEMP\Folder2018.xml
 		}
 	#endregion quickstart
 }
@@ -534,9 +534,10 @@ function mReadShortCuts {
 			#the shortcuts need to get filtered by type of document.folder and path information related to CAD workspace
 			$global:m_ScCAD = @{}
 			$mScNames = @()
-			#$dsDiag.Trace("... Filtering Shortcuts...")
-			$m_ScAll | ForEach-Object { 
-				if (($_.NavigationContextType -eq "Connectivity.Explorer.Document.DocFolder") -and ($_.NavigationContext.URI -like "*"+$global:CAxRoot + "/*"))
+			$mDesignRootFilter = "vaultfolderpath:" + $global:CAx_Root + "/*"
+			#$dsDiag.Trace("... Filtering Shortcuts. $mDesignRootFilter..")
+			$m_ScAll | ForEach-Object {  
+				if ($_.NavigationContextType -eq "Connectivity.Explorer.Document.DocFolder" -and $_.NavigationContext.URI -like $mDesignRootFilter) #like '*' + $global:CAxRoot + '/*'
 				{
 					try
 					{
@@ -573,10 +574,11 @@ function mScClick {
 		}
 		if ($m_DesignPathNames.Count -eq 1) { $m_DesignPathNames += "."}
 		mActivateBreadCrumbCmbs $m_DesignPathNames
+		$global:expandBreadCrumb = $true
 	}
 	catch
 	{
-		#$dsDiag.Trace("mScClick function - error reading selected value")
+		$dsDiag.Trace("mScClick function - error reading selected value")
 	}
 	
 }
@@ -619,12 +621,18 @@ function mAddShortCutByName([STRING] $mScName)
 	{
 		#$dsDiag.Trace(">> Continue to add ShortCut, creating new from template...")
 		#read from template
+		$m_File = $env:TEMP + "\Folder2018.xml"
+		if (Test-Path $m_File)
+		{
+			#$dsDiag.Trace(">>-- Started to read Folder2017.xml...")
+			$global:m_XML = New-Object XML
+			$global:m_XML.Load($m_File)
+		}
 		$mShortCut = $global:m_XML.Folder.Shortcut | where { $_.Name -eq "Template"}
 		#clone the template completely and update name attribute and navigationcontext element
 		$mNewSc = $mShortCut.Clone() #.CloneNode($true)
 		#rename "Template" to new name
 		$mNewSc.Name = $mScName 
-		
 		#derive the path from current selection
 		$breadCrumb = $dsWindow.FindName("BreadCrumb")
 		$newURI = "vaultfolderpath:" + $global:CAx_Root
@@ -682,7 +690,7 @@ function mReadLastUsedFolder {
 	$m_File = $env:TEMP + "\Folder2018.xml"
 	if (Test-Path $m_File)
 	{
-		#$dsDiag.Trace(">>-- Started to read Folder2017.xml...")
+		#$dsDiag.Trace(">>-- Started to read Folder2018.xml...")
 		$global:m_XML = New-Object XML
 		$global:m_XML.Load($m_File)
 		If($dsWindow.Name -eq "InventorWindow") { $m_xmlNode = $global:m_XML.Folder.get_Item("LastUsedFolderInv")}
@@ -730,7 +738,7 @@ function mWriteLastUsedFolder
 					$m_xmlNode.SetAttribute($m_AttribKey,$m_AttribVal)
 				}	
 			}
-			$m_XML.Save($Env:temp + '\Folder2017.xml')
+			$m_XML.Save($Env:temp + '\Folder2018.xml')
 			#$dsDiag.Trace("..saved last used project/folder <<")
 		} #end try
 		catch [System.Exception]
