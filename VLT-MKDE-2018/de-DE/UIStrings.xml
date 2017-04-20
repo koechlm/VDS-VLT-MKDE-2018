@@ -144,6 +144,8 @@
   <!--Inventor custom iProperties overrides / localization-->
   <UIString ID="Title_EN">Titel EN</UIString>
   <UIString ID="iProp_SourceFile">Entstanden aus</UIString>
+  <UIString ID="Original">Entstanden aus</UIString>
+  <UIString ID="Replacement">Ersetzt durch</UIString>
   <UIString ID="iProp_IdentNumber">Identnummer</UIString>
   <UIString ID="iProp_SemiFinished">Halbzeug</UIString>
   <UIString ID="iProp_SpearWearPart">EV-Kennung</UIString>

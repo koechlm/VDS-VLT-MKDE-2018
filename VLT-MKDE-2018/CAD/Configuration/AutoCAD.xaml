@@ -384,7 +384,7 @@
         				ToolTipService.ShowOnDisabled="True" ToolTip="{Binding UIString[MSDCE_TT20]}"
         				Style="{StaticResource btnScEnabled}"
         				Command="{Binding PsCmd[mAddSc]}"/>
-                    <ListBox x:Name="lstBoxShortCuts" Grid.Row="1" MinWidth="180" Margin="0" ToolTip="{Binding UIString[MSDCE_TT23]}" ItemsSource="{Binding PsList[m_ReadShortCuts]}" MaxWidth="300" MaxHeight="500" Grid.ColumnSpan="2">
+                    <ListBox x:Name="lstBoxShortCuts" Grid.Row="1" MinWidth="180" Margin="0" ToolTip="{Binding UIString[MSDCE_TT23]}" ItemsSource="{Binding PsList[mReadShortCuts]}" MaxWidth="300" MaxHeight="500" Grid.ColumnSpan="2">
                         <ListBox.ContextMenu>
                             <ContextMenu>
                                 <MenuItem Header="{Binding UIString[MSDCE_BTN2], FallbackValue=Activate}" Command="{Binding PsCmd[mScClick]}"/>
