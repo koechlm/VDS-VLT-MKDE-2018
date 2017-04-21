@@ -131,8 +131,16 @@
   <UIString ID="VAL10">Input string was not in correct format</UIString>
   <!--AutoCAD title block attributes / file properties for dynamic properties-->
   <!--use to change display name for localization or user friendly naming-->
-  <UIString ID="GEN-TITLE-DES1">Drawing Title</UIString>
-  <UIString ID="GEN-TITLE-DES2">Drawing Subtitle</UIString>
+  <UIString ID="GEN-TITLE-DWG">Drawing Number</UIString>
+  <UIString ID="GEN-TITLE-NR">Part Number</UIString>
+  <UIString ID="GEN-TITLE-DES1">Title</UIString>
+  <UIString ID="GEN-TITLE-DES2">Description</UIString>
+  <UIString ID="GEN-TITLE-MAT1">Material</UIString>
+  <UIString ID="GEN-TITLE-MAT2">Dimensions</UIString>
+  <UIString ID="GEN-TITLE-WT">Weight</UIString>
+  <UIString ID="GEN-TITLE-SHEET">Sheet</UIString>
+  <UIString ID="GEN-TITLE-SIZ">Format</UIString>
+  <UIString ID="GEN-TITLE-SCA">Scale</UIString>
   <!--Inventor custom iProperties Displaynames for dynamic properties-->
   <!--use to change display name for localization or user friendly naming-->
   <UIString ID="Title_EN">Title EN</UIString>

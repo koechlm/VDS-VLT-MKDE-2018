@@ -639,11 +639,11 @@ function mAddShortCutByName([STRING] $mScName)
 		foreach ($cmb in $breadCrumb.Children) 
 		{
 			$_N = $cmb.SelectedItem.Name
-			#$dsDiag.Trace(" - selecteditem.Name of cmb: $_N ")
+			$dsDiag.Trace(" - selecteditem.Name of cmb: $_N ")
 			if (($cmb.SelectedItem.Name.Length -gt 0) -and !($cmb.SelectedItem.Name -eq "."))
 			{ 
 				$newURI = $newURI + "/" + $cmb.SelectedItem.Name
-				#$dsDiag.Trace(" - the updated URI  of the shortcut: $newURI")
+				$dsDiag.Trace(" - the updated URI  of the shortcut: $newURI")
 			}
 			else { break}
 		}
@@ -655,7 +655,7 @@ function mAddShortCutByName([STRING] $mScName)
 		$global:m_ScXML.Shortcuts.AppendChild($mImpNode)
 		$global:m_ScXML.Save($mScFile)
 		$dsWindow.FindName("txtNewShortCut").Text = ""
-		#$dsDiag.Trace("..successfully added ShortCut <<")
+		$dsDiag.Trace("..successfully added ShortCut <<")
 		return $true
 	}
 	catch 

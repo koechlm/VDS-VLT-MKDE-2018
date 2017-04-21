@@ -12,6 +12,13 @@
     <DynamicProperty>Maßstab</DynamicProperty>
     <DynamicProperty>Blatt</DynamicProperty>
     <DynamicProperty>Quelldatei</DynamicProperty>
+    <DynamicProperty>Sheet</DynamicProperty>
+    <DynamicProperty>Weight</DynamicProperty>
+    <DynamicProperty>Source</DynamicProperty>
+    <DynamicProperty>Scale</DynamicProperty>
+    <DynamicProperty>Part Number</DynamicProperty>
+    <DynamicProperty>Description</DynamicProperty>
+    <DynamicProperty>Dimensions</DynamicProperty>
   </DynamicPropertiesCategory>
   <DynamicPropertiesCategory Category="Drawing AutoCAD">
     <DynamicProperty>DocNumber</DynamicProperty>

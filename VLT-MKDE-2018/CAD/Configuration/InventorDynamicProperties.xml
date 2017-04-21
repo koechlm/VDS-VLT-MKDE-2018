@@ -8,6 +8,7 @@
     <DynamicProperty>Project Number</DynamicProperty>
     <DynamicProperty>Material</DynamicProperty>
     <DynamicProperty>Dimensions</DynamicProperty>
+    <DynamicProperty>Length (Cut)</DynamicProperty>
     <DynamicProperty>Weight</DynamicProperty>
     <DynamicProperty>Spare-Wear Part</DynamicProperty>
     <DynamicProperty>Semi finished</DynamicProperty>
@@ -15,7 +16,6 @@
     <DynamicProperty Hidden="True">G_L</DynamicProperty>
     <DynamicProperty Hidden="True">PL</DynamicProperty>
     <DynamicProperty>Source File</DynamicProperty>
-    <DynamicProperty Hidden="True">Length (Cut)</DynamicProperty>
   </DynamicPropertiesCategory>
   <DynamicPropertiesCategory Category="Engineering">
     <DynamicProperty>Title</DynamicProperty>
@@ -69,8 +69,9 @@
     <DynamicProperty>Länge</DynamicProperty>
     <DynamicProperty Hidden="True">Identnummer</DynamicProperty>
     <DynamicProperty>Entstanden aus</DynamicProperty>
+    <DynamicProperty>Ersetzt durch</DynamicProperty>
     <DynamicProperty Hidden="True">Name des Bauteiltyps</DynamicProperty>
-    <DynamicProperty>Letzte Aktualisierung mit</DynamicProperty>
+    <DynamicProperty Hidden="True">Letzte Aktualisierung mit</DynamicProperty>
   </DynamicPropertiesCategory>
   <DynamicPropertiesCategory Category="Zeichnung Inventor">
     <DynamicProperty>Identnummer</DynamicProperty>
@@ -82,6 +83,7 @@
     <DynamicProperty>Format</DynamicProperty>
     <DynamicProperty>Blatt</DynamicProperty>
     <DynamicProperty>Entstanden aus</DynamicProperty>
-    <DynamicProperty>Letzte Aktualisierung mit</DynamicProperty>
+    <DynamicProperty>Ersetzt durch</DynamicProperty>
+    <DynamicProperty Hidden="True">Letzte Aktualisierung mit</DynamicProperty>
   </DynamicPropertiesCategory>
 </DynamicsProperties>
