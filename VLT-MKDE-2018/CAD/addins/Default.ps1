@@ -115,58 +115,62 @@ function InitializeWindow
 					
 					# Read FDS related internal meta data; required to manage particular workflows
 					$_mInvHelpers = New-Object QuickstartUtilityLibrary.InvHelpers
-					$_mFdsKeys = $_mInvHelpers.m_GetFdsKeys($Application, @{})
-
-					# some FDS workflows require VDS cancellation; add the conditions to the event handler _Loaded below
-					$dsWindow.add_Loaded({
-						IF ($mSkipVDS -eq $true)
-						{
-							$dsWindow.CancelWindowCommand.Execute($this)
-							#$dsDiag.Trace("FDU-VDS EventHandler: Skip Dialog executed")	
-						}
-					})
-
-					# FDS workflows with individual settings					
-					$dsWindow.FindName("Categories").add_SelectionChanged({
-						If ($Prop["_Category"].Value -eq "Factory Asset" -and $Document.FileSaveCounter -eq 0) #don't localize name according FDU fixed naming
-						{
-							$paths = @("Factory Asset Library Source")
-							mActivateBreadCrumbCmbs $paths
-						}
-					})
-				
-					If($_mFdsKeys.ContainsKey("FdsType") -and $Document.FileSaveCounter -eq 0 )
+					If ($_mInvHelpers.m_FDUActive($Application))
 					{
-						#$dsDiag.Trace(" FDS File Type detected")
-						# for new assets we suggest to use the source file folder name, nothing else
-						If($_mFdsKeys.Get_Item("FdsType") -eq "FDS-Asset")
-						{
-							$Prop["_Category"].Value = "Factory Asset"
-						}
-						# skip for publishing the 3D temporary file save event for VDS
-						If($_mFdsKeys.Get_Item("FdsType") -eq "FDS-Asset" -and $Application.SilentOperation -eq $true)
-						{ 
-							#$dsDiag.Trace(" FDS publishing 3D - using temporary assembly silent mode: need to skip VDS!")
-							$global:mSkipVDS = $true
-						}
-						If($_mFdsKeys.Get_Item("FdsType") -eq "FDS-Asset" -and $Document.InternalName -ne $Application.ActiveDocument.InternalName)
-						{
-							#$dsDiag.Trace(" FDS publishing 3D: ActiveDoc.InternalName different from VDSDoc.Internalname: Verbose VDS")
-							$global:mSkipVDS = $true
-						}
+						[System.Windows.MessageBox]::Show("Active FDU-AddIn detected","Vault MFG Quickstart")
+						$_mFdsKeys = $_mInvHelpers.m_GetFdsKeys($Application, @{})
 
-						# 
-						If($_mFdsKeys.Get_Item("FdsType") -eq "FDS-Layout" -and $_mFdsKeys.Count -eq 1)
-						{
-							#$dsDiag.Trace("3DLayout, not synced")
-							#try to activate category "Factory Layout"
-							$Prop["_Category"].Value = "Factory Layout"
-						}
+						# some FDS workflows require VDS cancellation; add the conditions to the event handler _Loaded below
+						$dsWindow.add_Loaded({
+							IF ($mSkipVDS -eq $true)
+							{
+								$dsWindow.CancelWindowCommand.Execute($this)
+								#$dsDiag.Trace("FDU-VDS EventHandler: Skip Dialog executed")	
+							}
+						})
 
-						# this state is for validation only - you must not get there; if you do then you miss the SkipVDSon1stSave.IAM template
-						If($_mFdsKeys.Get_Item("FdsType") -eq "FDS-Layout" -and $_mFdsKeys.Count -gt 1 -and $Document.FileSaveCounter -eq 0)
+						# FDS workflows with individual settings					
+						$dsWindow.FindName("Categories").add_SelectionChanged({
+							If ($Prop["_Category"].Value -eq "Factory Asset" -and $Document.FileSaveCounter -eq 0) #don't localize name according FDU fixed naming
+							{
+								$paths = @("Factory Asset Library Source")
+								mActivateBreadCrumbCmbs $paths
+							}
+						})
+				
+						If($_mFdsKeys.ContainsKey("FdsType") -and $Document.FileSaveCounter -eq 0 )
 						{
-							#$dsDiag.Trace("3DLayout not saved yet, but already synced")
+							#$dsDiag.Trace(" FDS File Type detected")
+							# for new assets we suggest to use the source file folder name, nothing else
+							If($_mFdsKeys.Get_Item("FdsType") -eq "FDS-Asset")
+							{
+								$Prop["_Category"].Value = "Factory Asset"
+							}
+							# skip for publishing the 3D temporary file save event for VDS
+							If($_mFdsKeys.Get_Item("FdsType") -eq "FDS-Asset" -and $Application.SilentOperation -eq $true)
+							{ 
+								#$dsDiag.Trace(" FDS publishing 3D - using temporary assembly silent mode: need to skip VDS!")
+								$global:mSkipVDS = $true
+							}
+							If($_mFdsKeys.Get_Item("FdsType") -eq "FDS-Asset" -and $Document.InternalName -ne $Application.ActiveDocument.InternalName)
+							{
+								#$dsDiag.Trace(" FDS publishing 3D: ActiveDoc.InternalName different from VDSDoc.Internalname: Verbose VDS")
+								$global:mSkipVDS = $true
+							}
+
+							# 
+							If($_mFdsKeys.Get_Item("FdsType") -eq "FDS-Layout" -and $_mFdsKeys.Count -eq 1)
+							{
+								#$dsDiag.Trace("3DLayout, not synced")
+								#try to activate category "Factory Layout"
+								$Prop["_Category"].Value = "Factory Layout"
+							}
+
+							# this state is for validation only - you must not get there; if you do then you miss the SkipVDSon1stSave.IAM template
+							If($_mFdsKeys.Get_Item("FdsType") -eq "FDS-Layout" -and $_mFdsKeys.Count -gt 1 -and $Document.FileSaveCounter -eq 0)
+							{
+								#$dsDiag.Trace("3DLayout not saved yet, but already synced")
+							}
 						}
 					}
 					#endregion FDU Support --------------------------------------------------------------------------

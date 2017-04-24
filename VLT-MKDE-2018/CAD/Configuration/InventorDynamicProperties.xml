@@ -63,10 +63,10 @@
     <DynamicProperty>Länge (Zuschnitt)</DynamicProperty>
     <DynamicProperty>Gewicht</DynamicProperty>
     <DynamicProperty>EV-Kennung</DynamicProperty>
-    <DynamicProperty>Dicke/Durchmesser</DynamicProperty>
+    <DynamicProperty Hidden="True">Dicke/Durchmesser</DynamicProperty>
     <DynamicProperty>Werksnorm</DynamicProperty>
-    <DynamicProperty>Breite</DynamicProperty>
-    <DynamicProperty>Länge</DynamicProperty>
+    <DynamicProperty Hidden="True">Breite</DynamicProperty>
+    <DynamicProperty Hidden="True">Länge</DynamicProperty>
     <DynamicProperty Hidden="True">Identnummer</DynamicProperty>
     <DynamicProperty>Entstanden aus</DynamicProperty>
     <DynamicProperty>Ersetzt durch</DynamicProperty>
