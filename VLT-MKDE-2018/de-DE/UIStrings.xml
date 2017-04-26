@@ -347,6 +347,17 @@
   <UIString ID="ADSK-ItemTab-03">Halbzeugdaten übernehmen</UIString>
   <UIString ID="ADSK-ItemTab-04">Suche...</UIString>
   <UIString ID="ADSK-ItemTab-05">Aus Katalog übernehmen...</UIString>
+  <UIString ID="ADSK-ItemTab-06">Eigenschaften</UIString>
   <!--Vault Item Lookup Tab End-->
 
+  <!--Vault Link Lookup Tab-->
+  <UIString ID="ADSK-LinkTab-00">Verknüpfungen</UIString>
+  <UIString ID="ADSK-LinkTab-01">Eigenschaften</UIString>
+  <UIString ID="ADSK-LinkTab-02">Verknüpfung(e) Erstellen</UIString>
+  <UIString ID="ADSK-LinkTab-03">Auswahl Zurücksetzen</UIString>
+  <UIString ID="ADSK-LinkTab-04">Auswahl in Eigenschaften übernehmen und mit Projekt verknüpfen</UIString>
+  <UIString ID="ADSK-LinkTab-05">Setzt Auswahl und Eigenschaft(en) zurück</UIString>
+
+  <!--Vault Link Lookup Tab end-->
+  
 </UIStrings>

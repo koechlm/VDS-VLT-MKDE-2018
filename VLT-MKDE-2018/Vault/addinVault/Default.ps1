@@ -95,7 +95,7 @@ function InitializeTabWindow
 function InitializeWindow
 {	      
 	#begin rules applying commonly
-
+      
 	$Prop["_Category"].add_PropertyChanged({
         if ($_.PropertyName -eq "Value")
         {
@@ -105,15 +105,6 @@ function InitializeWindow
 			#endregion
         }		
     })
-
-	Try {
-		$dsWindow.FindName("mSearchTermText").text = $Prop["_XLTN_TITLE"].Value
-		$Prop["_XLTN_TITLE"].add_PropertyChanged({
-				param( $parameter)
-				$dsWindow.FindName("mSearchTermText").text = $Prop["_XLTN_TITLE"].Value
-			})
-	}
-	catch { $dsDiag.Trace("WARNING Tab TermSearch is not present")}
 
 	#end rules applying commonly
 	$mWindowName = $dsWindow.Name
@@ -779,6 +770,21 @@ function m_CategoryChanged
 			{
 				$Prop["_XLTN_DATESTART"].Value = Get-Date -displayhint date
 			}
+
+			#region link tab
+			#initialize the link tab for project category
+			If ($Prop["_Category"].Value -eq $UIString["CAT6"])
+			{
+				$dsWindow.FindName("tabFldLinks").Visibility = "Visible"
+				cOinitGetCustomObjects # located in ProjectOrganisationLink.ps1
+				$dsWindow.FindName("cmbOrganisation").ItemsSource = cOgetCompanies
+				If ($dsWindow.FindName("cmbOrganisation").Items.Count -gt 1) { $dsWindow.FindName("cmbOrganisation").IsDropDownOpen = $true  }
+			}
+			Else 
+			{
+				$dsWindow.FindName("tabFldLinks").Visibility = "Collapsed"
+			}
+			#endregion
 		}
 
 		"CustomObjectWindow"

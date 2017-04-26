@@ -100,9 +100,10 @@ function InitializeWindow
 				$true 
 				{
 					$Prop["Part Number"].Value = "" #reset the part number for new files as Inventor writes the file name (no extension) as a default.
+					If ($Prop["Replacement"]) {$Prop["Replacement"].Value = "--"}
+
 					#$dsDiag.Trace(">> CreateMode Section executes...")
 					# set the category: Quickstart = "3D components" for model files and "Inventor Drawing" for IDW/DWG
-
 					$mCatName = GetCategories | Where {$_.Name -eq $UIString["MSDCE_CAT02"]}
 					IF ($mCatName) { $Prop["_Category"].Value = $UIString["MSDCE_CAT02"]}
 						# in case the current vault is not quickstart, but a plain MFG default configuration
@@ -117,7 +118,7 @@ function InitializeWindow
 					$_mInvHelpers = New-Object QuickstartUtilityLibrary.InvHelpers
 					If ($_mInvHelpers.m_FDUActive($Application))
 					{
-						[System.Windows.MessageBox]::Show("Active FDU-AddIn detected","Vault MFG Quickstart")
+						#[System.Windows.MessageBox]::Show("Active FDU-AddIn detected","Vault MFG Quickstart")
 						$_mFdsKeys = $_mInvHelpers.m_GetFdsKeys($Application, @{})
 
 						# some FDS workflows require VDS cancellation; add the conditions to the event handler _Loaded below

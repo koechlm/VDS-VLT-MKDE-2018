@@ -306,5 +306,16 @@
   <UIString ID="ADSK-ItemTab-03">Adopt Stock Data</UIString>
   <UIString ID="ADSK-ItemTab-04">Lookup...</UIString>
   <UIString ID="ADSK-ItemTab-05">No hand typed values select from Catalog...</UIString>
+  <UIString ID="ADSK-ItemTab-06">Properties</UIString>
   <!--Vault Item Lookup Tab End-->
+
+  <!--Vault Link Lookup Tab-->
+  <UIString ID="ADSK-LinkTab-00">Links</UIString>
+  <UIString ID="ADSK-LinkTab-01">Properties</UIString>
+  <UIString ID="ADSK-LinkTab-02">Create Link(s)</UIString>
+  <UIString ID="ADSK-LinkTab-03">Reset Selection</UIString>
+  <UIString ID="ADSK-LinkTab-04">Copy Selection to Properties and Activate Link Creation</UIString>
+  <UIString ID="ADSK-LinkTab-05">Reset Selection and Property Values</UIString>
+  <!--Vault Link Lookup Tab end-->
+
 </UIStrings>

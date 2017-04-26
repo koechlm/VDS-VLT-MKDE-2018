@@ -77,4 +77,26 @@ if($result)
 	$selectionId = [Autodesk.Connectivity.Explorer.Extensibility.SelectionTypeId]::Folder
 	$location = New-Object Autodesk.Connectivity.Explorer.Extensibility.LocationContext $selectionId, $path
 	$vaultContext.GoToLocation = $location
+
+	#region create_links
+	try
+	{
+		$companyID = Get-Content $env:TEMP"\cOcompanyID.txt"
+		$contactID = Get-Content $env:TEMP"\cOcontactID.txt"
+		#if($companyID -ne "") { $link1 = $vault.DocumentService.AddLink($companyID,"FLDR",$dialog.CurrentFolder.Id,"Organisation->Folder") }
+		if($companyID -ne $null) { $link2 = $vault.DocumentService.AddLink($dialog.CurrentFolder.Id,"CUSTENT",$companyID,"Folder->Organisation") }
+		#if($contactID -ne "") { $link3 = $vault.DocumentService.AddLink($contactID,"FLDR",$dialog.CurrentFolder.Id,"Person->Folder") }
+		if($contactID -ne $null) { $link3 = $vault.DocumentService.AddLink($dialog.CurrentFolder.Id,"CUSTENT",$contactID,"Folder->Person") }
+	}
+	catch
+	{
+		$dsDiag.Trace("CreateFolder.ps1 - AddLink command failed") 
+	}
+	finally {
+		#in any case don't use the last entry twice...
+		$null | Out-File $env:TEMP"\cOcompanyID.txt"
+		$null | Out-File $env:TEMP"\cOcontactID.txt"
+	}
+	#endregion
 }
+

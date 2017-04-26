@@ -61,5 +61,9 @@
   <PropertyTranslation Name="TITLE-FR">Titel FR</PropertyTranslation>
   <PropertyTranslation Name="TITLE-IT">Titel IT</PropertyTranslation>
   <!--Classification & Terms-->
+
+  <!--Vault Link Lookup Tab-->
+  <PropertyTranslation Name="CONTACTNAME">Ansprechpartner</PropertyTranslation>
+  <!--Vault Link Lookup Tab End-->
   
 </PropertyTranslations>

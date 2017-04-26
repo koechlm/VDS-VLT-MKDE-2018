@@ -84,7 +84,7 @@
                                             IsTabStop="False" IsHitTestVisible="True"/>
                                         <Button Content="{Binding DataContext.UIString[ClassTerms_13], FallbackValue=Catalog..., RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" 
                                             Command="{Binding DataContext.PsCmd[mCatalogClick], RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" HorizontalAlignment="Right"
-                                            ToolTip="{Binding DataContext.UIString[ClassTerms_TT05], FallbackValue=No hand typed values\, select from Catalog..., RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" Grid.Column="1" Padding="10,1" Background="#FFDDDDDD"/>
+                                            ToolTip="{Binding DataContext.UIString[ClassTerms_TT05], FallbackValue=No hand typed values\, select from Catalog..., RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" Grid.Column="1" Padding="10,1" Background="#FFDDDDDD" MinWidth="80"/>
                                     </Grid>
 
 
@@ -107,9 +107,9 @@
                                             IsReadOnly="True" Background="WhiteSmoke" ToolTipService.ShowOnDisabled="True" 
                                             ToolTip="{Binding DataContext.UIString[LBL27], FallbackValue='No hand typed values select from Catalog...', RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
                                             IsTabStop="False" IsHitTestVisible="True"/>
-                                        <Button Content="{Binding DataContext.UIString[], FallbackValue=Lookup..., RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" 
+                                        <Button Content="{Binding DataContext.UIString[ADSK-ItemTab-04], FallbackValue=Lookup..., RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" 
                                             Command="{Binding DataContext.PsCmd[mItemLookupClick], RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" HorizontalAlignment="Right"
-                                            ToolTip="{Binding DataContext.UIString[], FallbackValue=No hand typed values\, select from Catalog..., RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" Grid.Column="1" Padding="10,1" Background="#FFDDDDDD"/>
+                                            ToolTip="{Binding DataContext.UIString[], FallbackValue=No hand typed values\, select from Catalog..., RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" Grid.Column="1" Padding="10,1" Background="#FFDDDDDD" MinWidth="80"/>
                                     </Grid>
 
 
@@ -264,7 +264,7 @@
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
         <TabControl x:Name="tabCtrlMain" Margin="0">
-            <TabItem x:Name="tabFileProperties" Header="{Binding UIString[], FallbackValue='File Properties'}" HorizontalAlignment="Left">
+            <TabItem x:Name="tabFileProperties" Header="{Binding UIString[ADSK-ItemTab-06], FallbackValue='File Properties'}" HorizontalAlignment="Left">
                 <Grid x:Name="grdFile" Background="#FFE5E5E5">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>

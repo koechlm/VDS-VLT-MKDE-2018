@@ -140,9 +140,9 @@
     <DynamicProperty>Titel</DynamicProperty>
     <DynamicProperty>Beschreibung</DynamicProperty>
     <DynamicProperty>Kunde</DynamicProperty>
+    <DynamicProperty>Ansprechpartner</DynamicProperty>
     <DynamicProperty>Datum Start</DynamicProperty>
     <DynamicProperty>Datum Ende</DynamicProperty>
-    <DynamicProperty>Ansprechpartner</DynamicProperty>
     <DynamicProperty>Identnummer</DynamicProperty>
   </DynamicPropertiesCategory>
   <DynamicPropertiesCategory Category="Serviceauftrag" Type="CustomObject">
@@ -295,6 +295,7 @@
     <DynamicProperty>Blatt</DynamicProperty>
     <DynamicProperty>Entstanden aus</DynamicProperty>
     <DynamicProperty>Ersetzt durch</DynamicProperty>
+    <DynamicProperty Hidden="True">Anwendungsversion</DynamicProperty>
   </DynamicPropertiesCategory>
   <DynamicPropertiesCategory Category="Konstruktion" Type="File">
     <DynamicProperty>Verfasser</DynamicProperty>

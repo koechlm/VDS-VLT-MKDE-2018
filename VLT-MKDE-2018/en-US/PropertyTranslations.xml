@@ -56,5 +56,9 @@
   <PropertyTranslation Name="GROUP">Group</PropertyTranslation>
   <PropertyTranslation Name="SUBGROUP">Sub Group</PropertyTranslation>
   <!--Classification & Terms-->
+
+  <!--Vault Link Lookup Tab-->
+  <PropertyTranslation Name="CONTACTNAME">Contact Person</PropertyTranslation>
+  <!--Vault Link Lookup Tab End-->
   
 </PropertyTranslations>
