@@ -4,4 +4,8 @@
     <DocName>Office Document</DocName>
     <Path>$/Templates/Office</Path>
   </DocTypeInfo>
+  <DocTypeInfo>
+    <DocName>Dokumentensatz</DocName>
+    <Path>$/Templates/Plotsatz</Path>
+  </DocTypeInfo>
 </DocTypeData>

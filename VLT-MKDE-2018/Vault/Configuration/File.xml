@@ -13,6 +13,10 @@
     <Path>$/Templates/Office</Path>
   </DocTypeInfo>
   <DocTypeInfo>
+    <DocName>Dokumentensatz</DocName>
+    <Path>$/Templates/Plotsatz</Path>
+  </DocTypeInfo>
+  <DocTypeInfo>
     <DocName>Electrical Drawing</DocName>
     <Path>$/Templates/Electrical</Path>
   </DocTypeInfo>

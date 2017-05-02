@@ -324,4 +324,7 @@
     <DynamicProperty>Identnummer</DynamicProperty>
     <DynamicProperty>Änderungskategorie</DynamicProperty>
   </DynamicPropertiesCategory>
+  <DynamicPropertiesCategory Category="Dokumentensatz" Type="File">
+    <DynamicProperty>Titel</DynamicProperty>
+  </DynamicPropertiesCategory>
 </DynamicProperties>

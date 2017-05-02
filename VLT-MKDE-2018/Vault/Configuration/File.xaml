@@ -359,7 +359,7 @@
                         <Label Content="{Binding UIString[LBL31], FallbackValue=Number}" Grid.Column="0" Grid.Row="4" Height="Auto"
                    Visibility="{Binding Visibility, ElementName=DSNumSchmsCtrl}" />
                         <WPF:DSNumSchemeCtrl Grid.Column="1" Grid.Row="4" x:Name="DSNumSchmsCtrl"
-                                 IsEnabled="{Binding IsEnabled, ElementName=NumSchms}"
+                                 
                                  Scheme="{Binding SelectedItem, ElementName=NumSchms}"
                                  GeneratedNumberProperty="_GeneratedNumber" Style="{StaticResource NumSchmCtrlStyle}" 
                                  Visibility="{Binding HasItems, Converter={StaticResource BooleanToVisibilityConverter}, ElementName=NumSchms}"/>
