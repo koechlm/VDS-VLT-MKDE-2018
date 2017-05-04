@@ -145,7 +145,9 @@ function InitializeWindow
 							# for new assets we suggest to use the source file folder name, nothing else
 							If($_mFdsKeys.Get_Item("FdsType") -eq "FDS-Asset")
 							{
-								$Prop["_Category"].Value = "Factory Asset"
+								# only the MSDCE FDS configuration template provides a category for assets, check for this otherwise continue with the selection done before
+								$mCatName = GetCategories | Where {$_.Name -eq "Factory Asset"}
+								IF ($mCatName) { $Prop["_Category"].Value = "Factory Asset"}
 							}
 							# skip for publishing the 3D temporary file save event for VDS
 							If($_mFdsKeys.Get_Item("FdsType") -eq "FDS-Asset" -and $Application.SilentOperation -eq $true)
@@ -163,8 +165,9 @@ function InitializeWindow
 							If($_mFdsKeys.Get_Item("FdsType") -eq "FDS-Layout" -and $_mFdsKeys.Count -eq 1)
 							{
 								#$dsDiag.Trace("3DLayout, not synced")
-								#try to activate category "Factory Layout"
-								$Prop["_Category"].Value = "Factory Layout"
+								# only the MSDCE FDS configuration template provides a category for layouts, check for this otherwise continue with the selection done before
+								$mCatName = GetCategories | Where {$_.Name -eq "Factory Layout"}
+								IF ($mCatName) { $Prop["_Category"].Value = "Factory Layout"}
 							}
 
 							# this state is for validation only - you must not get there; if you do then you miss the SkipVDSon1stSave.IAM template

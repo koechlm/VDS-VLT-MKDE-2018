@@ -749,15 +749,7 @@ function m_CategoryChanged
 			$Prop['_XLTN_AUTHOR'].Value = $VaultConnection.UserName
 			
 			$Prop["_NumSchm"].Value = $Prop["_Category"].Value
-			$1 = $Prop["_NumSchm"].Value
-			$2 = $Prop["_Category"].Value
-			$3 = $dsWindow.FindName("NumSchms").SelectedValue
-
-#        $dsDiag.ShowLog()
-#        $dsDiag.Clear()
-      
-#$dsDiag.Trace("NumScheme: $1, Cat= $2, Ctrl= $3")
-			IF ($dsWindow.FindName("NumSchms").SelectedValue -eq $Prop["_Category"].Value) 
+			IF ($dsWindow.FindName("DSNumSchmsCtrl").Scheme.Name -eq $Prop["_Category"].Value) 
 			{
 				#$dsWindow.FindName("NumSchms").SelectedValue = $Prop["_Category"].Value
 				$dsWindow.FindName("NumSchms").IsEnabled = $false
