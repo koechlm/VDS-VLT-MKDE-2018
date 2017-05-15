@@ -357,7 +357,11 @@
   <UIString ID="ADSK-LinkTab-03">Auswahl Zurücksetzen</UIString>
   <UIString ID="ADSK-LinkTab-04">Auswahl in Eigenschaften übernehmen und mit Projekt verknüpfen</UIString>
   <UIString ID="ADSK-LinkTab-05">Setzt Auswahl und Eigenschaft(en) zurück</UIString>
-
   <!--Vault Link Lookup Tab end-->
   
+  <!--ADSK-File Property Provider-->
+  <UIString ID="ADSKFile-MetaReader-00">ADSK-Datei: Metadaten extrahieren</UIString>
+  <UIString ID="ADSKFile-MetaReader-01">Importiert Eigenschaften aus ADSK Austauschdateien</UIString>
+  <UIString ID="ADSKFile-MetaReader-02">Import von ADSK-Datei Metadaten</UIString>
+  <!--ADSK-File Property Provider end-->
 </UIStrings>

@@ -12,6 +12,12 @@ MultiSelectEnabled: If true, command is active for multiple selections, can be t
 -->
 <mymenu>
   <MenuItem>
+    <!--ADSK-File Property Provider-->
+    <ADSKFileProp Label = "$UIString[ADSKFile-MetaReader-00]" Description = "$UIString[ADSKFile-MetaReader-01]" Hint = "$UIString[ADSKFile-MetaReader-02]"
+      PSFile = "ADSKFilePropProvider.ps1" Image="ADSKMetaImport.ico" ToolbarPaintStyle = "TextAndGlyph"
+      MultiSelectEnabled = "true"/>
+    <!--ADSK-File Property Provider-->
+    
     <!--GoToSourceFile-GoToReplacement MenuItem Start-->
     <GoToSourceFile Label = "$UIString[ADSK-GoToSource_MNU01]" Description = "$UIString[ADSK-GoToSource_MNU01]" Hint = "$UIString[ADSK-GoToSource_MNU01]"
       PSFile = "GoToSourceFile.ps1" Image="GoToSource.ico" ToolbarPaintStyle = "TextAndGlyph"
@@ -176,8 +182,11 @@ MultiSelectEnabled: If true, command is active for multiple selections, can be t
     
     <ToolsMenu Label="myMenu" DeployAsPullDown="False" Location="ToolsMenu">
       <Item Name="ShowLog"></Item>
-      <Item Name="ReserveNumbers"></Item>>
+      <Item Name="ReserveNumbers"></Item>    
     </ToolsMenu>
+    <ActionsMenu Label="myMenu" DeployAsPullDown="False" Location="ActionsMenu">
+      <Item Name="ADSKFileProp"></Item>
+    </ActionsMenu>
     <HelpMenu Label="myMenu" DeployAsPullDown="False" Location="HelpMenu">
       <Item Name="AboutDialog"></Item>
       <Item Name="showCustomHelp"></Item>
