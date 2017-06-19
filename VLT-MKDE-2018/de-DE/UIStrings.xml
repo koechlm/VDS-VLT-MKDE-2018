@@ -357,6 +357,9 @@
   <UIString ID="ADSK-LinkTab-03">Auswahl Zurücksetzen</UIString>
   <UIString ID="ADSK-LinkTab-04">Auswahl in Eigenschaften übernehmen und mit Projekt verknüpfen</UIString>
   <UIString ID="ADSK-LinkTab-05">Setzt Auswahl und Eigenschaft(en) zurück</UIString>
+  <UIString ID="ADSK-LinkTab-06">Auswahl Kunden aus Arbeitsbereich "Organisationen"</UIString>
+  <UIString ID="ADSK-LinkTab-07">Auswahl Kunde aus vordefinierter Liste</UIString>
+  <UIString ID="ADSK-LinkTab-08">Ansprechpartner wird über Auswahl des Kunden automatisch angegeben</UIString>
   <!--Vault Link Lookup Tab end-->
   
   <!--ADSK-File Property Provider-->

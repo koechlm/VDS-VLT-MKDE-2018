@@ -81,12 +81,12 @@
                                         </Grid.ColumnDefinitions>
                                         <ComboBox ItemsSource="{Binding ListValues}" IsEditable="True" Text="{WPF:ValidatedBinding Value}" 
                                             HorizontalAlignment="Stretch" BorderThickness="0" 
-                                            IsReadOnly="False" ToolTipService.ShowOnDisabled="True" 
-                                            ToolTip="{Binding DataContext.UIString[], FallbackValue='Select from list or links', RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
+                                             ToolTipService.ShowOnDisabled="True" 
+                                            ToolTip="{Binding DataContext.UIString[ADSK-LinkTab-07], FallbackValue='Select from list or links', RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
                                             IsTabStop="False" IsHitTestVisible="True" Padding="5,0,0,5"/>
                                         <Button Content="{Binding DataContext.UIString[], FallbackValue=My Command, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" 
                                             Command="{Binding DataContext.PsCmd[mOrgLookUpClick], RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" HorizontalAlignment="Right"
-                                            ToolTip="{Binding DataContext.UIString[], FallbackValue='Select Organisation from List', RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" 
+                                            ToolTip="{Binding DataContext.UIString[ADSK-LinkTab-06], FallbackValue='Select organisation from available links', RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" 
                                             Grid.Column="1" Padding="5,0" Background="#FFDDDDDD" MinWidth="30">
                                             <Button.Template>
                                                 <ControlTemplate>
@@ -111,8 +111,8 @@
                                             <ColumnDefinition Width="Auto"/>
                                         </Grid.ColumnDefinitions>
                                         <TextBox Text="{WPF:ValidatedBinding Value}" HorizontalAlignment="Stretch" BorderThickness="0" 
-                                            IsReadOnly="False" Background="WhiteSmoke" ToolTipService.ShowOnDisabled="True" 
-                                            ToolTip="{Binding DataContext.UIString[], FallbackValue='Link customer to fill automatically', RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
+                                             Background="WhiteSmoke" ToolTipService.ShowOnDisabled="True" 
+                                            ToolTip="{Binding DataContext.UIString[ADSK-LinkTab-08], FallbackValue='Link customer to fill automatically', RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
                                             IsTabStop="False" IsHitTestVisible="True" Padding="5,0,0,5"/>
                                         </Grid>
                                 </DockPanel>

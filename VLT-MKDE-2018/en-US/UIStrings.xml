@@ -316,6 +316,9 @@
   <UIString ID="ADSK-LinkTab-03">Reset Selection</UIString>
   <UIString ID="ADSK-LinkTab-04">Copy Selection to Properties and Activate Link Creation</UIString>
   <UIString ID="ADSK-LinkTab-05">Reset Selection and Property Values</UIString>
+  <UIString ID="ADSK-LinkTab-06">Select organisation from available links</UIString>
+  <UIString ID="ADSK-LinkTab-07">Select from list or links</UIString>
+  <UIString ID="ADSK-LinkTab-08">Link customer to fill automatically</UIString>
   <!--Vault Link Lookup Tab end-->
 
   <!--ADSK-File Property Provider-->
