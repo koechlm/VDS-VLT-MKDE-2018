@@ -1,5 +1,4 @@
 
-
 Add-Type @"
 public class CatalogData
 {
@@ -80,19 +79,19 @@ function m_SearchTerms ([STRING] $mSearchText1) {
 
 		#add other conditions by settings read from dialog
 		IF ($dsWindow.FindName("chkDE").IsChecked -eq $true) {
-			$srchConds[$_i]= mCreateSearchCond $UIString["ClassTerms_09"] $mSearchText1 "OR" #ToDo: replace by UIString
+			$srchConds[$_i]= mCreateSearchCond $UIString["ClassTerms_09"] $mSearchText1 "OR"
 			$_i += 1
 		}
 		IF ($dsWindow.FindName("chkEN").IsChecked -eq $true) {
-			$srchConds[$_i]= mCreateSearchCond $UIString["ClassTerms_10"] $mSearchText1 "OR" #ToDo: replace by UIString
+			$srchConds[$_i]= mCreateSearchCond $UIString["ClassTerms_10"] $mSearchText1 "OR" 
 			$_i += 1
 		}
 		IF ($dsWindow.FindName("chkFR").IsChecked -eq $true) {
-			$srchConds[$_i]= mCreateSearchCond $UIString["ClassTerms_11"] $mSearchText1 "OR" #ToDo: replace by UIString
+			$srchConds[$_i]= mCreateSearchCond $UIString["ClassTerms_11"] $mSearchText1 "OR" 
 			$_i += 1
 		}
 		IF ($dsWindow.FindName("chkIT").IsChecked -eq $true) {
-			$srchConds[$_i]= mCreateSearchCond $UIString["ClassTerms_12"] $mSearchText1 "OR" #ToDo: replace by UIString
+			$srchConds[$_i]= mCreateSearchCond $UIString["ClassTerms_12"] $mSearchText1 "OR" 
 			$_i += 1
 		}
 		# if filters are used limit the search to the classification groups. Apply AND conditions
@@ -103,17 +102,17 @@ function m_SearchTerms ([STRING] $mSearchText1) {
 		}
 				IF ($breadCrumb.Children[2].SelectedIndex -ge 0) {
 			$mSearchGroupName = $breadCrumb.Children[2].Text
-			$srchConds[$_i]= mCreateSearchCond $UIString["Class_01"] $mSearchGroupName "AND" #ToDo: replace by UIString
+			$srchConds[$_i]= mCreateSearchCond $UIString["Class_01"] $mSearchGroupName "AND" 
 			$_i += 1
 		}
 		IF ($breadCrumb.Children[3].SelectedIndex -ge 0) {
 			$mSearchGroupName = $breadCrumb.Children[3].Text
-			$srchConds[$_i]= mCreateSearchCond $UIString["Class_02"] $mSearchGroupName "AND" #ToDo: replace by UIString
+			$srchConds[$_i]= mCreateSearchCond $UIString["Class_02"] $mSearchGroupName "AND" 
 			$_i += 1
 		}
 		IF ($breadCrumb.Children[4].SelectedIndex -ge 0) {
 			$mSearchGroupName = $breadCrumb.Children[4].Text
-			$srchConds[$_i]= mCreateSearchCond $UIString["Class_03"] $mSearchGroupName "AND" #ToDo: replace by UIString
+			$srchConds[$_i]= mCreateSearchCond $UIString["Class_03"] $mSearchGroupName "AND" 
 			$_i += 1
 		}
 		$dsDiag.Trace(" search conditions build") 
@@ -145,7 +144,7 @@ function m_SearchTerms ([STRING] $mSearchText1) {
 			$dsDiag.Trace(" ---iterates search result for properties finished") 
 			#create a row for the element and it's properties
 			$row = New-Object CatalogData
-			$row.Term_DE = $props[$UIString["ClassTerms_09"]] #toDo: replace "Begriff xx" by UIString
+			$row.Term_DE = $props[$UIString["ClassTerms_09"]]
 			$row.Term_EN = $props[$UIString["ClassTerms_10"]]
 			$row.Term_FR = $props[$UIString["ClassTerms_11"]]
 			$row.Term_IT = $props[$UIString["ClassTerms_12"]]
