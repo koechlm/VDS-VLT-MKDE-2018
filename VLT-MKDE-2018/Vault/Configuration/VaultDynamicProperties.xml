@@ -95,6 +95,7 @@
     <DynamicProperty>Werksnorm</DynamicProperty>
     <DynamicProperty>Ersetzt durch</DynamicProperty>
     <DynamicProperty>Anwendungsversion</DynamicProperty>
+    <DynamicProperty>Abmessungen</DynamicProperty>
   </DynamicPropertiesCategory>
   <DynamicPropertiesCategory Category="Dokumente" Type="File">
     <DynamicProperty>Identnummer</DynamicProperty>

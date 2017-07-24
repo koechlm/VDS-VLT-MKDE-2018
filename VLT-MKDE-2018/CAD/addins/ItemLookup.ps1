@@ -5,6 +5,7 @@ public class itemData
 	public string Item {get;set;}
 	public string Revision {get;set;}
 	public string Title {get;set;}
+	public string Material {get;set;}
 }
 "@
 
@@ -59,7 +60,8 @@ function mSearchItem()
 			$row.Item = $item.ItemNum
 			$row.Revision = $item.RevNum
 			$row.Title = $item.Title
-			$results += $row 
+			$row.Material = mGetItemPropVal $item "Material"
+			$results += $row
 		}
 		If($results)
 		{
@@ -177,6 +179,7 @@ function mSelectStockItem {
 			$Prop["Stock Number"].Value = $mSelectedItem.Item
 			# Stock designation is custom prop; cautiously try to fill :)
 			Try { $Prop["Halbzeug"].Value = $mSelectedItem.Title} Catch{}
+			Try { $Prop["Material"].Value = $mSelectedItem.Material} Catch{}
 		}
 		#$dsWindow.FindName("txtPartNumber").Text = $mSelectedItem.Item
 		$dsWindow.FindName("tabFileProp").IsSelected = $true
@@ -212,3 +215,21 @@ function mResetItemCatFilter
 	$dsWindow.FindName("cmbItemCategories").SelectedIndex = -1
 }
 
+function mGetItemPropVal($_Item, $_PropDispName)
+{
+    $propDefs = $vault.PropertyService.GetPropertyDefinitionsByEntityClassId("ITEM")	
+    $properties = $vault.PropertyService.GetPropertiesByEntityIds("ITEM", $_Item.Id) #Properties attached to the Item
+    $props = @{}
+    foreach ($property in $properties) 
+    {
+			#$dsDiag.Trace("Iiterates properties to get DefIDs...")
+			Try 
+            {
+				    $propDef = $propDefs | Where-Object { $_.Id -eq $property.PropDefId }
+					$props[$propDef.DispName] = $property.Val
+			} 
+			catch { $dsDiag.Trace("ERROR ---creation of name-value list of properties failed! ---") }
+	}
+    $mMaterial = $props.Item($_PropDispName)
+    return $mMaterial 
+}

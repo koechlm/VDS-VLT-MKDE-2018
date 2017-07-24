@@ -149,6 +149,8 @@
   <UIString ID="iProp_SemiFinished">Semi-finished</UIString>
   <UIString ID="iProp_SpearWearPart">Spear-Wear Part</UIString>
   <UIString ID="G_L">Length (Cut)</UIString>
+  <UIString ID="Dimensions">Dimensions</UIString>
+  <UIString ID="Weight">Weight</UIString>
   <!--Inventor custom iProperties Displaynames for dynamic properties-->
   
   <!--Vault Categories-->

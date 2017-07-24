@@ -57,7 +57,7 @@
     <DynamicProperty>Beschreibung</DynamicProperty>
     <DynamicProperty>Bauteilnummer</DynamicProperty>
     <DynamicProperty>Material</DynamicProperty>
-    <DynamicProperty>Abmessung/Halbzeug</DynamicProperty>
+    <DynamicProperty>Abmessungen</DynamicProperty>
     <DynamicProperty>Halbzeug</DynamicProperty>
     <DynamicProperty>Bestandsnummer</DynamicProperty>
     <DynamicProperty>Länge (Zuschnitt)</DynamicProperty>

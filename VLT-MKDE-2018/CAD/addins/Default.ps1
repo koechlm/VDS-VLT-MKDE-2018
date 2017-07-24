@@ -782,9 +782,40 @@ function mCatalogClick
 	$dsWindow.FindName("tabTermsCatalog").IsSelected = $true
 }
 
-function mItemLookUpClick
+function mItemLookUpClick1
+{
+	$dsWindow.FindName("tabItemLookup").IsSelected = $true   
+    $mDocType = $Prop["_FileExt"].Value
+        switch($mDocType)
+		{
+			"ipt"
+			{
+				$dsWindow.FindName("cmbItemCategories").SelectedValue = "Bauteil"
+			}
+
+			"iam" 
+			{
+				$dsWindow.FindName("cmbItemCategories").SelectedValue = "Baugruppe"
+			}
+
+			"idw"
+			{
+				$dsWindow.FindName("cmbItemCategories").SelectedValue = "Dokument"
+			}
+			default
+			{
+				
+			}
+		}
+      
+	
+	
+
+}
+function mItemLookUpClick2
 {
 	$dsWindow.FindName("tabItemLookup").IsSelected = $true
+	$dsWindow.FindName("cmbItemCategories").SelectedValue = "Halbzeug"
 }
 
 #endregion

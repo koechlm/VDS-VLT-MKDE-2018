@@ -150,6 +150,8 @@
   <UIString ID="iProp_SemiFinished">Halbzeug</UIString>
   <UIString ID="iProp_SpearWearPart">EV-Kennung</UIString>
   <UIString ID="G_L">Länge (Zuschnitt)</UIString>
+  <UIString ID="Dimensions">Abmessungen</UIString>
+  <UIString ID="Weight">Gewicht</UIString>
   <!--Inventor custom iProperties overrides / localization-->
   
   <!--Vault Categories-->
