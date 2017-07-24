@@ -88,8 +88,8 @@ function InitializeWindow
 				$dsWindow.FindName("IsGFN4Type").IsChecked = $true
 				If ($global:mIsGFN4-eq $true -and $global:mGFN4Special -eq $false) #IDW/DWG, IPN - Don't generate new document number
 				{ 
-					#$dsWindow.FindName("BreadCrumb").IsEnabled = $false
-					#$dsWindow.FindName("GroupFolder").Visibility = "Collapsed"
+					$dsWindow.FindName("BreadCrumb").IsEnabled = $false
+					$dsWindow.FindName("GroupFolder").Visibility = "Collapsed"
 				}
 				Else {$dsWindow.FindName("BreadCrumb").IsEnabled = $true} #IDW/DWG, IPN - Generate new document number
 			}
