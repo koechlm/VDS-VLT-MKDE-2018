@@ -169,7 +169,7 @@
     <!--Quickstart Category Names (additional ones not in default)-->
       <UIString ID="MSDCE_CAT00">Zeichnung Inventor</UIString>
       <UIString ID="MSDCE_CAT01">Zeichnung AutoCAD</UIString>
-      <UIString ID="MSDCE_CAT02">3D Komponenten</UIString>
+      <UIString ID="MSDCE_CAT02">3D Komponente</UIString>
       <!--<UIString ID="MSDCE_CAT03"></UIString>-->
       <UIString ID="MSDCE_CAT04">Electrical Zeichnung</UIString>
       <UIString ID="MSDCE_CAT05">Electrical Projekt</UIString>
