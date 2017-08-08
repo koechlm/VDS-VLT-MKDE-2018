@@ -251,7 +251,7 @@ function mResetClassFilter
 				{
 					try
 					{
-						$Global:_Return=[System.Windows.MessageBox]::Show("You are going to change the selected classification, are you sure?", "Autodesk Vault - Catalog", 4)
+						$Global:_Return=[System.Windows.MessageBox]::Show($UIString["ClassTerms_MSG01"], $UIString["ClassTerms_01"], 4)
 						If($_Return -eq "No") { return }
 					}
 					catch
