@@ -150,6 +150,9 @@
   <UIString ID="iProp_SemiFinished">Halbzeug</UIString>
   <UIString ID="iProp_SpearWearPart">EV-Kennung</UIString>
   <UIString ID="G_L">Länge (Zuschnitt)</UIString>
+  <UIString ID="PL">Länge (Zuschnitt)</UIString>
+  <UIString ID="CrossSection">Abmessungen</UIString>
+  <UIString ID="Thickness">Dicke/Durchm</UIString>
   <UIString ID="Dimensions">Abmessungen</UIString>
   <UIString ID="Weight">Gewicht</UIString>
   <!--Inventor custom iProperties overrides / localization-->
@@ -281,7 +284,7 @@
   <UIString ID="ClassTerms_11">Begriff FR</UIString>
   <UIString ID="ClassTerms_12">Begriff IT</UIString>
   <UIString ID="ClassTerms_13">Katalog...</UIString>
-
+  <UIString ID="ClassTerms_BTN8">Suche</UIString>
   <UIString ID="ClassTerms_BTN9">Begriff in Titel Feld übernehmen</UIString>
   <UIString ID="ClassTerms_BTN10">Übernehmen</UIString>
   <UIString ID="ClassTerms_TT00">Begriff(e) in Titel und Titel (EN, FR, IT) übernehmen.</UIString>
@@ -290,6 +293,7 @@
   <UIString ID="ClassTerms_TT03">Wird über Klassifizierung gefüllt</UIString>
   <UIString ID="ClassTerms_TT04">Keine manuelle Eingabe zulässig; wählen sie eine Benennung aus dem Katalog</UIString>
   <UIString ID="ClassTerms_TT05">Öffnet Benennungskatalog</UIString>
+  <UIString ID="ClassTerms_TT06">Verwenden sie '*' für gekürzte Begriffe</UIString>
   <!--Classification & Terms End-->
 
   <!--Change Request Module-->
@@ -346,10 +350,14 @@
   <UIString ID="ADSK-ItemTab-00">Artikel Suche</UIString>
   <UIString ID="ADSK-ItemTab-01">Artikel Suchen und Verknüpfen</UIString>
   <UIString ID="ADSK-ItemTab-02">Artikeldaten übernehmen</UIString>
-  <UIString ID="ADSK-ItemTab-03">Halbzeugdaten übernehmen</UIString>
+  <UIString ID="ADSK-ItemTab-03">Kopiert Artikelnummer und -benennung in Dateieigenschaften</UIString>
   <UIString ID="ADSK-ItemTab-04">Suche...</UIString>
-  <UIString ID="ADSK-ItemTab-05">Aus Katalog übernehmen...</UIString>
+  <UIString ID="ADSK-ItemTab-05">Aus Stammdaten übernehmen...</UIString>
   <UIString ID="ADSK-ItemTab-06">Eigenschaften</UIString>
+  <UIString ID="ADSK-ItemTab-07">Verwenden sie '*' für gekürzte Begriffe</UIString>
+  <UIString ID="ADSK-ItemTab-08">Suchbegriff leer. Geben Sie einen Suchbegriff oder '*' für Suche über alles an.</UIString>
+  <UIString ID="ADSK-ItemTab-09">Achtung - Sie sind im Begriff das Material zu ändern. Das Material kann nur in Inventor geändert werden.</UIString>
+
   <!--Vault Item Lookup Tab End-->
 
   <!--Vault Link Lookup Tab-->

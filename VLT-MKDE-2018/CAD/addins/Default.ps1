@@ -103,13 +103,41 @@ function InitializeWindow
 					If ($Prop["Replacement"]) {$Prop["Replacement"].Value = "--"}
 
 					#$dsDiag.Trace(">> CreateMode Section executes...")
-					# set the category: Quickstart = "3D components" for model files and "Inventor Drawing" for IDW/DWG
-					$mCatName = GetCategories | Where {$_.Name -eq $UIString["MSDCE_CAT02"]}
-					IF ($mCatName) { $Prop["_Category"].Value = $UIString["MSDCE_CAT02"]}
-						# in case the current vault is not quickstart, but a plain MFG default configuration
-					Else {
-						$mCatName = GetCategories | Where {$_.Name -eq $UIString["CAT1"]} #"Engineering"
-						IF ($mCatName) { $Prop["_Category"].Value = $UIString["CAT1"]}
+
+					# in case the current vault is not quickstart, but a plain MFG default configuration we don't differentiate categories
+					$mCatName = GetCategories | Where {$_.Name -eq $UIString["CAT1"]} #"Engineering"
+					IF ($mCatName) { $Prop["_Category"].Value = $UIString["CAT1"]}
+					Else  # set the category based on file type
+					{
+						switch($Prop["_FileExt"].Value)
+						{
+							"ipt"
+							{
+								#differentiate sheet metal subtype first
+								If ($Document.SubType -eq "{9C464203-9BAE-11D3-8BAD-0060B0CE6BB4}")
+								{
+									$Prop["_Category"].Value = "Blechteil" 
+								}
+								Else { $Prop["_Category"].Value = "Bauteil" }
+							}
+							"iam" 
+							{
+								$Prop["_Category"].Value = "Baugruppe"
+							}
+							"ipn"
+							{
+								$Prop["_Category"].Value = "Präsentation"
+							}
+							"idw"
+							{
+								$Prop["_Category"].Value = "Zeichnung Inventor"
+							}
+							"dwg"
+							{
+								$Prop["_Category"].Value = "Zeichnung Inventor"
+							}
+							default {}
+						}
 					}
 
 					#region FDU Support --------------------------------------------------------------------------
@@ -333,6 +361,14 @@ function InitializeWindow
 						$mCatName = GetCategories | Where {$_.Name -eq $UIString["CAT1"]} #"Engineering"
 						IF ($mCatName) { $Prop["_Category"].Value = $UIString["CAT1"]}
 					}
+					#set the root folder to Designs instead of $
+					$AutoCadRoot = @("Konstruktion") #folders to activate
+					for($i=0;$i -lt $AutoCadRoot.Count;$i++)
+						{
+							$cmb = $dsWindow.FindName("cmbBreadCrumb_"+$i)
+							if ($cmb -ne $null) { $cmb.SelectedValue = $AutoCadRoot[$i] 
+							}
+						}
 				}
 			}
 
@@ -802,15 +838,9 @@ function mItemLookUpClick1
 			{
 				$dsWindow.FindName("cmbItemCategories").SelectedValue = "Dokument"
 			}
-			default
-			{
-				
-			}
+			default {}
 		}
-      
-	
-	
-
+	$dsWindow.FindName("txtItemSearchText").Text = $Prop['Title'].Value
 }
 function mItemLookUpClick2
 {

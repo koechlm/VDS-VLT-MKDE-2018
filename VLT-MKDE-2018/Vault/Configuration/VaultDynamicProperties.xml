@@ -328,4 +328,22 @@
   <DynamicPropertiesCategory Category="Dokumentensatz" Type="File">
     <DynamicProperty>Titel</DynamicProperty>
   </DynamicPropertiesCategory>
+  <DynamicPropertiesCategory Category="Blechteil" Type="File">
+    <DynamicProperty>Titel</DynamicProperty>
+    <DynamicProperty>Beschreibung</DynamicProperty>
+    <DynamicProperty>Material</DynamicProperty>
+    <DynamicProperty>Teilenummer</DynamicProperty>
+    <DynamicProperty>Halbzeugnummer</DynamicProperty>
+    <DynamicProperty>Abmessungen</DynamicProperty>
+    <DynamicProperty>Halbzeug</DynamicProperty>
+    <DynamicProperty>Gewicht</DynamicProperty>
+    <DynamicProperty>Länge (Zuschnitt)</DynamicProperty>
+    <DynamicProperty>Blechstärke</DynamicProperty>
+    <DynamicProperty>Anwendungsversion</DynamicProperty>
+    <DynamicProperty>EV-Kennung</DynamicProperty>
+    <DynamicProperty>Titel EN</DynamicProperty>
+    <DynamicProperty>Entstanden aus</DynamicProperty>
+    <DynamicProperty>Werksnorm</DynamicProperty>
+    <DynamicProperty>Ersetzt durch</DynamicProperty>
+  </DynamicPropertiesCategory>
 </DynamicProperties>

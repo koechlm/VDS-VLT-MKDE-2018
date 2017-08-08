@@ -6,6 +6,7 @@ public class itemData
 	public string Revision {get;set;}
 	public string Title {get;set;}
 	public string Material {get;set;}
+	public string Category {get;set;}
 }
 "@
 
@@ -16,8 +17,9 @@ function mSearchItem()
 	#{$dsWindow.FindName("ItemsFound").ItemsSource = $null}
 	#catch{}
 	$dsWindow.FindName("ItemsFound").ItemsSource = $null
+	$dsWindow.FindName("btnAdoptItem").IsEnabled = $false
 	$dsWindow.FindName("txtBlockNoItemsFound").Visibility = "Collapsed"
-	$mSearchText = $dsWindow.FindName("SearchText").Text
+	$mSearchText = $dsWindow.FindName("txtItemSearchText").Text
 	
 	#region tab-rendering
 	# workaround as the tab is new rendered with activation 
@@ -61,12 +63,20 @@ function mSearchItem()
 			$row.Revision = $item.RevNum
 			$row.Title = $item.Title
 			$row.Material = mGetItemPropVal $item "Material"
+			$row.Category = $item.Cat.CatName
 			$results += $row
 		}
 		If($results)
 		{
 			$dsWindow.FindName("ItemsFound").ItemsSource = $results
 			$dsWindow.FindName("txtBlockNoItemsFound").Visibility = "Collapsed"
+			$dsWindow.FindName("ItemsFound").add_SelectionChanged({
+				If ($dsWindow.FindName("ItemsFound").SelectedItem)
+				{
+					$dsWindow.FindName("btnAdoptItem").IsEnabled = $true
+				}
+				
+			})
 		}
 		Else{ $dsWindow.FindName("txtBlockNoItemsFound").Visibility = "Visible" }
 		#region workaround 
@@ -113,8 +123,20 @@ function mCreateItemSearchCond ([String] $PropName, [String] $mSearchTxt, [Strin
 	return $srchCond
 } 
 
+function mSelectItem
+{
+	$mSelectedItem = $dsWindow.FindName("ItemsFound").SelectedItem
+	If($mSelectedItem.Category -eq "Halbzeug")
+	{
+		mSelectStockItem
+	}
+	else
+	{
+		mSelectMakeItem
+	}
+}
 
-function mSelectItem {
+function mSelectMakeItem {
 	$dsDiag.Trace("Item selected to write it's number to the file part number field")
 	try 
 	{
@@ -135,7 +157,7 @@ function mSelectItem {
 		}
 		IF ($dsWindow.Name -eq "InventorWindow")
 		{
-			$Prop["Part Number"].Value = $mSelectedItem.Item
+			$Prop["Part Number"].Value = $mSelectedItem.Item 
 			$Prop["Title"].Value = $mSelectedItem.Title
 		}
 		#$dsWindow.FindName("txtPartNumber").Text = $mSelectedItem.Item
@@ -230,6 +252,5 @@ function mGetItemPropVal($_Item, $_PropDispName)
 			} 
 			catch { $dsDiag.Trace("ERROR ---creation of name-value list of properties failed! ---") }
 	}
-    $mMaterial = $props.Item($_PropDispName)
-    return $mMaterial 
+    return $props.Item($_PropDispName)
 }

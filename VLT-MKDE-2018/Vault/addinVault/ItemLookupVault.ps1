@@ -5,6 +5,8 @@ public class itemData
 	public string Item {get;set;}
 	public string Revision {get;set;}
 	public string Title {get;set;}
+	public string Material {get;set;}
+	public string Category {get;set;}
 }
 "@
 
@@ -60,6 +62,8 @@ function mSearchItem()
 			$row.Item = $item.ItemNum
 			$row.Revision = $item.RevNum
 			$row.Title = $item.Title
+			$row.Material = mGetItemPropVal $item "Material"
+			$row.Category = $item.Cat.CatName
 			$results += $row 
 		}
 		If($results)
@@ -111,7 +115,20 @@ function mCreateItemSearchCond ([String] $PropName, [String] $mSearchTxt, [Strin
 	return $srchCond
 } 
 
-function mSelectItem {
+function mSelectItem
+{
+	$mSelectedItem = $dsWindow.FindName("ItemsFound").SelectedItem
+	If($mSelectedItem.Category -eq "Halbzeug")
+	{
+		mSelectStockItem
+	}
+	else
+	{
+		mSelectMakeItem
+	}
+}
+
+function mSelectMakeItem {
 	$dsDiag.Trace("Item selected to write it's number to the file part number field")
 	try 
 	{
@@ -132,12 +149,14 @@ function mSelectItem {
 		}
 		IF ($dsWindow.Name -eq "InventorWindow")
 		{
-			$Prop["Part Number"].Value = $mSelectedItem.Item
+			$Prop["Part Number"].Value = $mSelectedItem.Item 
+			$Prop["Title"].Value = $mSelectedItem.Title
 		}
 
 		IF ($dsWindow.Name -eq "FileWindow")
 		{
 			$Prop["_XLTN_PARTNUMBER"].Value = $mSelectedItem.Item
+			$Prop["_XLTN_TITLE"].Value = $mSelectedItem.Title
 		}
 
 		$dsWindow.FindName("btnSearchItem").IsDefault = $false
@@ -182,16 +201,31 @@ function mSelectStockItem {
 # 			$dsDiag.Inspect()
 		}
 
-		#$dsWindow.FindName("txtPartNumber").Text = $mSelectedItem.Item
-		$dsWindow.FindName("tabFileProp").IsSelected = $true
+		IF ($dsWindow.Name -eq "FileWindow")
+		{
+			$Prop["_XLTN_STOCKNUMBER"].Value = $mSelectedItem.Item
+			$Prop["Halbzeug"].Value = $mSelectedItem.Title
+
+			# Inventor Material mapping is read from document only; inform the user that the material does not update
+			If($Prop["_FileExt"].Value -eq ".ipt")
+			{
+				[System.Windows.MessageBox]::Show($UIString["ADSK-ItemTab-09"],"Vault MFG Quickstart")
+			}
+			ELSE
+			{
+				$Prop["_XLTN_MATERIAL"].Value = $mSelectedItem.Material
+			}
+		}
 
 		$dsWindow.FindName("btnSearchItem").IsDefault = $false
 		$dsWindow.FindName("btnOK").IsDefault = $true
 
 		#region tab rendering
 		#returnin to tab 1 causes it's rendering with reset controls; we stored the selections made before
-		$dsWindow.FindName("Categories").SelectedIndex = $_temp1 
+		$dsWindow.FindName("Categories").SelectedIndex = $_temp1
+		$dsWindow.FindName("TemplateCB").SelectedIndex = $global:mSelectedTemplate
 		#endregion workaround
+		$dsWindow.FindName("tabFileProperties").IsSelected = $true
 	}
 	Catch 
 	{
@@ -213,6 +247,23 @@ function mGetItemCategories
 
 function mResetItemCatFilter
 {
-	
+	$dsWindow.FindName("cmbItemCategories").SelectedIndex = -1
+}
 
+function mGetItemPropVal($_Item, $_PropDispName)
+{
+    $propDefs = $vault.PropertyService.GetPropertyDefinitionsByEntityClassId("ITEM")	
+    $properties = $vault.PropertyService.GetPropertiesByEntityIds("ITEM", $_Item.Id) #Properties attached to the Item
+    $props = @{}
+    foreach ($property in $properties) 
+    {
+			#$dsDiag.Trace("Iiterates properties to get DefIDs...")
+			Try 
+            {
+				    $propDef = $propDefs | Where-Object { $_.Id -eq $property.PropDefId }
+					$props[$propDef.DispName] = $property.Val
+			} 
+			catch { $dsDiag.Trace("ERROR ---creation of name-value list of properties failed! ---") }
+	}
+    return $props.Item($_PropDispName)
 }

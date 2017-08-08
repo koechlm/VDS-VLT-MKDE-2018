@@ -279,12 +279,17 @@
   <UIString ID="ClassTerms_10">Term EN</UIString>
   <UIString ID="ClassTerms_11">Term FR</UIString>
   <UIString ID="ClassTerms_12">Term IT</UIString>
+  <UIString ID="ClassTerms_13">Catalog...</UIString>
+  <UIString ID="ClassTerms_BTN8">Search</UIString>
   <UIString ID="ClassTerms_BTN9">Inherit Term to Title</UIString>
   <UIString ID="ClassTerms_BTN10">Inherit</UIString>
   <UIString ID="ClassTerms_TT00">Inherit Term(s) to Title DE (EN, FR, IT)</UIString>
   <UIString ID="ClassTerms_TT01">Limit search to hierarchy level</UIString>
   <UIString ID="ClassTerms_TT02">Name = 'TERM EN' if not typed manually</UIString>
   <UIString ID="ClassTerms_TT03">Assigned by classification</UIString>
+  <UIString ID="ClassTerms_TT04">No hand typed terms allowed; select available term from catalog</UIString>
+  <UIString ID="ClassTerms_TT05">Activates catalog of terms</UIString>
+  <UIString ID="ClassTerms_TT06">Apply '*' for partial terms</UIString>
   <!--Classification & Terms End-->
   
   <!--Claims Management Extension Start-->
@@ -305,10 +310,13 @@
   <UIString ID="ADSK-ItemTab-00">Item Lookup</UIString>
   <UIString ID="ADSK-ItemTab-01">Lookup and link Item</UIString>
   <UIString ID="ADSK-ItemTab-02">Adopt Item Data</UIString>
-  <UIString ID="ADSK-ItemTab-03">Adopt Stock Data</UIString>
+  <UIString ID="ADSK-ItemTab-03">Copies item number and title to file properties</UIString>
   <UIString ID="ADSK-ItemTab-04">Lookup...</UIString>
-  <UIString ID="ADSK-ItemTab-05">No hand typed values select from Catalog...</UIString>
+  <UIString ID="ADSK-ItemTab-05">Select from Item Master...</UIString>
   <UIString ID="ADSK-ItemTab-06">Properties</UIString>
+  <UIString ID="ADSK-ItemTab-07">Apply '*' for partial terms</UIString>
+  <UIString ID="ADSK-ItemTab-08">No items found. Enter search term or '*' to search for all</UIString>
+  <UIString ID="ADSK-ItemTab-09">Attention - You are about to change the material through raw material; only Inventor application is allowed to set the material</UIString>
   <!--Vault Item Lookup Tab End-->
 
   <!--Vault Link Lookup Tab-->
