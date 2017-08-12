@@ -334,7 +334,7 @@ function OnTabContextChanged
 		$dsWindow.FindName("AssoicatedFiles").ItemsSource = $assocFiles
 	}
 	#region Documentstructure Extension
-		Add-Type -Path 'C:\ProgramData\Autodesk\Vault 2018\Extensions\DataStandard\Vault\addinVault\UsesWhereUsed.dll'
+		Add-Type -Path 'C:\ProgramData\Autodesk\Vault 2018\Extensions\DataStandard\Vault.Custom\addinVault\UsesWhereUsed.dll'
 		if ($VaultContext.SelectedObject.TypeId.SelectionContext -eq "FileMaster" -and $xamlFile -eq "DocumentStructure.xaml")
 		{
 			$file = $vault.DocumentService.GetLatestFileByMasterId($vaultContext.SelectedObject.Id)
@@ -367,7 +367,7 @@ function OnTabContextChanged
 	{
 		$mCoId = $VaultContext.SelectedObject.Id
 		
-		[System.Reflection.Assembly]::LoadFrom($Env:ProgramData + "\Autodesk\Vault 2018\Extensions\DataStandard" + '\Vault\addinVault\QuickstartUtilityLibrary.dll')
+		[System.Reflection.Assembly]::LoadFrom($Env:ProgramData + "\Autodesk\Vault 2018\Extensions\DataStandard" + '\Vault.Custom\addinVault\QuickstartUtilityLibrary.dll')
 		$_mVltHelpers = New-Object QuickstartUtilityLibrary.VltHelpers
 
 		#to get links of COs to CUSTENT we need to analyse the CUSTENTS for linked children of type CO

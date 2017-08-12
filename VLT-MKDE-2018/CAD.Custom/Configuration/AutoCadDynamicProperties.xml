@@ -19,6 +19,8 @@
     <DynamicProperty>Part Number</DynamicProperty>
     <DynamicProperty>Description</DynamicProperty>
     <DynamicProperty>Dimensions</DynamicProperty>
+    <DynamicProperty>Entstanden aus</DynamicProperty>
+    <DynamicProperty>Ersetzt durch</DynamicProperty>
   </DynamicPropertiesCategory>
   <DynamicPropertiesCategory Category="Drawing AutoCAD">
     <DynamicProperty>DocNumber</DynamicProperty>

@@ -90,7 +90,7 @@
                                             Grid.Column="1" Padding="5,0" Background="#FFDDDDDD" MinWidth="30">
                                             <Button.Template>
                                                 <ControlTemplate>
-                                                    <Image x:Name="imgTemplateReset" Source="C:\ProgramData\Autodesk\Vault 2018\Extensions\DataStandard\Vault\factory-info.ico" Margin="2" />
+                                                    <Image x:Name="imgTemplateReset" Source="C:\ProgramData\Autodesk\Vault 2018\Extensions\DataStandard\Vault.Custom\factory-info.ico" Margin="2" />
                                                 </ControlTemplate>
                                             </Button.Template>
                                         </Button>

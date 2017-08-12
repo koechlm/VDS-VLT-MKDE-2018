@@ -85,5 +85,51 @@
     <DynamicProperty>Entstanden aus</DynamicProperty>
     <DynamicProperty>Ersetzt durch</DynamicProperty>
     <DynamicProperty Hidden="True">Letzte Aktualisierung mit</DynamicProperty>
+    <DynamicProperty>Size</DynamicProperty>
+    <DynamicProperty>Scale</DynamicProperty>
+  </DynamicPropertiesCategory>
+  <DynamicPropertiesCategory Category="Baugruppe">
+    <DynamicProperty>Titel</DynamicProperty>
+    <DynamicProperty>Titel EN</DynamicProperty>
+    <DynamicProperty>Beschreibung</DynamicProperty>
+    <DynamicProperty>Bauteilnummer</DynamicProperty>
+    <DynamicProperty>Material</DynamicProperty>
+    <DynamicProperty>Abmessungen</DynamicProperty>
+    <DynamicProperty>Halbzeug</DynamicProperty>
+    <DynamicProperty>Bestandsnummer</DynamicProperty>
+    <DynamicProperty>Länge (Zuschnitt)</DynamicProperty>
+    <DynamicProperty>Gewicht</DynamicProperty>
+    <DynamicProperty>EV-Kennung</DynamicProperty>
+    <DynamicProperty Hidden="True">Dicke/Durchmesser</DynamicProperty>
+    <DynamicProperty>Werksnorm</DynamicProperty>
+    <DynamicProperty Hidden="True">Breite</DynamicProperty>
+    <DynamicProperty Hidden="True">Länge</DynamicProperty>
+    <DynamicProperty Hidden="True">Identnummer</DynamicProperty>
+    <DynamicProperty>Entstanden aus</DynamicProperty>
+    <DynamicProperty>Ersetzt durch</DynamicProperty>
+    <DynamicProperty Hidden="True">Name des Bauteiltyps</DynamicProperty>
+    <DynamicProperty Hidden="True">Letzte Aktualisierung mit</DynamicProperty>
+  </DynamicPropertiesCategory>
+  <DynamicPropertiesCategory Category="Bauteil">
+    <DynamicProperty>Titel</DynamicProperty>
+    <DynamicProperty>Titel EN</DynamicProperty>
+    <DynamicProperty>Beschreibung</DynamicProperty>
+    <DynamicProperty>Bauteilnummer</DynamicProperty>
+    <DynamicProperty>Material</DynamicProperty>
+    <DynamicProperty>Abmessungen</DynamicProperty>
+    <DynamicProperty>Halbzeug</DynamicProperty>
+    <DynamicProperty>Bestandsnummer</DynamicProperty>
+    <DynamicProperty>Länge (Zuschnitt)</DynamicProperty>
+    <DynamicProperty>Gewicht</DynamicProperty>
+    <DynamicProperty>EV-Kennung</DynamicProperty>
+    <DynamicProperty Hidden="True">Dicke/Durchmesser</DynamicProperty>
+    <DynamicProperty>Werksnorm</DynamicProperty>
+    <DynamicProperty Hidden="True">Breite</DynamicProperty>
+    <DynamicProperty Hidden="True">Länge</DynamicProperty>
+    <DynamicProperty Hidden="True">Identnummer</DynamicProperty>
+    <DynamicProperty>Entstanden aus</DynamicProperty>
+    <DynamicProperty>Ersetzt durch</DynamicProperty>
+    <DynamicProperty Hidden="True">Name des Bauteiltyps</DynamicProperty>
+    <DynamicProperty Hidden="True">Letzte Aktualisierung mit</DynamicProperty>
   </DynamicPropertiesCategory>
 </DynamicsProperties>

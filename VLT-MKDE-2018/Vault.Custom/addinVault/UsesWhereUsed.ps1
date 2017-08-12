@@ -1,5 +1,5 @@
 ﻿
-Add-Type -Path 'C:\ProgramData\Autodesk\Vault 2018\Extensions\DataStandard\Vault\addinVault\UsesWhereUsed.dll'
+Add-Type -Path 'C:\ProgramData\Autodesk\Vault 2018\Extensions\DataStandard\Vault.Custom\addinVault\UsesWhereUsed.dll'
 
 function OnTabContextChanged_UsesWhereUsed
 {

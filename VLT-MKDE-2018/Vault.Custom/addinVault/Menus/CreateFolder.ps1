@@ -9,7 +9,7 @@
 $folderId = $vaultContext.CurrentSelectionSet[0].Id
 $vaultContext.ForceRefresh = $true
 $dialog = $dsCommands.GetCreateFolderDialog($folderId)
-$xamlFile = New-Object CreateObject.WPF.XamlFile "testxaml", "%ProgramData%\Autodesk\Vault 2018\Extensions\DataStandard\Vault\Configuration\Folder.xaml"
+$xamlFile = New-Object CreateObject.WPF.XamlFile "testxaml", "%ProgramData%\Autodesk\Vault 2018\Extensions\DataStandard\Vault.Custom\Configuration\Folder.xaml"
 $dialog.XamlFile = $xamlFile
 
 $result = $dialog.Execute()

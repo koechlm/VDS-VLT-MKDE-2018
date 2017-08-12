@@ -253,7 +253,7 @@
         </Style>
         <!-- This XmlDataProvider is used for defining Name/TemplatePath pairs that are used in the combo box "Document Type" and can be easily extended -->
         <XmlDataProvider x:Key="DocTypes"
-                         Source="C:\ProgramData\Autodesk\Vault 2018\Extensions\DataStandard\Vault\Configuration\File.xml"
+                         Source="C:\ProgramData\Autodesk\Vault 2018\Extensions\DataStandard\Vault.Custom\Configuration\File.xml"
                          XPath="/DocTypeData" />
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     </WPF:MainWindow.Resources>
@@ -327,7 +327,7 @@
                                 Grid.Row="1" Margin="0,2,2,2">
                             <Button.Template>
                                 <ControlTemplate>
-                                    <Image x:Name="imgTemplateReset" Source="C:\ProgramData\Autodesk\Vault 2018\Extensions\DataStandard\Vault\filter-delete.ico" Margin="2" />
+                                    <Image x:Name="imgTemplateReset" Source="C:\ProgramData\Autodesk\Vault 2018\Extensions\DataStandard\Vault.Custom\filter-delete.ico" Margin="2" />
                                 </ControlTemplate>
                             </Button.Template>
                         </Button>
@@ -465,7 +465,7 @@
                                 <Button x:Name="btnClsReset" Command="{Binding PsCmd[mResetClassFilter]}" Content="X" FontWeight="Bold" ToolTip="{Binding UIString[MSDCE_TT15]}" Foreground="Red" Width="24" Height="24">
                                     <Button.Template>
                                         <ControlTemplate>
-                                            <Image x:Name="imgTemplateReset" Source="C:\ProgramData\Autodesk\Vault 2018\Extensions\DataStandard\Vault\filter-delete.ico" Margin="2" />
+                                            <Image x:Name="imgTemplateReset" Source="C:\ProgramData\Autodesk\Vault 2018\Extensions\DataStandard\Vault.Custom\filter-delete.ico" Margin="2" />
                                         </ControlTemplate>
                                     </Button.Template>
                                 </Button>
@@ -563,7 +563,7 @@
                             <Button x:Name="btnItemCategoryFilterReset" Command="{Binding PsCmd[mResetItemCatFilter]}" Content="X" FontWeight="Bold" ToolTip="{Binding UIString[MSDCE_TT15]}" Foreground="Red" Width="24" Height="24">
                                 <Button.Template>
                                     <ControlTemplate>
-                                        <Image x:Name="imgTemplateReset" Source="C:\ProgramData\Autodesk\Vault 2018\Extensions\DataStandard\Vault\filter-delete.ico" Margin="2" />
+                                        <Image x:Name="imgTemplateReset" Source="C:\ProgramData\Autodesk\Vault 2018\Extensions\DataStandard\Vault.Custom\filter-delete.ico" Margin="2" />
                                     </ControlTemplate>
                                 </Button.Template>
                             </Button>
