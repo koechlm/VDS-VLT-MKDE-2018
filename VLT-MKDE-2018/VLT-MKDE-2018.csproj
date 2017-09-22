@@ -124,7 +124,7 @@
     <None Include="Vault.Custom\addinVault\ReserveFileNumber.ps1" />
     <None Include="Vault.Custom\addinVault\UsesWhereUsed.ps1" />
     <None Include="Vault.Custom\addinVault\VDSReportViewer.ps1" />
-    <None Include="Vault.Custom\CustomEntityDefinitions.json" />
+    <None Include="Vault\CustomEntityDefinitions.json" />
     <None Include="Modules\VDSQuickstartExtension2018.0.2.psm1" />
   </ItemGroup>
   <ItemGroup>
@@ -567,7 +567,7 @@
     <Resource Include="Vault.Custom\doc-box-edit.ico" />
     <Resource Include="Vault.Custom\doc-box-info.ico" />
     <Resource Include="Vault.Custom\doc-box.ico" />
-    <Resource Include="Vault.Custom\DSLanguages.xml" />
+    <Resource Include="Vault\DSLanguages.xml" />
     <Resource Include="Vault.Custom\ECR-add.ico" />
     <Resource Include="Vault.Custom\ECR-edit.ico" />
     <Resource Include="Vault.Custom\ECR-info.ico" />

@@ -1,0 +1,116 @@
+[
+  {
+    "Server": "192.168.85.128",
+    "Vault": "VLT-MKDE",
+    "EntityDefinitions": [
+      {
+        "dispNameField": "Organisation",
+        "dispNamePluralField": "Organisationen",
+        "idField": 1,
+        "nameField": "44f09882-f08a-4758-adfc-fbf888a95277"
+      },
+      {
+        "dispNameField": "Aufgabe",
+        "dispNamePluralField": "Aufgaben",
+        "idField": 3,
+        "nameField": "98a234d1-6469-4d39-80e0-2d36a4501061"
+      },
+      {
+        "dispNameField": "Sendung",
+        "dispNamePluralField": "Versand",
+        "idField": 4,
+        "nameField": "14917976-1dfe-4185-86b6-6dee7e60495b"
+      },
+      {
+        "dispNameField": "Person",
+        "dispNamePluralField": "Personen",
+        "idField": 7,
+        "nameField": "32162170-96d3-4bd8-b865-409a16f2cd09"
+      },
+      {
+        "dispNameField": "Urlaubsantrag",
+        "dispNamePluralField": "Urlaubsanträge",
+        "idField": 8,
+        "nameField": "cc25ea4e-f854-43d0-84a4-6f8e4a2822b3"
+      },
+      {
+        "dispNameField": "Reklamation",
+        "dispNamePluralField": "Reklamationen",
+        "idField": 9,
+        "nameField": "3668ad04-ee5d-4d9a-9be0-0d0f892d4236"
+      },
+      {
+        "dispNameField": "Meilenstein",
+        "dispNamePluralField": "Meilensteine",
+        "idField": 10,
+        "nameField": "e8815f7b-ef19-4263-8d31-485f9be25d98"
+      },
+      {
+        "dispNameField": "ECR",
+        "dispNamePluralField": "ECRs",
+        "idField": 11,
+        "nameField": "5c85167c-f8f7-4a97-bb2b-887a93eef323"
+      },
+      {
+        "dispNameField": "QM Protokoll",
+        "dispNamePluralField": "QM Protokolle",
+        "idField": 12,
+        "nameField": "e62b6593-f6a2-4f32-82d8-191d06e6aca9"
+      },
+      {
+        "dispNameField": "Begriff",
+        "dispNamePluralField": "Begriffe",
+        "idField": 13,
+        "nameField": "d7d0e4ac-7f80-420e-b08e-536781e9398c"
+      },
+      {
+        "dispNameField": "Serviceauftrag",
+        "dispNamePluralField": "Serviceaufträge",
+        "idField": 14,
+        "nameField": "f4ee789d-a758-4453-9589-5a30038cf55c"
+      },
+      {
+        "dispNameField": "Segment",
+        "dispNamePluralField": "Segmente",
+        "idField": 15,
+        "nameField": "4f85e58b-44dd-431d-80ce-d74f36046775"
+      },
+      {
+        "dispNameField": "Hauptgruppe",
+        "dispNamePluralField": "Hauptgruppen",
+        "idField": 16,
+        "nameField": "2ac13142-f134-4c9e-bf34-430d3df814e5"
+      },
+      {
+        "dispNameField": "Gruppe",
+        "dispNamePluralField": "Gruppen",
+        "idField": 17,
+        "nameField": "bed22d84-f9ff-4d7f-9a65-09fc9e685e3a"
+      },
+      {
+        "dispNameField": "Untergruppe",
+        "dispNamePluralField": "Untergruppen",
+        "idField": 18,
+        "nameField": "462558fc-26c8-4689-92e7-13fbdca1fcde"
+      },
+      {
+        "dispNameField": "Werksnorm",
+        "dispNamePluralField": "Werksnormen",
+        "idField": 19,
+        "nameField": "e0076e6d-9dae-43f2-9aeb-b2273b4b3b1d"
+      },
+      {
+        "dispNameField": "Factory-Objekt",
+        "dispNamePluralField": "Factory-Objekt",
+        "idField": 21,
+        "nameField": "ef995987-3b6e-4765-b830-c1f27272222c"
+      },
+      {
+        "dispNameField": "Factory-Layout",
+        "dispNamePluralField": "Factory-Layout",
+        "idField": 22,
+        "nameField": "d7077a53-535c-497c-b97c-56b407d826cf"
+      }
+    ]
+  }
+]
