@@ -188,7 +188,21 @@
     <!--Quickstart Inventor Dialog-->
       <UIString ID="MSDCE_MSG00">Missing Model View! Your system is set to save IPN/IDW/DWG depending on model's name and location. Either add a model or change the Vault option to generate numbers for IPN/IDW/DWG.</UIString>
       <UIString ID="MSDCE_MSG01">Number of Model</UIString>
-    <!--Quickstart Inventor Dialog end-->
+      <UIString ID="MSDCE_BOMType_00">Phantom</UIString>
+  <!--Quickstart Inventor Dialog end-->
+
+  <!--Quickstart Functional Dialogs (FG, DA, TP, CH)-->
+  <UIString ID="MSDCE_BOMType_00">Phantom</UIString>
+  <UIString ID="MSDCE_BOMType_01">Phantom-Assembly</UIString>
+  <UIString ID="MSDCE_BOMType_02">Phantom-Part</UIString>
+  <UIString ID="MSDCE_BOMType_03">Reference</UIString>
+  <UIString ID="MSDCE_BOMType_04">Framegenerator-Skeleton-Reference</UIString>
+  <UIString ID="MSDCE_FrameMember_01">Profile Bar</UIString>
+  <UIString ID="MSDCE_TubePipe_01">Tube and Pipe</UIString>
+  <!--Quickstart Functional Dialogs (FG, DA, TP, CH) end-->
+  
+  <UIString ID="MSDCE_FrameMember_01">Structural Steel Component</UIString>
+   
   
     <!--Quickstart Custom Object Names-->
       <UIString ID="MSDCE_CO01">Organisation</UIString>

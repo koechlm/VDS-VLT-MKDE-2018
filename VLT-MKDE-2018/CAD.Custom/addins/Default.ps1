@@ -343,6 +343,27 @@ function InitializeWindow
 				}
 			#endregion
 		}
+
+		"InventorFrameWindow"
+		{
+			mInitializeFGContext
+		}
+		
+		"InventorDesignAcceleratorWindow"
+		{
+			mInitializeDAContext
+		}
+
+		"InventorPipingWindow"
+		{
+			mInitializeTPContext
+		}
+
+		"InventorHarnessWindow"
+		{
+			mInitializeCHContext
+		}
+
 		"AutoCADWindow"
 		{
 			#rules applying for AutoCAD
@@ -849,3 +870,148 @@ function mItemLookUpClick2
 }
 
 #endregion
+
+
+#region functional dialogs
+#FrameDocuments[], FrameMemberDocuments[] and SkeletonDocuments[]
+function mInitializeFGContext {
+	#$dsDiag.Trace(">> Init. DataContext for Frame Window")
+	#region Frame
+	$mFrmDocs = @()
+	$mFrmDocs = $dsWindow.DataContext.FrameDocuments
+
+	$mFrmDocs | ForEach-Object {
+		#$dsDiag.Trace(">> Frame Assy $mC")
+		$mFrmDcProps = $_.Properties.Properties
+		$mProp = $mFrmDcProps | Where-Object { $_.Name -eq "Title"}
+		$mProp.Value = $UIString["LBL55"]
+		$mProp = $mFrmDcProps | Where-Object { $_.Name -eq "Description"}
+		$mProp.Value = $UIString["MSDCE_BOMType_01"]
+		#$dsDiag.Trace("Frames Assy end <<") 
+	}
+	#endregion
+	#region Skeleton
+	$mSkltnDocs = @()
+	$mSkltnDocs = $dsWindow.DataContext.SkeletonDocuments
+	$mSkltnDocs | ForEach-Object {
+		#$dsDiag.Trace(">> Skeleton Assy $mC")
+		$mSkltnDcProps = $_.Properties.Properties
+		$mProp = $mSkltnDcProps | Where-Object { $_.Name -eq "Title"}
+		$mProp.Value = $UIString["LBL56"]
+		$mProp = $mSkltnDcProps | Where-Object { $_.Name -eq "Description"}
+		$mProp.Value = $UIString["MSDCE_BOMType_04"]
+		#$dsDiag.Trace("Skeleton end <<") 
+	}
+	#endregion
+	#region FrameMembers
+	$mFrmMmbrDocs = @()
+	$mFrmMmbrDocs = $dsWindow.DataContext.FrameMemberDocuments
+	$mFrmMmbrDocs | ForEach-Object {
+		#$dsDiag.Trace(">> FrameMember Assy $mC")
+		$mFrmMmbrDcProps = $_.Properties.Properties
+		$mProp = $mFrmMmbrDcProps | Where-Object { $_.Name -eq "Title"}
+		$mProp.Value = $UIString["MSDCE_FrameMember_01"]
+		#$dsDiag.Trace("FrameMembers $mC end <<") 
+	}
+	#endregion
+	#$dsDiag.Trace("end DataContext for Frame Window<<")
+}
+
+function mInitializeDAContext {
+	#$dsDiag.Trace(">> Init DataContext for DA Window")
+	$mDsgnAccAssys = @() 
+	$mDsgnAccAssys = $dsWindow.DataContext.DesignAcceleratorAssemblies
+	$mDsgnAccAssys | ForEach-Object {
+		#$dsDiag.Trace(">> DA Assy $mC")
+		$mDsgnAccAssyProps = $_.Properties.Properties
+		$mTitleProp = $mDsgnAccAssyProps | Where-Object { $_.Name -eq "Title"}
+		$mPartNumProp = $mDsgnAccAssyProps | Where-Object { $_.Name -eq "Part Number"}
+		$mTitleProp.Value = $UIString["MSDCE_BOMType_01"]
+		$mPartNumProp.Value = "" #delete the value to get the new number
+		$mProp = $mDsgnAccAssyProps | Where-Object { $_.Name -eq "Description"}
+		$mProp.Value = $UIString["MSDCE_BOMType_01"] + " " + $mPartNumProp.Value
+		#$dsDiag.Trace("DA Assy $mC end <<")
+	}
+	$mDsgnAccParts = $dsWindow.DataContext.DesignAcceleratorParts
+	$mDsgnAccParts | ForEach-Object {
+		#$dsDiag.Trace(">> DA component $mC")
+		$mDsgnAccProps = $_.Properties.Properties
+		$mTitleProp = $mDsgnAccProps | Where-Object { $_.Name -eq "Title"}
+		$mPartNumProp = $mDsgnAccProps | Where-Object { $_.Name -eq "Part Number"}
+		$mTitleProp.Value = $mPartNumProp.Value
+		$mPartNumProp.Value = "" #delete the value to get the new number
+		$mProp = $mDsgnAccProps | Where-Object { $_.Name -eq "Description"}
+		$mProp.Value = $mTitleProp.Value
+		#$dsDiag.Trace("DA Component $mC end <<")
+	}
+	#$dsDiag.Trace("DataContext for DA Window end <<")
+}
+
+function mInitializeTPContext {
+	#region RunAssy
+	$mRunAssys = @()
+	$mRunAssys = $dsWindow.DataContext.RunAssemblies
+	$mRunAssys | ForEach-Object {
+		$mRunAssyProps = $_.Properties.Properties
+		$mTitleProp = $mRunAssyProps | Where-Object { $_.Name -eq "Title"}	
+		$mTitleProp.Value = $UIString["LBL41"]
+		$mPartNumProp = $mRunAssyProps | Where-Object { $_.Name -eq "Part Number"}
+		$mPartNumProp.Value = "" #delete the value to get the new number
+		$mProp = $mRunAssyProps | Where-Object { $_.Name -eq "Description"}
+		$mProp.Value = $UIString["MSDCE_BOMType_01"] + " " + $UIString["MSDCE_TubePipe_01"]
+	}
+	#endregion
+	#region Route
+	$mRouteParts = @()
+	$mRouteParts = $dsWindow.DataContext.RouteParts
+	$mRouteParts | ForEach-Object {
+		$mRouteProps = $_.Properties.Properties
+		$mTitleProp = $mRouteProps | Where-Object { $_.Name -eq "Title"}
+		$mTitleProp.Value = $UIString["LBL42"]
+		$mPartNumProp = $mRouteProps | Where-Object { $_.Name -eq "Part Number"}
+		$mPartNumProp.Value = "" #delete the value to get the new number
+		$mProp = $mRouteProps | Where-Object { $_.Name -eq "Description"}
+		$mProp.Value = $UIString["MSDCE_BOMType_00"] + " " + $UIString["LBL42"]
+	}
+	#endregion
+	#region RunComponents
+	$mRunComponents = @()
+	$mRunComponents = $dsWindow.DataContext.RunComponents
+	$mRunComponents | ForEach-Object {
+		$mRunCompProps = $_.Properties.Properties
+		$mTitleProp = $mRunCompProps | Where-Object { $_.Name -eq "Title"}
+		$m_StockProp = $mRunCompProps | Where-Object { $_.Name -eq "Stock Number"}
+		$mTitleProp.Value = $UIString["LBL43"]
+		$mPartNumProp = $mRunCompProps | Where-Object { $_.Name -eq "Part Number"}
+		$m_PL = $mRunCompProps | Where-Object { $_.Name -eq "PL"}
+		$mPartNumProp.Value = $m_StockProp.Value + " - " + $m_PL.Value
+	}
+	#endregion
+}
+
+function mInitializeCHContext {
+	#region Harness Assy
+	$mHrnsAssys = @()
+	$mHrnsAssys = $dsWindow.DataContext.HarnessAssemblies
+	$mHrnsAssys | ForEach-Object {
+		$mHrnsAssyProps = $_.Properties.Properties
+		$mTitleProp = $mHrnsAssyProps | Where-Object { $_.Name -eq "Title"}
+		$mTitleProp.Value = $UIString["LBL45"]
+		#Elewema addition
+		$mProp = $mHrnsAssyProps | Where-Object { $_.Name -eq "Description"}
+		$mProp.Value = $UIString["MSDCE_BOMType_00"] + " " + $UIString["LBL45"]
+	}
+	#endregion
+	#region Route parts
+	$mHrnsParts = @()
+	$mHrnsParts = $dsWindow.DataContext.HarnessParts
+	$mHrnsParts | ForEach-Object {
+		$mHrnsPrtProps = $_.Properties.Properties
+		$mTitleProp = $mHrnsPrtProps | Where-Object { $_.Name -eq "Title"}
+		$mTitleProp.Value = $UIString["LBL47"]
+		$mProp = $mHrnsPrtProps | Where-Object { $_.Name -eq "Description"}
+		$mProp.Value = $UIString["MSDCE_BOMType_00"] + " " + $UIString["LBL47"]
+	}
+	#endregion route parts
+}
+#endregion functional dialogs

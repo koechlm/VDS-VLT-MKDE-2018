@@ -192,7 +192,18 @@
     <!--Quickstart Inventor Dialog-->
       <UIString ID="MSDCE_MSG00">Modellansicht fehlt! Sie verwenden die Vault Option, dass IPN/IDW/DWG identisch zum Modell benannt und abgelegt werden. Fügen sie entweder ein Model hinzu, oder ändern sie die Vault Option "Dateinummern für IPN/IDW/DWG generieren".</UIString>
       <UIString ID="MSDCE_MSG01">Nummer von Modell</UIString>
-    <!--Quickstart Inventor Dialog end-->
+    <!--Quickstart Inventor Dialog end-->     
+  
+  <!--Quickstart Functional Dialogs (FG, DA, TP, CH)-->
+      <UIString ID="MSDCE_BOMType_00">Phantom</UIString>
+      <UIString ID="MSDCE_BOMType_01">Phantom-Baugruppe</UIString>
+      <UIString ID="MSDCE_BOMType_02">Phantom-Bauteil</UIString>
+      <UIString ID="MSDCE_BOMType_03">Referenz</UIString>
+      <UIString ID="MSDCE_BOMType_04">Gestellgenerator-Skelett-Referenz</UIString>
+      <UIString ID="MSDCE_FrameMember_01">Profil Element</UIString>
+      <UIString ID="MSDCE_TubePipe_01">Rohre und Leitungen</UIString>
+  <!--Quickstart Functional Dialogs (FG, DA, TP, CH)-->
+
   
     <!--Quickstart Custom Object Names-->
       <UIString ID="MSDCE_CO01">Organisation</UIString>
