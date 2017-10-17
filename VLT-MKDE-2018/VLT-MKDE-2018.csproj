@@ -91,6 +91,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="Vault.Custom\addinVault\AddPdfDsgnRepToQu.ps1" />
     <None Include="Vault.Custom\addinVault\AssociatedCustents.ps1" />
     <None Include="Vault.Custom\addinVault\AssociatedFiles.ps1" />
     <None Include="Vault.Custom\addinVault\CAD-BOM-Cutlist.rdlc" />
@@ -99,12 +100,14 @@
     <None Include="Vault.Custom\addinVault\ClassSelection_TermsFilter.ps1" />
     <None Include="Vault.Custom\addinVault\Default.ps1" />
     <None Include="Vault.Custom\addinVault\Default_QS-Extensions.ps1" />
+    <None Include="Vault.Custom\addinVault\DerivationTree.ps1" />
     <None Include="Vault.Custom\addinVault\ERPTab.ps1" />
     <None Include="Vault.Custom\addinVault\ERPTabForItem.ps1" />
     <None Include="Vault.Custom\addinVault\FileBOM.ps1" />
     <None Include="Vault.Custom\addinVault\ItemBOM.ps1" />
     <None Include="Vault.Custom\addinVault\ItemLookupVault.ps1" />
     <None Include="Vault.Custom\addinVault\JobTab.ps1" />
+    <None Include="Vault.Custom\addinVault\Menus\AddPdfDsgnRepToQu.ps1" />
     <None Include="Vault.Custom\addinVault\Menus\CreateCustomObject.ps1" />
     <None Include="Vault.Custom\addinVault\Menus\CreateCustomObjectTerm.ps1" />
     <None Include="Vault.Custom\addinVault\Menus\CreateFile.ps1" />
@@ -196,6 +199,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Vault.Custom\Configuration\File\Derivation Tree.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Vault.Custom\Configuration\File\DocumentStructure.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -266,6 +273,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Vault.Custom\PDF.ico" />
     <Resource Include="CAD.Custom\Configuration\AutoCadDynamicProperties.xml" />
     <Resource Include="CAD.Custom\Configuration\InventorDynamicProperties.xml" />
     <Resource Include="de-DE\PropertyTranslations.xml" />

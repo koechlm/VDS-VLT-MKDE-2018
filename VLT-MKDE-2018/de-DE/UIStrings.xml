@@ -266,7 +266,29 @@
   <UIString ID="ADSK-GoToSource_MNU00">Datei-Navigation</UIString>
   <UIString ID="ADSK-GoToSource_MNU01">Gehe zu Ursprung</UIString>
   <UIString ID="ADSK-GoToSource_MNU02">Gehe zu Nachfolger</UIString>
+  <UIString ID="ADSK-GoToSource_Prop01">Entstanden aus</UIString>
+  <UIString ID="ADSK-GoToSource_Prop02">Ersetzt durch</UIString>
   <!--GoToSourceFile-GoToReplacement Snippet Start-->
+
+  <!--Derivation Tree-->
+  <UIString ID="DerivationTree_00">Ableitungsstruktur</UIString>
+  <UIString ID="DerivationTree_01">Quelldatei - alle Versionen/Revisionen</UIString>
+  <UIString ID="DerivationTree_02">Führt alle Versionen/Revisionen der Quelldatei auf</UIString>
+  <UIString ID="DerivationTree_03">Parallel-Dateie(e) - alle Versionen/Revisionen</UIString>
+  <UIString ID="DerivationTree_04">Führt alle Versionen/Revisionen weiterer Kopien der Quelldatei auf</UIString>
+  <UIString ID="DerivationTree_05">Ableitung(en) - Versionen/Revisionen</UIString>
+  <UIString ID="DerivationTree_06">Führt alle Datei Versionen/Revisionen auf, die von gewählter Datei ausgehend kopiert wurden</UIString>
+  <UIString ID="DerivationTree_07">Status (Historisch)</UIString>
+  <UIString ID="DerivationTree_08">Ersterstellung</UIString>
+  <UIString ID="DerivationTree_09">Letzte Version</UIString>
+  <UIString ID="DerivationTree_10">Neueste freigegeben Revision</UIString>
+  <UIString ID="DerivationTree_11">Versionskommentar</UIString>
+  <UIString ID="DerivationTree_12">Dateiname in Zwischenablage kopieren</UIString>
+  <UIString ID="DerivationTree_13">Es konnte keine Quelldatei ermittelt werden.</UIString>
+  <UIString ID="DerivationTree_14">Es konnten keine Parallel-Kopien ermittelt werden.</UIString>
+  <UIString ID="DerivationTree_15">Es wurden keine Kopien der gewählten Datei ermittelt.</UIString>
+  <UIString ID="DerivationTree_16">Anzeige auf Seitengröße {0} begrenzt; Gesamtanzahl ermittelter Dateiversionen: {1}</UIString>
+  <!--Derivation Tree end-->
 
   <!--Document Structure Tab Extension-->
   <UIString ID="ADSK-DocStructure_00">Dokumentstruktur</UIString>
@@ -390,4 +412,9 @@
   <UIString ID="ADSKFile-MetaReader-01">Importiert Eigenschaften aus ADSK Austauschdateien</UIString>
   <UIString ID="ADSKFile-MetaReader-02">Import von ADSK-Datei Metadaten</UIString>
   <!--ADSK-File Property Provider end-->
+
+  <!--AddPdfDsgnRepToQu Snippet-->
+  <UIString ID="ADSK-AddPdfDsgnRepToQu-MNU00">PDF Ansicht aktualisieren</UIString>
+  <!--AddPdfDsgnRepToQu Snippet End-->
+  
 </UIStrings>

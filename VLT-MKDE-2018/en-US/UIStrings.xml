@@ -265,7 +265,29 @@
   <UIString ID="ADSK-GoToSource_MNU00">File-Navigation</UIString>
   <UIString ID="ADSK-GoToSource_MNU01">Go to source</UIString>
   <UIString ID="ADSK-GoToSource_MNU02">Go to replacement</UIString>
+  <UIString ID="ADSK-GoToSource_Prop01">Copy Source</UIString>
+  <UIString ID="ADSK-GoToSource_Prop02">Replacement for</UIString>
   <!--GoToSourceFile-GoToReplacement Snippet Start-->
+
+  <!--Derivation Tree-->
+  <UIString ID="DerivationTree_00">Derivation Tree</UIString>
+  <UIString ID="DerivationTree_01">Source File Versions/Revisions</UIString>
+  <UIString ID="DerivationTree_02">Lists all file versions/revisions of the copied source</UIString>
+  <UIString ID="DerivationTree_03">Parallel-File(s) - All Versions/Revisions</UIString>
+  <UIString ID="DerivationTree_04">Lists all file versions/revisions also copied from the same source file</UIString>
+  <UIString ID="DerivationTree_05">Derivation(s) - All Versions/Revisions</UIString>
+  <UIString ID="DerivationTree_06">Lists all file versions/revisions copied from the selected file</UIString>
+  <UIString ID="DerivationTree_07">State (Historical)</UIString>
+  <UIString ID="DerivationTree_08">Original Create Date</UIString>
+  <UIString ID="DerivationTree_09">Latest Version</UIString>
+  <UIString ID="DerivationTree_10">Latest Released Revision</UIString>
+  <UIString ID="DerivationTree_11">Version Comment</UIString>
+  <UIString ID="DerivationTree_12">Copy File Name to Clipboard</UIString>
+  <UIString ID="DerivationTree_13">Could not find source file</UIString>
+  <UIString ID="DerivationTree_14">Could not find parallel copied files</UIString>
+  <UIString ID="DerivationTree_15">Could not find any copy of the selected file</UIString>
+  <UIString ID="DerivationTree_16">Search result is limited to page size {0}; Total number of files found: {1}</UIString>
+  <!--Derivation Tree end-->
 
   <!--Document Structure Tab Extension-->
   <UIString ID="ADSK-DocStructure_00">Dokumentstruktur</UIString>
@@ -352,5 +374,9 @@
   <UIString ID="ADSKFile-MetaReader-01">Imports ADSK-File Meta Data</UIString>
   <UIString ID="ADSKFile-MetaReader-02">Import ADSK-File Meta Data</UIString>  
   <!--ADSK-File Property Provider end-->
+
+  <!--AddPdfDsgnRepToQu Snippet-->
+  <UIString ID="ADSK-AddPdfDsgnRepToQu-MNU00">Update PDF View</UIString>
+  <!--AddPdfDsgnRepToQu Snippet End-->
   
 </UIStrings>

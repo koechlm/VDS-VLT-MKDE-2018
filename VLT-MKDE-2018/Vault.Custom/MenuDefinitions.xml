@@ -12,6 +12,12 @@ MultiSelectEnabled: If true, command is active for multiple selections, can be t
 -->
 <mymenu>
   <MenuItem>
+    <!--AddPdfDsgnRepToQu Menu item start-->
+    <AddPdfDsgnRepToQu Label = "$UIString[ADSK-AddPdfDsgnRepToQu-MNU00]" Description = "$UIString[ADSK-AddPdfDsgnRepToQu-MNU00]" Hint = "$UIString[ADSK-AddPdfDsgnRepToQu-MNU00]"
+      PSFile = "AddPdfDsgnRepToQu.ps1" Image="PDF.ico" ToolbarPaintStyle = "TextAndGlyph"
+      MultiSelectEnabled = "true"/>
+    <!--AddPdfDsgnRepToQu Menu item end-->
+    
     <!--ADSK-File Property Provider-->
     <ADSKFileProp Label = "$UIString[ADSKFile-MetaReader-00]" Description = "$UIString[ADSKFile-MetaReader-01]" Hint = "$UIString[ADSKFile-MetaReader-02]"
       PSFile = "ADSKFilePropProvider.ps1" Image="ADSKMetaImport.ico" ToolbarPaintStyle = "TextAndGlyph"
@@ -167,18 +173,9 @@ MultiSelectEnabled: If true, command is active for multiple selections, can be t
       <Item Name="EditFile"></Item>
     </StandardToolbar>
 
-    <!--Quickstart Command Sites Start-->
-    
-    <!--<ToolsMenu Label="myMenu" DeployAsPullDown="False" Location="ToolsMenu">
-      <Item Name="ShowLog"></Item>
-    </ToolsMenu>
-    <HelpMenu Label="myMenu" DeployAsPullDown="False" Location="HelpMenu">
-      <Item Name="AboutDialog"></Item>
-    </HelpMenu>
-    <CustomObject Label="Task" DeployAsPullDown="False" Location="Task">
-      <Item Name="NewTask"></Item>
-      <Item Name="EditTask"></Item>
-    </CustomObject>-->
+    <ActionsMenu Label="myMenu" DeployAsPullDown="False" Location="ActionsMenu">
+      <Item Name="AddPdfDsgnRepToQu"></Item>
+    </ActionsMenu>
     
     <ToolsMenu Label="myMenu" DeployAsPullDown="False" Location="ToolsMenu">
       <Item Name="ShowLog"></Item>

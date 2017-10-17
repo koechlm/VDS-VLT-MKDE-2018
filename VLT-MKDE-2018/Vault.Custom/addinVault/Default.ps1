@@ -396,6 +396,53 @@ function OnTabContextChanged
 		})
 	}
 	#endregion
+
+	#region derivation tree
+	if ($VaultContext.SelectedObject.TypeId.SelectionContext -eq "FileMaster" -and $xamlFile -eq "Derivation Tree.xaml")
+	{
+		$fileMasterId = $vaultContext.SelectedObject.Id
+		$file = $vault.DocumentService.GetLatestFileByMasterId($fileMasterId)
+
+		$mDerivativesSource = @(mGetDerivativeSource($file)) #querying all file versions (historical) of the source
+		if($mDerivativesSource.Count -eq 0) { 
+			$dsWindow.FindName("mDerivatives").Visibility = "Collapsed"
+			$dsWindow.FindName("txtBlck_Notification1").Text = $UIString["DerivationTree_13"]
+			$dsWindow.FindName("txtBlck_Notification1").Visibility = "Visible"
+			$dsWindow.FindName("SourceTree").IsExpanded = $false
+		}
+		Else{
+			$dsWindow.FindName("mDerivatives").ItemsSource = $mDerivativesSource
+			$dsWindow.FindName("mDerivatives").Visibility = "Visible"
+			$dsWindow.FindName("SourceTree").IsExpanded = $true
+		}
+		
+		$mDerivativesParallels = @(mGetDerivativeParallels($file)) #querying all file versions (historical) of the source
+		if($mDerivativesParallels.Count -eq 0) { 
+			$dsWindow.FindName("mDerivatives1").Visibility = "Collapsed"
+			$dsWindow.FindName("txtBlck_Notification2").Text = $UIString["DerivationTree_14"]
+			$dsWindow.FindName("txtBlck_Notification2").Visibility = "Visible"
+			$dsWindow.FindName("ParallelsTree").IsExpanded = $false
+		}
+		Else{
+			$dsWindow.FindName("mDerivatives1").ItemsSource = $mDerivativesParallels
+			$dsWindow.FindName("mDerivatives1").Visibility = "Visible"
+			$dsWindow.FindName("ParallelsTree").IsExpanded = $true
+		}
+		
+		$mDerivativesCopies = @(mGetDerivativeCopies($file)) #querying all file versions (historical) of the source
+		if($mDerivativesCopies.Count -eq 0) { 
+			$dsWindow.FindName("mDerivatives2").Visibility = "Collapsed"
+			$dsWindow.FindName("txtBlck_Notification3").Text = $UIString["DerivationTree_15"]
+			$dsWindow.FindName("txtBlck_Notification3").Visibility = "Visible"
+			$dsWindow.FindName("DerivedTree").IsExpanded = $false
+		}
+		Else{
+			$dsWindow.FindName("mDerivatives2").ItemsSource = $mDerivativesCopies
+			$dsWindow.FindName("mDerivatives2").Visibility = "Visible"
+			$dsWindow.FindName("DerivedTree").IsExpanded = $true
+		}
+	}
+	#endregion derivation tree
 }
 
 function GetNewCustomObjectName
