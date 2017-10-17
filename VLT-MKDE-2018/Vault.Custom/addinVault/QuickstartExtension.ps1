@@ -10,7 +10,7 @@
 #=============================================================================#
 #endregion
 
-# Version Info - VDS Quickstart 2018 Update 1.
+# Version Info - VDS Quickstart Extension 2018.0.3
 
 #retrieve property value given by displayname from folder (ID)
 function mGetFolderPropValue ([Int64] $mFldID, [STRING] $mDispName)
@@ -56,15 +56,24 @@ function mUpdateFldrProperties([Long] $FldId, [String] $mDispName, [Object] $mVa
 	$ent_idsArray += $FldId
 	$propInstParam = New-Object Autodesk.Connectivity.WebServices.PropInstParam
 	$propInstParamArray = New-Object Autodesk.Connectivity.WebServices.PropInstParamArray
-	#first time only - get the definition ID for Title; later just reuse the def.ID
-	$mTitlePropDefId = mGetFolderPropertyDefId $mDispName
- 	$propInstParam.PropDefId = $mTitlePropDefId
+	$mPropDefId = mGetFolderPropertyDefId $mDispName
+ 	$propInstParam.PropDefId = $mPropDefId
 	$propInstParam.Val = $mVal
 	$propInstParamArray.Items += $propInstParam
 	$propInstParamArrayArray += $propInstParamArray
-	$propInstParam = New-Object Autodesk.Connectivity.WebServices.PropInstParam
-	$_fldPropUpdate = $vault.DocumentServiceExtensions.UpdateFolderProperties($ent_idsArray, $propInstParamArrayArray)
-	return $_fldPropUpdate
+	Try{
+        $vault.DocumentServiceExtensions.UpdateFolderProperties($ent_idsArray, $propInstParamArrayArray)
+	    return $true
+    }
+    catch { return $false}
+}
+
+#show current runspace ID as input parameter to be used in step by step debugging
+function ShowRunspaceID
+{
+            $id = [runspace]::DefaultRunspace.Id
+            $app = [System.Diagnostics.Process]::GetCurrentProcess()
+            [System.Windows.Forms.MessageBox]::Show("application: $($app.name)"+[Environment]::NewLine+"runspace ID: $id")
 }
 
 #create folder structure based on seqential file numbering; 
@@ -102,7 +111,7 @@ function mGetFolderNumber($_FileNumber, $_nChar)
 		$_Folders += $_Folder
 	}
 
-	$_ItemFilePath = "$/Item-Files/"
+	$_ItemFilePath = "$/" + $UIString["ADSK-ItemFileImport_00"] + "/"
 	for ($_i = 0; $_i -lt $_Folders.Count; $_i++) {
 		$_ItemFilePath = $_ItemFilePath + $_Folders[$_i] + "/"
 	}

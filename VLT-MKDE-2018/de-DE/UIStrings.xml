@@ -416,5 +416,16 @@
   <!--AddPdfDsgnRepToQu Snippet-->
   <UIString ID="ADSK-AddPdfDsgnRepToQu-MNU00">PDF Ansicht aktualisieren</UIString>
   <!--AddPdfDsgnRepToQu Snippet End-->
+
+  <!--Item-File-Importer-->
+  <UIString ID="ADSK-ItemFileImport_00">xDMS</UIString>
+  <UIString ID="ADSK-ItemFileImport_01">Pfad zur Dateiablage nicht vorhanden.</UIString>
+  <UIString ID="ADSK-ItemFileImport_02">'Drag and Drop' Import von Artikel-Datei-Import-Tab</UIString>
+  <UIString ID="ADSK-ItemFileImport_03">Anhänge von Datei-Import-Tab ergänzt</UIString>
+  <UIString ID="ADSK-ItemFileImport_04">Es wurde mindestens eine CAD Datei gefiltert, verwenden sie die CAD Anwendung zum Hinzufügen, bevor diese angehängt wird.</UIString>
+  <UIString ID="ADSK-ItemFileImport_05">Ziehen sie Dateien auf das 'Upload' Symbol; Dateien werden importiert und als Anhang an diesen Artikel verknüpft.</UIString>
+  <UIString ID="ADSK-ItemFileImport_06">Datei-Import</UIString>
+  <UIString ID="ADSK-ItemFileImport_07">Ziehen Sie Datein zum Import/Anhang hierher.</UIString>
+  <!--Item-File-Importer de-->
   
 </UIStrings>

@@ -378,5 +378,16 @@
   <!--AddPdfDsgnRepToQu Snippet-->
   <UIString ID="ADSK-AddPdfDsgnRepToQu-MNU00">Update PDF View</UIString>
   <!--AddPdfDsgnRepToQu Snippet End-->
+
+  <!--Item-File-Importer-->
+  <UIString ID="ADSK-ItemFileImport_00">Sequential</UIString>
+  <UIString ID="ADSK-ItemFileImport_01">Could not get Item-File location path.</UIString>
+  <UIString ID="ADSK-ItemFileImport_02">by Drag and Drop Item File Importer</UIString>
+  <UIString ID="ADSK-ItemFileImport_03">File-Import added attachments</UIString>
+  <UIString ID="ADSK-ItemFileImport_04">At least one CAD file was filtered; use CAD application instead to import before item assignment</UIString>
+  <UIString ID="ADSK-ItemFileImport_05">Drop Files on Upload Symbol below; files are added to Vault and attached to this item.</UIString>
+  <UIString ID="ADSK-ItemFileImport_06">File-Import</UIString>
+  <UIString ID="ADSK-ItemFileImport_07">Drop files to import and attach.</UIString>
+  <!--Item-File-Importer en-->
   
 </UIStrings>

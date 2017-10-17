@@ -91,7 +91,6 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Vault.Custom\addinVault\AddPdfDsgnRepToQu.ps1" />
     <None Include="Vault.Custom\addinVault\AssociatedCustents.ps1" />
     <None Include="Vault.Custom\addinVault\AssociatedFiles.ps1" />
     <None Include="Vault.Custom\addinVault\CAD-BOM-Cutlist.rdlc" />
@@ -99,7 +98,6 @@
     <None Include="Vault.Custom\addinVault\CatalogLookup_Terms.ps1" />
     <None Include="Vault.Custom\addinVault\ClassSelection_TermsFilter.ps1" />
     <None Include="Vault.Custom\addinVault\Default.ps1" />
-    <None Include="Vault.Custom\addinVault\Default_QS-Extensions.ps1" />
     <None Include="Vault.Custom\addinVault\DerivationTree.ps1" />
     <None Include="Vault.Custom\addinVault\ERPTab.ps1" />
     <None Include="Vault.Custom\addinVault\ERPTabForItem.ps1" />
@@ -124,6 +122,7 @@
     <None Include="Vault.Custom\addinVault\Menus\ShowAboutDialog.ps1" />
     <None Include="Vault.Custom\addinVault\Menus\showCustomHelp.ps1" />
     <None Include="Vault.Custom\addinVault\Menus\ShowLog.ps1" />
+    <None Include="Vault.Custom\addinVault\QuickstartExtension.ps1" />
     <None Include="Vault.Custom\addinVault\ReserveFileNumber.ps1" />
     <None Include="Vault.Custom\addinVault\UsesWhereUsed.ps1" />
     <None Include="Vault.Custom\addinVault\VDSReportViewer.ps1" />
@@ -227,11 +226,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Vault.Custom\Configuration\Item\Associated Files.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Vault.Custom\Configuration\Item\Datasheet.xaml">
+    <Page Include="Vault.Custom\Configuration\Item\FileImport.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -273,6 +268,8 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Vault.Custom\Configuration\Item\DragFilesActive.png" />
+    <Resource Include="Vault.Custom\Configuration\Item\DragFilesLocked.png" />
     <Resource Include="Vault.Custom\PDF.ico" />
     <Resource Include="CAD.Custom\Configuration\AutoCadDynamicProperties.xml" />
     <Resource Include="CAD.Custom\Configuration\InventorDynamicProperties.xml" />

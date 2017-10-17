@@ -443,6 +443,154 @@ function OnTabContextChanged
 		}
 	}
 	#endregion derivation tree
+
+	#region ItemTab-FileImport
+	if ($VaultContext.SelectedObject.TypeId.SelectionContext -eq "ItemMaster" -and $xamlFile -eq "FileImport.xaml")
+		{
+			$items = $vault.ItemService.GetItemsByIds(@($vaultContext.SelectedObject.Id))
+			$item = $items[0]
+		
+			If (!$item.Locked)
+			{
+				$dsWindow.FindName("mDragAreaEnabled").Visibility = "Visible"
+				$dsWindow.FindName("mDragAreaDisabled").Visibility = "Collapsed"
+				$dsWindow.FindName("txtActionInfo").Visibility = "Visible"
+			}
+			Else
+			{
+				$dsWindow.FindName("mDragAreaEnabled").Visibility = "Collapsed"
+				$dsWindow.FindName("mDragAreaDisabled").Visibility = "Visible"
+				$dsWindow.FindName("txtActionInfo").Visibility = "Collapsed"
+			}
+
+			Try{
+				Import-Module powerVault
+			}
+			catch{
+			   [System.Windows.MessageBox]::Show("This feature requires powerVault installed; check for its availability", "Extension Title")
+			   return
+			}
+
+			$dsWindow.FindName("mImportProgress").Value = 0
+			$dsWindow.FindName("mDragAreaEnabled").add_Drop({			
+				param( $sender, $e)
+				$items = $vault.ItemService.GetItemsByIds(@($vaultContext.SelectedObject.Id))
+				$item = $items[0]
+
+				#check that the item is editable for the current user, if not, we shouldn't add the files, before we try to attach
+				try{
+					$vault.ItemService.EditItems(@($item.RevId))
+					#[System.Windows.MessageBox]::Show("Item is accessible", "Item-File Attachment Import")
+					$_ItemIsEditable = $true
+				}
+				catch {
+					#[System.Windows.MessageBox]::Show("Item is NOT accessible", "Item-File Attachment Import")
+					$_ItemIsEditable = $false
+				}
+				If($_ItemIsEditable)
+				{
+					$vault.ItemService.UndoEditItems(@($item.RevId))
+					$vault.ItemService.DeleteUncommittedItems($true)
+					#[System.Windows.MessageBox]::Show("Item Lock Removed to continue", "Item-File Attachment Import")
+				}
+			
+				[System.Windows.DataObject]$mDragData = $e.Data
+				$mFileList = $mDragData.GetFileDropList()
+				#Filter folders, we attach files directly selected only
+				$mFileList = $mFileList | Where { (get-item $_).PSIsContainer -eq $false }
+				If ($mFileList -and $_ItemIsEditable)
+				{
+					$dsWindow.Cursor = "Wait"
+					$_NumFiles = $mFileList.Count
+					$_n = 0
+					$dsWindow.FindName("mImportProgress").Value = 0
+					$mExtExclude = @(".ipt", ".iam", ".ipn", ".dwg", ".idw", ".slddrw", ".sldprt", ".sldasm")
+					$m_ImpFileList = @() #filepath array of imported files to be attached
+					ForEach ($_file in $mFileList)
+					{
+						$m_FileName = [System.IO.Path]::GetFileNameWithoutExtension($_file)
+						$m_Ext = [System.IO.Path]::GetExtension($_file)
+						If ($mExtExclude -contains $m_Ext){
+							$mCADWarning = $true
+							break;
+						}
+						$m_Dir = [System.IO.Path]::GetDirectoryName($_file)
+					
+						#get new number and create new file name
+						[System.Collections.ArrayList]$numSchems = @($vault.DocumentService.GetNumberingSchemesByType('Activated'))
+						if ($numSchems.Count -gt 1)
+						{							
+							$_DfltNumSchm = $numSchems | Where { $_.Name -eq $UIString["ADSK-ItemFileImport_00"]}
+							if($_DfltNumSchm)
+							{
+								$NumGenArgs = @("")
+								$_newFile=$vault.DocumentService.GenerateFileNumber($_DfltNumSchm.SchmID, $NumGenArgs)
+							}		
+						}
+
+						#add file
+						If($_newFile)
+						{
+							#get appropriate folder number (limit 1k files per folder)
+							Try{
+								$mFolderPath = mGetFolderNumber $_newFile 3 #hand over the file number (name) and number of files / folder
+							}
+							catch { 
+								[System.Windows.MessageBox]::Show($UIString["ADSK-ItemFileImport_01"], "Item-File Attachment Import")
+							}
+							#add extension to number
+							$_newFile = $_newFile + $m_Ext
+							$mTargetPath = $mFolderPath
+							#region option xDMS for individual departments
+								#[System.Array]$_Departments = mGetGroupMemberShip
+								#$_Department = $_Departments[0]
+							#endregion
+							If ($_Department) {
+								$_DepartPath = $mTargetPath.Replace($UIString["ADSK-ItemFileImport_00"], $UIString["ADSK-ItemFileImport_00"] + $_Department +"/")
+								$mFullTargetPath = $_DepartPath + $_newFile
+							}
+							Else {
+								$mFullTargetPath = $mTargetPath + $_newFile
+							}
+							$m_ImportedFile = Add-VaultFile -From $_file -To $mFullTargetPath -Comment $UIString["ADSK-ItemFileImport_02"]
+						
+							#region option assign lifecycle for individual departments/groups
+								#If ($_Department -eq "Engineering 2") 
+								#{
+								#	$file = Get-VaultFile -File $m_ImportedFile._FullPath
+								#	$updated = Update-VaultFile -File $file._FullPath -LifecycleDefinition "Flexible Release Process" -Status "Work in Progress"
+								#}
+							#endregion
+
+							$m_ImpFileList += $m_ImportedFile._FullPath
+						}
+						Else #continue with the given file name
+						{
+							$mTargetPath = "$/" + $UIString["ADSK-ItemFileImport_00"] + "/"
+							$mFullTargetPath = $mTargetPath + $m_FileName
+							$m_ImportedFile = Add-VaultFile -From $_file -To $mFullTargetPath -Comment $UIString["ADSK-ItemFileImport_02"]
+							$m_ImpFileList += $m_ImportedFile._FullPath
+						}
+						$_n += 1
+						$dsWindow.FindName("mImportProgress").Value = (($_n/$_NumFiles)*100)-10
+
+					} #for each file
+					#attach file to current item
+					$parent = Get-VaultItem -Number $item.ItemNum	
+					$parentUpdated = Update-VaultItem -Number $parent._Number -AddAttachments $m_ImpFileList -Comment $UIString["ADSK-ItemFileImport_03"]
+					$dsWindow.FindName("mImportProgress").Value = (($_n/$_NumFiles)*100)
+					If ($mCADWarning)
+					{
+						[System.Windows.MessageBox]::Show($UIString["ADSK-ItemFileImport_04"], "Item-File Attachment Import")
+					}
+				}
+				$mFileList = $null
+				$dsWindow.Cursor = "Arrow"
+				$dsWindow.FindName("mDragAreaEnabled").remove_Drop()
+				}) #end drag & drop
+		}
+	#endregion ItemTab-FileImport
+
 }
 
 function GetNewCustomObjectName
