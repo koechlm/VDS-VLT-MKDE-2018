@@ -234,7 +234,7 @@
     <DynamicProperty>Erfüllungsgrad</DynamicProperty>
     <DynamicProperty>Wiedervorlage</DynamicProperty>
     <DynamicProperty>Verantwortlich</DynamicProperty>
-    <DynamicProperty>Kommentare</DynamicProperty>
+    <DynamicProperty Hidden="True">Kommentare</DynamicProperty>
     <DynamicProperty>Thema</DynamicProperty>
   </DynamicPropertiesCategory>
   <DynamicPropertiesCategory Category="Reklamation" Type="CustomObject">
