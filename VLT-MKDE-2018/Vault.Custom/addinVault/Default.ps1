@@ -452,14 +452,16 @@ function OnTabContextChanged
 		
 			If (!$item.Locked)
 			{
+				$dsWindow.FindName("mDragAreaEnabled").Source = "C:\ProgramData\Autodesk\Vault 2018\Extensions\DataStandard\Vault.Custom\Configuration\Item\DragFilesActive.png"
 				$dsWindow.FindName("mDragAreaEnabled").Visibility = "Visible"
 				$dsWindow.FindName("mDragAreaDisabled").Visibility = "Collapsed"
 				$dsWindow.FindName("txtActionInfo").Visibility = "Visible"
 			}
 			Else
 			{
-				$dsWindow.FindName("mDragAreaEnabled").Visibility = "Collapsed"
+				$dsWindow.FindName("mDragAreaDisabled").Source = "C:\ProgramData\Autodesk\Vault 2018\Extensions\DataStandard\Vault.Custom\Configuration\Item\DragFilesLocked.png"
 				$dsWindow.FindName("mDragAreaDisabled").Visibility = "Visible"
+				$dsWindow.FindName("mDragAreaEnabled").Visibility = "Collapsed"
 				$dsWindow.FindName("txtActionInfo").Visibility = "Collapsed"
 			}
 
@@ -533,40 +535,20 @@ function OnTabContextChanged
 						{
 							#get appropriate folder number (limit 1k files per folder)
 							Try{
-								$mFolderPath = mGetFolderNumber $_newFile 3 #hand over the file number (name) and number of files / folder
+								$mTargetPath = mGetFolderNumber $_newFile 3 #hand over the file number (name) and number of files / folder
 							}
 							catch { 
 								[System.Windows.MessageBox]::Show($UIString["ADSK-ItemFileImport_01"], "Item-File Attachment Import")
 							}
 							#add extension to number
 							$_newFile = $_newFile + $m_Ext
-							$mTargetPath = $mFolderPath
-							#region option xDMS for individual departments
-								#[System.Array]$_Departments = mGetGroupMemberShip
-								#$_Department = $_Departments[0]
-							#endregion
-							If ($_Department) {
-								$_DepartPath = $mTargetPath.Replace($UIString["ADSK-ItemFileImport_00"], $UIString["ADSK-ItemFileImport_00"] + $_Department +"/")
-								$mFullTargetPath = $_DepartPath + $_newFile
-							}
-							Else {
-								$mFullTargetPath = $mTargetPath + $_newFile
-							}
+							$mFullTargetPath = $mTargetPath + $_newFile
 							$m_ImportedFile = Add-VaultFile -From $_file -To $mFullTargetPath -Comment $UIString["ADSK-ItemFileImport_02"]
-						
-							#region option assign lifecycle for individual departments/groups
-								#If ($_Department -eq "Engineering 2") 
-								#{
-								#	$file = Get-VaultFile -File $m_ImportedFile._FullPath
-								#	$updated = Update-VaultFile -File $file._FullPath -LifecycleDefinition "Flexible Release Process" -Status "Work in Progress"
-								#}
-							#endregion
-
 							$m_ImpFileList += $m_ImportedFile._FullPath
 						}
 						Else #continue with the given file name
 						{
-							$mTargetPath = "$/" + $UIString["ADSK-ItemFileImport_00"] + "/"
+							$mTargetPath = "$/xDMS/"
 							$mFullTargetPath = $mTargetPath + $m_FileName
 							$m_ImportedFile = Add-VaultFile -From $_file -To $mFullTargetPath -Comment $UIString["ADSK-ItemFileImport_02"]
 							$m_ImpFileList += $m_ImportedFile._FullPath
@@ -590,7 +572,6 @@ function OnTabContextChanged
 				}) #end drag & drop
 		}
 	#endregion ItemTab-FileImport
-
 }
 
 function GetNewCustomObjectName

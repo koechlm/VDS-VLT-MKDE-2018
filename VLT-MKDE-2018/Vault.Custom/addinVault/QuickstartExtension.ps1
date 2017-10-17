@@ -111,7 +111,7 @@ function mGetFolderNumber($_FileNumber, $_nChar)
 		$_Folders += $_Folder
 	}
 
-	$_ItemFilePath = "$/" + $UIString["ADSK-ItemFileImport_00"] + "/"
+	$_ItemFilePath = "$/xDMS/"
 	for ($_i = 0; $_i -lt $_Folders.Count; $_i++) {
 		$_ItemFilePath = $_ItemFilePath + $_Folders[$_i] + "/"
 	}

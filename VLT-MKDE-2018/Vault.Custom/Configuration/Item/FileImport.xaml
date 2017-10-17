@@ -56,10 +56,10 @@
             </Grid.RowDefinitions>
             <ProgressBar x:Name="mImportProgress" Value="0"/>
             <DockPanel ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" MinWidth="300" MinHeight="300" Grid.Row="3" >
-                <Image x:Name="mDragAreaEnabled" AllowDrop="True" Source="DragFilesActive.png" ToolTip="{Binding UIString[ADSK-ItemFileImport_07], FallbackValue='Drop Files here to import and attach.'}" Stretch="Fill" StretchDirection="DownOnly" MaxHeight="300" MaxWidth="300"/>
+                <Image x:Name="mDragAreaEnabled" AllowDrop="True" ToolTip="{Binding UIString[ADSK-ItemFileImport_07], FallbackValue='Drop Files here to import and attach.'}" Stretch="Fill" StretchDirection="DownOnly" MaxHeight="300" MaxWidth="300"/>
                 </DockPanel>
             <DockPanel ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" MinWidth="300" MinHeight="300" Grid.Row="3" >
-                <Image x:Name="mDragAreaDisabled" AllowDrop="False" Source="DragFilesLocked.png" ToolTip="{Binding UIString[ADSK-ItemFileImport_07], FallbackValue='Drop Files here to import and attach.'}" Stretch="Fill" StretchDirection="DownOnly" MaxHeight="300" MaxWidth="300"/>
+                <Image x:Name="mDragAreaDisabled" AllowDrop="False" Stretch="Fill" StretchDirection="DownOnly" MaxHeight="300" MaxWidth="300"/>
             </DockPanel>
             <TextBlock x:Name="txtActionInfo" Grid.Row="1" TextWrapping="Wrap" Text="{Binding UIString[ADSK-ItemFileImport_05]}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <TextBox x:Name="txtStatusInfo" Grid.Row="2" TextWrapping="Wrap" Text="TextBox" Width="300" Visibility="Collapsed"/>
