@@ -293,38 +293,6 @@ function InitializeWindow
 			} #end switch Create / Edit Mode
 			#endregion Quickstart
 
-			#region CatalogTerm
-				If ($dsWindow.FindName("tabTermsCatalog"))
-				{					
-					Try 
-					{
-						$dsWindow.FindName("mSearchTermText").text = $Prop["Title"].Value
-				
-						$Prop["Title"].add_PropertyChanged({
-								param( $parameter)
-								$dsWindow.FindName("mSearchTermText").text = $Prop["Title"].Value
-							})
-
-						mAddCoCombo -_CoName $UIString["Class_00"] #enables classification filter for catalog of terms starting with segment
-
-					$dsWindow.FindName("dataGrdTermsFound").add_SelectionChanged({
-						param($sender, $SelectionChangedEventArgs)
-						$dsDiag.Trace(".. TermsFoundSelection")
-						IF($dsWindow.FindName("dataGrdTermsFound").SelectedItem){
-							$dsWindow.FindName("btnAdopt").IsEnabled = $true
-							$dsWindow.FindName("btnAdopt").IsDefault = $true
-						}
-						Else {
-							$dsWindow.FindName("btnAdopt").IsEnabled = $false
-							$dsWindow.FindName("btnSearchTerm").IsDefault = $true
-						}
-					})
-
-				}
-				catch { $dsDiag.Trace("WARNING tab TermCatalog is not present")}
-			}
-			#endregionCatalogTerm
-
 			#region ItemLookUp
 			If ($dsWindow.FindName("tabItemLookup"))
 				{$dsWindow.FindName("cmbItemCategories").ItemsSource = mGetItemCategories
@@ -403,6 +371,65 @@ function InitializeWindow
 
 	$global:expandBreadCrumb = $true
 	
+	#region CatalogTerm
+				If ($dsWindow.FindName("tabTermsCatalog"))
+				{			
+					Try{
+						Import-Module -FullyQualifiedName "C:\ProgramData\Autodesk\Vault 2018\Extensions\DataStandard\Vault.Custom\addinVault\CatalogTermsTranslations.psm1"
+					}
+					catch{
+						$dsWindow.FindName("tabTermsCatalog").Visibility = "Collapsed"
+						return
+					}
+
+					Try 
+					{
+						$mWindowName = $dsWindow.Name
+						switch($mWindowName)
+						{
+							"InventorWindow"
+							{
+								$dsWindow.FindName("mSearchTermText").text = $Prop["Title"].Value
+				
+								$Prop["Title"].add_PropertyChanged({
+										param( $parameter)
+										$dsWindow.FindName("mSearchTermText").text = $Prop["Title"].Value
+									})
+							}
+
+							"AutoCADWindow" 
+							{
+								$dsWindow.FindName("mSearchTermText").text = $Prop["GEN-TITLE-DES1"].Value
+				
+								$Prop["GEN-TITLE-DES1"].add_PropertyChanged({
+										param( $parameter)
+										$dsWindow.FindName("mSearchTermText").text = $Prop["GEN-TITLE-DES1"].Value
+									})
+							}
+							default
+							{}
+						}
+ 
+						mAddCoCombo -_CoName $UIString["Class_00"] #enables classification filter for catalog of terms starting with segment
+
+						$dsWindow.FindName("dataGrdTermsFound").add_SelectionChanged({
+							param($sender, $SelectionChangedEventArgs)
+							$dsDiag.Trace(".. TermsFoundSelection")
+							IF($dsWindow.FindName("dataGrdTermsFound").SelectedItem){
+								$dsWindow.FindName("btnAdopt").IsEnabled = $true
+								$dsWindow.FindName("btnAdopt").IsDefault = $true
+							}
+							Else {
+								$dsWindow.FindName("btnAdopt").IsEnabled = $false
+								$dsWindow.FindName("btnSearchTerm").IsDefault = $true
+							}
+						})
+
+					} #end try
+				catch { $dsDiag.Trace("WARNING tab TermCatalog is not present")}
+			}
+			#endregionCatalogTerm
+
 	$dsDiag.Trace("... Initialize window end <<")
 }#end InitializeWindow
 

@@ -80,8 +80,6 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="CAD.Custom\addins\breadCrumb.ps1" />
-    <None Include="CAD.Custom\addins\CatalogLookupTerms_CAD.ps1" />
-    <None Include="CAD.Custom\addins\ClassSelectionTermsFilter_CAD.ps1" />
     <None Include="CAD.Custom\addins\Default.ps1" />
     <None Include="CAD.Custom\addins\ItemLookup.ps1" />
     <None Include="CAD.Custom\Configuration\AutoCAD.cfg" />
@@ -95,8 +93,7 @@
     <None Include="Vault.Custom\addinVault\AssociatedFiles.ps1" />
     <None Include="Vault.Custom\addinVault\CAD-BOM-Cutlist.rdlc" />
     <None Include="Vault.Custom\addinVault\CAD-BOM.rdlc" />
-    <None Include="Vault.Custom\addinVault\CatalogLookup_Terms.ps1" />
-    <None Include="Vault.Custom\addinVault\ClassSelection_TermsFilter.ps1" />
+    <None Include="Vault.Custom\addinVault\CatalogTermsTranslations.psm1" />
     <None Include="Vault.Custom\addinVault\Default.ps1" />
     <None Include="Vault.Custom\addinVault\DerivationTree.ps1" />
     <None Include="Vault.Custom\addinVault\ERPTab.ps1" />

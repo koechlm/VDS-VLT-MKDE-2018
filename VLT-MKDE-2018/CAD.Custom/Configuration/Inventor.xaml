@@ -94,9 +94,9 @@
                                             IsReadOnly="False" Background="WhiteSmoke" ToolTipService.ShowOnDisabled="True" 
                                             ToolTip="{Binding DataContext.UIString[ClassTerms_TT04], FallbackValue=No hand typed values\, select from Catalog..., RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
                                             IsTabStop="False" IsHitTestVisible="True" Padding="5,0,0,5"/>
-                                        <Button Content="{Binding DataContext.UIString[ClassTerms_13], FallbackValue=Catalog..., RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" 
+                                        <Button Content="{Binding DataContext.UIString[], FallbackValue=. . ., RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" 
                                             Command="{Binding DataContext.PsCmd[mCatalogClick], RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" HorizontalAlignment="Right"
-                                            ToolTip="{Binding DataContext.UIString[ClassTerms_TT05], FallbackValue=No hand typed values\, select from Catalog..., RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" Grid.Column="1" Padding="10,1" Background="#FFDDDDDD" MinWidth="100"/>
+                                            ToolTip="{Binding DataContext.UIString[ClassTerms_TT05], FallbackValue=No hand typed values\, select from Catalog..., RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" Grid.Column="1" Padding="10,1" Background="#FFDDDDDD" MinWidth="20"/>
                                     </Grid>
                                 </DockPanel>
                             </ControlTemplate>
@@ -117,9 +117,9 @@
                                             IsReadOnly="False" Background="WhiteSmoke" ToolTipService.ShowOnDisabled="True" 
                                             ToolTip="{Binding DataContext.UIString[LBL27], FallbackValue='No hand typed values select from Catalog...', RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
                                             IsTabStop="False" IsHitTestVisible="True" Padding="5,0,0,5"/>
-                                        <Button Content="{Binding DataContext.UIString[ADSK-ItemTab-04], FallbackValue=Lookup..., RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" 
+                                        <Button Content="{Binding DataContext.UIString[], FallbackValue=. . ., RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" 
                                             Command="{Binding DataContext.PsCmd[mItemLookupClick2], RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" HorizontalAlignment="Right"
-                                            ToolTip="{Binding DataContext.UIString[ADSK-ItemTab-05], FallbackValue=No hand typed values\, select from Catalog..., RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" Grid.Column="1" Padding="10,1" Background="#FFDDDDDD" MinWidth="100"/>
+                                            ToolTip="{Binding DataContext.UIString[ADSK-ItemTab-05], FallbackValue=No hand typed values\, select from Catalog..., RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" Grid.Column="1" Padding="10,1" Background="#FFDDDDDD" MinWidth="20"/>
                                     </Grid>
                                 </DockPanel>
                             </ControlTemplate>
@@ -140,9 +140,9 @@
                                             IsReadOnly="True" Background="WhiteSmoke" ToolTipService.ShowOnDisabled="True" 
                                             ToolTip="{Binding DataContext.UIString[LBL27], FallbackValue='No hand typed values select from Catalog...', RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
                                             IsTabStop="False" IsHitTestVisible="True" Padding="5,0,0,5"/>
-                                        <Button Content="{Binding DataContext.UIString[ADSK-ItemTab-04], FallbackValue=Lookup..., RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" 
+                                        <Button Content="{Binding DataContext.UIString[], FallbackValue=. . ., RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" 
                                             Command="{Binding DataContext.PsCmd[mItemLookupClick1], RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" HorizontalAlignment="Right"
-                                            ToolTip="{Binding DataContext.UIString[ADSK-ItemTab-05], FallbackValue=No hand typed values\, select from Catalog..., RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" Grid.Column="1" Padding="10,1" MinWidth="100"/>
+                                            ToolTip="{Binding DataContext.UIString[ADSK-ItemTab-05], FallbackValue=No hand typed values\, select from Catalog..., RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" Grid.Column="1" Padding="10,1" MinWidth="20"/>
                                     </Grid>
                                 </DockPanel>
                             </ControlTemplate>

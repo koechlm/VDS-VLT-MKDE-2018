@@ -294,11 +294,13 @@
   <UIString ID="ADSK-DocStructure_00">Dokumentstruktur</UIString>
   <!--Document Structure Tab Extension End-->
 
-  <!--Classification & Terms-->
+  <!--Classification-->
   <UIString ID="Class_00">Segment</UIString>
   <UIString ID="Class_01">Hauptgruppe</UIString>
   <UIString ID="Class_02">Gruppe</UIString>
   <UIString ID="Class_03">Untergruppe</UIString>
+  <!--Classification end-->
+  <!--CatalogTermsTranslations-->
   <UIString ID="ClassTerms_MNU10">Neuer Begriff...</UIString>
   <UIString ID="ClassTerms_MNU11">Neuen Begriff erstellen</UIString>
   <UIString ID="ClassTerms_MNU12">Begriff bearbeiten...</UIString>
@@ -329,7 +331,7 @@
   <UIString ID="ClassTerms_TT06">Verwenden sie '*' für gekürzte Begriffe</UIString>
   <UIString ID="ClassTerms_TT07">Klassifizierung zurücksetzen</UIString>
   <UIString ID="ClassTerms_MSG01">Sie setzen gerade die Klassifizierung zurück, wollen Sie fortfahren?"</UIString>
-  <!--Classification & Terms End-->
+  <!--CatalogTermsTranslations End-->
 
   <!--Change Request Module-->
   <UIString ID="ChangeRequestMNU17">Neuer Änderungsantrag</UIString>

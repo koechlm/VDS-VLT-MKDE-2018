@@ -44,17 +44,24 @@
   <PropertyTranslation Name="LASTNAME">Last Name</PropertyTranslation>
   <!--Quickstart 2018 end-->
 
-  <!--Classification & Terms-->
-  <!--Note the default term is set according the language-->
+  <!--Classification-->
+  <PropertyTranslation Name="SEGMENT">Segment</PropertyTranslation>
+  <PropertyTranslation Name="MAINGROUP">Main Group</PropertyTranslation>
+  <PropertyTranslation Name="GROUP">Group</PropertyTranslation>
+  <PropertyTranslation Name="SUBGROUP">Sub Group</PropertyTranslation>
+  <!--Classification end-->
+  <!--CatalogTermsTranslations-->
+  <!--Note the default "Term" is used as object name and varies according the language-->
   <PropertyTranslation Name="TERM">Term EN</PropertyTranslation>
   <PropertyTranslation Name="TERM-DE">Term DE</PropertyTranslation>
   <PropertyTranslation Name="TERM-EN">Term EN</PropertyTranslation>
   <PropertyTranslation Name="TERM-FR">Term FR</PropertyTranslation>
   <PropertyTranslation Name="TERM-IT">Term IT</PropertyTranslation>
-  <PropertyTranslation Name="SEGMENT">Segment</PropertyTranslation>
-  <PropertyTranslation Name="MAINGROUP">Main Group</PropertyTranslation>
-  <PropertyTranslation Name="GROUP">Group</PropertyTranslation>
-  <PropertyTranslation Name="SUBGROUP">Sub Group</PropertyTranslation>
+  <!--Note the default "Term" is used as object name and varies according the language-->
+  <PropertyTranslation Name="TITLE-DE">Title</PropertyTranslation>
+  <PropertyTranslation Name="TITLE-EN">Title EN</PropertyTranslation>
+  <PropertyTranslation Name="TITLE-FR">Title FR</PropertyTranslation>
+  <PropertyTranslation Name="TITLE-IT">Title IT</PropertyTranslation>
   <!--Classification & Terms-->
 
   <!--Vault Link Lookup Tab-->

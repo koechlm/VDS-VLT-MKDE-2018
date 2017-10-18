@@ -293,11 +293,13 @@
   <UIString ID="ADSK-DocStructure_00">Dokumentstruktur</UIString>
   <!--Document Structure Tab Extension End-->
 
-  <!--Classification & Terms-->
+  <!--Classification-->
   <UIString ID="Class_00">Segment</UIString>
   <UIString ID="Class_01">Main Group</UIString>
   <UIString ID="Class_02">Group</UIString>
   <UIString ID="Class_03">Sub Group</UIString>
+  <!--Classification end-->
+  <!--CatalogTermsTranslations-->
   <UIString ID="ClassTerms_MNU10">New Term...</UIString>
   <UIString ID="ClassTerms_MNU11">Create new term</UIString>
   <UIString ID="ClassTerms_MNU12">Edit Term...</UIString>
@@ -328,7 +330,7 @@
   <UIString ID="ClassTerms_TT06">Apply '*' for partial terms</UIString>
   <UIString ID="ClassTerms_TT07">Resets classification</UIString>
   <UIString ID="ClassTerms_MSG01">You are going to change the selected classification, are you sure?"</UIString>
-  <!--Classification & Terms End-->
+  <!--CatalogTermsTranslations End-->
   
   <!--Claims Management Extension Start-->
   <UIString ID="ADSK-ClaimMgr-00">Claim</UIString>

@@ -272,7 +272,7 @@
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
         <TabControl x:Name="tabCtrlMain" Margin="0">
-            <TabItem x:Name="tabFileProperties" Header="{Binding UIString[ADSK-ItemTab-06], FallbackValue='File Properties'}" HorizontalAlignment="Left">
+            <TabItem x:Name="tabFileProp" Header="{Binding UIString[ADSK-ItemTab-06], FallbackValue='File Properties'}" HorizontalAlignment="Left">
                 <Grid x:Name="grdFile" Background="#FFE5E5E5">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>

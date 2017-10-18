@@ -138,19 +138,27 @@ function InitializeWindow
 			})
 			#endregion workaround template selection reset
 			
-			#region CatalogTerm
-				If ($dsWindow.FindName("tabTermsCatalog"))
-				{					
-					Try 
-					{
-						$dsWindow.FindName("mSearchTermText").text = $Prop["_XLTN_TITLE"].Value
-				
-						$Prop["_XLTN_TITLE"].add_PropertyChanged({
-								param( $parameter)
-								$dsWindow.FindName("mSearchTermText").text = $Prop["_XLTN_TITLE"].Value
-							})
+			#region CatalogTerm FileWindow switch option
+			If ($dsWindow.FindName("tabTermsCatalog"))
+			{
+				Try{
+					Import-Module -FullyQualifiedName "C:\ProgramData\Autodesk\Vault 2018\Extensions\DataStandard\Vault.Custom\addinVault\CatalogTermsTranslations.psm1"
+				}
+				catch{
+					$dsWindow.FindName("tabTermsCatalog").Visibility = "Collapsed"
+				   return
+				}
+								
+				Try 
+				{
+					$dsWindow.FindName("mSearchTermText").text = $Prop["_XLTN_TITLE"].Value
+			
+					$Prop["_XLTN_TITLE"].add_PropertyChanged({
+							param( $parameter)
+							$dsWindow.FindName("mSearchTermText").text = $Prop["_XLTN_TITLE"].Value
+						})
 
-						mAddCoCombo -_CoName $UIString["Class_00"] #enables classification filter for catalog of terms starting with segment
+					mAddCoCombo -_CoName $UIString["Class_00"] #enables classification filter for catalog of terms starting with segment
 
 					$dsWindow.FindName("dataGrdTermsFound").add_SelectionChanged({
 						param($sender, $SelectionChangedEventArgs)
@@ -165,7 +173,7 @@ function InitializeWindow
 						}
 					})
 
-				}
+				}	
 				catch { $dsDiag.Trace("WARNING expander TermCatalog is not present")}
 			}
 			#endregionCatalogTerm
@@ -234,47 +242,47 @@ function InitializeWindow
 			}
 		}
 
-		"CustomObjectTermWindow"
-		{
-			IF ($Prop["_CreateMode"].Value -eq $true) 
-			{
-				$Prop["_Category"].Value = $Prop["_CustomObjectDefName"].Value
+		#region CustomObjectTermWindow-CatalogTermsTranslations
+"CustomObjectTermWindow"
+{
+	IF ($Prop["_CreateMode"].Value -eq $true) 
+	{
+		$Prop["_Category"].Value = $Prop["_CustomObjectDefName"].Value
 
-				#region Quickstart
-					$dsWindow.FindName("Categories").IsEnabled = $false
-					$dsWindow.FindName("NumSchms").Visibility = "Collapsed"
-					$Prop["_NumSchm"].Value = $Prop["_Category"].Value
-				#endregion
+			$dsWindow.FindName("Categories").IsEnabled = $false
+			$dsWindow.FindName("NumSchms").Visibility = "Collapsed"
+			$Prop["_NumSchm"].Value = $Prop["_Category"].Value
 
-				IF($Prop["_XLTN_IDENTNUMBER"]){ $Prop["_XLTN_IDENTNUMBER"].Value = $UIString["LBL27"]}
-			}
+		IF($Prop["_XLTN_IDENTNUMBER"]){ $Prop["_XLTN_IDENTNUMBER"].Value = $UIString["LBL27"]}
+	}
 
-			#region EditMode
-			IF ($Prop["_EditMode"].Value -eq $true) 
-			{
-				#read existing classification elements
-				$_classes = @()
-				Try{ #likely not all properties are used...
-					If ($Prop["_XLTN_SEGMENT"].Value.Length -gt 1){
-						$_classes += $Prop["_XLTN_SEGMENT"].Value
-						If ($Prop["_XLTN_MAINGROUP"].Value.Length -gt 1){
-							$_classes += $Prop["_XLTN_MAINGROUP"].Value
-							If ($Prop["_XLTN_GROUP"].Value.Length -gt 1){
-								$_classes += $Prop["_XLTN_GROUP"].Value
-								If ($Prop["_XLTN_SEGMENT"].Value.Length -gt 1){
-									$_classes += $Prop["_XLTN_SUBGROUP"].Value
-								}
-							}
+	#region EditMode
+	IF ($Prop["_EditMode"].Value -eq $true) 
+	{
+		#read existing classification elements
+		$_classes = @()
+		Try{ #likely not all properties are used...
+			If ($Prop["_XLTN_SEGMENT"].Value.Length -gt 1){
+				$_classes += $Prop["_XLTN_SEGMENT"].Value
+				If ($Prop["_XLTN_MAINGROUP"].Value.Length -gt 1){
+					$_classes += $Prop["_XLTN_MAINGROUP"].Value
+					If ($Prop["_XLTN_GROUP"].Value.Length -gt 1){
+						$_classes += $Prop["_XLTN_GROUP"].Value
+						If ($Prop["_XLTN_SEGMENT"].Value.Length -gt 1){
+							$_classes += $Prop["_XLTN_SUBGROUP"].Value
 						}
 					}
 				}
-				catch {}
 			}
-			#endregion EditMode
-			mAddCoCombo -_CoName "Segment" #enables classification for catalog of terms
-			# ToDo: createmode: activate last used classification
+		}
+		catch {}
+	}
+	#endregion EditMode
+	mAddCoCombo -_CoName "Segment" -_classes $_classes #enables classification for catalog of terms
+	# ToDo: createmode: activate last used classification
 			
-			} # objectterm Window
+	} # objectterm Window
+#endregion CatalogTermsTranslations-CustomObjectTermsWindow
 
 	}
 }
@@ -577,31 +585,18 @@ function OnTabContextChanged
 function GetNewCustomObjectName
 {
 	$dsDiag.Trace(">> GetNewCustomObjectName")
-	#region Default
-		#if($dsWindow.FindName("DSNumSchmsCtrl").NumSchmFieldsEmpty)
-		#{	
-		#	$dsDiag.Trace("read text from TextBox CUSTOMOBJECTNAME")
-		#	$customObjectName = $dsWindow.FindName("CUSTOMOBJECTNAME").Text
-		#	$dsDiag.Trace("customObjectName = $customObjectName")
-		#}
-		#else{
-		#	$dsDiag.Trace("-> GenerateNumber")
-		#	$customObjectName = $Prop["_GeneratedNumber"].Value
-		#	$dsDiag.Trace("customObjectName = $customObjectName")
-		#}
-	#endregion
 
 	#region Quickstart
 		$m_Cat = $Prop["_Category"].Value
 		switch ($m_Cat)
 		{
-			$UIString["ClassTerms_00"] 
+			$UIString["ClassTerms_00"] #CatalogTermsTranslations
 			{
 				if($dsWindow.FindName("DSNumSchmsCtrl").NumSchmFieldsEmpty -eq $false)
 				{
 					$Prop["_XLTN_IDENTNUMBER"].Value = $Prop["_GeneratedNumber"].Value
 				}
-				$customObjectName = $Prop["_XLTN_TERM-DE"].Value
+				$customObjectName = $Prop["_XLTN_TERM"].Value
 
 				return $customObjectName
 			}
@@ -778,7 +773,7 @@ function GetNumSchms
 							$_FilteredNumSchems = $numSchems | Where { $_.Name -eq $Prop["_Category"].Value}
 							return $_FilteredNumSchems
 						}
-						"CustomObjectTermWindow"
+						"CustomObjectWindow"
 						{
 							$_FilteredNumSchems = $numSchems | Where { $_.Name -eq $Prop["_Category"].Value}
 							return $_FilteredNumSchems
@@ -1065,11 +1060,6 @@ function mSetFileName($initialDirectory, $mFileName, $mFileType)
 	$SaveFileDialog.Dispose()#dispose as you are done.
 }
 #endregion CAD-BOMExportToCsvOrXML
-
-function mCatalogClick
-{
-	$dsWindow.FindName("tabTermsCatalog").IsSelected = $true
-}
 
 function mItemLookUpClick
 {
