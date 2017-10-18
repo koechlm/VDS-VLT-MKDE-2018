@@ -69,31 +69,6 @@
                         </Setter.Value>
                     </Setter>
                 </DataTrigger>
-
-                <DataTrigger Binding="{Binding Name}" Value="Title">
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate>
-                                <DockPanel>
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition/>
-                                            <ColumnDefinition Width="Auto"/>
-                                        </Grid.ColumnDefinitions>
-                                        <TextBox Text="{WPF:ValidatedBinding Value}" HorizontalAlignment="Stretch" BorderThickness="0" 
-                                            IsReadOnly="False" Background="WhiteSmoke" ToolTipService.ShowOnDisabled="True" 
-                                            ToolTip="{Binding DataContext.UIString[], FallbackValue=No tooltip defined yet, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
-                                            IsTabStop="False" IsHitTestVisible="True" Padding="5,0,0,5"/>
-                                        <Button Content="{Binding DataContext.UIString[], FallbackValue=My Command, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" 
-                                            Command="{Binding DataContext.PsCmd[mButtonTemplateClick], RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" HorizontalAlignment="Right"
-                                            ToolTip="{Binding DataContext.UIString[], FallbackValue=No tooltip defined yet, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" Grid.Column="1" Padding="10,1" Background="#FFDDDDDD" MinWidth="100"/>
-                                    </Grid>
-                                </DockPanel>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </DataTrigger>
-
             </Style.Triggers>
         </Style>
         <Style x:Key="DynamicDataGridLabelStyle" TargetType="{x:Type DataGridCell}">
@@ -316,42 +291,88 @@
         <TabControl x:Name="tabCtrlMain" MinHeight="80" Grid.Column="1" Grid.Row="2"
         	Grid.ColumnSpan="2" Margin="6,5,0,0" MaxWidth="680">
             <TabItem x:Name="tabFileProp" Header="{Binding UIString[LBL63], FallbackValue=Category Properties}">
-                <Grid x:Name="DSDynCatPropGrid"
-        			ToolTip="{Binding UIString[LBL63], FallbackValue=Category Properties}" MinHeight="300">
-                    <DataGrid x:Name="DSDynamicCategoryProperties"
-        				AutoGenerateColumns="False"
-        				HeadersVisibility="Column"
-        				ItemsSource="{Binding DynamicProperties}"
-        				ScrollViewer.CanContentScroll="False"
-        				HorizontalGridLinesBrush="WhiteSmoke"
-        				VerticalGridLinesBrush="WhiteSmoke" MaxHeight="350" Background="White">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Binding="{Binding DispName}"
-        						CellStyle="{StaticResource DynamicDataGridLabelStyle}" MinWidth="140"
-        						Width="Auto" IsReadOnly="True">
-                                <DataGridTextColumn.HeaderTemplate>
-                                    <DataTemplate>
-                                        <TextBlock
-        									Text="{Binding DataContext.UIString[LBL64], RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" />
-                                    </DataTemplate>
-                                </DataGridTextColumn.HeaderTemplate>
-                            </DataGridTextColumn>
-                            <DataGridTemplateColumn Header="Property Value"
-        						CellStyle="{StaticResource DynamicDataGridCellStyle}" Width="*"
-        						MinWidth="180">
-                                <DataGridTemplateColumn.HeaderTemplate>
-                                    <DataTemplate>
-                                        <TextBlock
-        									Text="{Binding DataContext.UIString[LBL65], RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" />
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.HeaderTemplate>
-                            </DataGridTemplateColumn>
-                        </DataGrid.Columns>
-                    </DataGrid>
+                <Grid x:Name="grdFile" Background="#FFF0F0F0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid x:Name="DSDynCatPropGrid"
+                        ToolTip="{Binding UIString[LBL63], FallbackValue=Category Properties}" MinHeight="300">
+                        <DataGrid x:Name="DSDynamicCategoryProperties"
+                            AutoGenerateColumns="False"
+                            HeadersVisibility="Column"
+                            ItemsSource="{Binding DynamicProperties}"
+                            ScrollViewer.CanContentScroll="False"
+                            HorizontalGridLinesBrush="WhiteSmoke"
+                            VerticalGridLinesBrush="WhiteSmoke" MaxHeight="350" Background="White">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding DispName}"
+                                    CellStyle="{StaticResource DynamicDataGridLabelStyle}" MinWidth="140"
+                                    Width="Auto" IsReadOnly="True">
+                                    <DataGridTextColumn.HeaderTemplate>
+                                        <DataTemplate>
+                                            <TextBlock
+                                                Text="{Binding DataContext.UIString[LBL64], RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" />
+                                        </DataTemplate>
+                                    </DataGridTextColumn.HeaderTemplate>
+                                </DataGridTextColumn>
+                                <DataGridTemplateColumn Header="Property Value"
+                                    CellStyle="{StaticResource DynamicDataGridCellStyle}" Width="*"
+                                    MinWidth="180">
+                                    <DataGridTemplateColumn.HeaderTemplate>
+                                        <DataTemplate>
+                                            <TextBlock
+                                                Text="{Binding DataContext.UIString[LBL65], RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.HeaderTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                    <Expander x:Name="expFilePath" Header="{Binding UIString[LBL6]}"
+                        ToolTip="{Binding UIString[MSDCE_TT05]}" Style="{StaticResource ExpanderStyle}" Grid.Row="1">
+                        <Grid x:Name="grdFilePath" Background="#FFE5E5E5" Margin="0" RenderTransformOrigin="0.5,0.5" ToolTip="{Binding UIString[MSDCE_TT05]}" VerticalAlignment="Top">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="40*"/>
+                                <ColumnDefinition Width="169*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label x:Name="lblFileName" Content="{Binding UIString[LBL6], FallbackValue=File Name}" />
+                            <TextBox x:Name="FILENAME" Grid.Column="1" 	Style="{StaticResource Required}"
+                                Text="{WPF:ValidatedBinding Prop[GEN-TITLE-DWG].Value}" IsEnabled="{Binding CreateMode}" IsReadOnly="{Binding EditMode}"
+                                Visibility="{Binding NumSchmFieldsEmpty, Converter={StaticResource BooleanToVisibilityConverter}, ElementName=DSNumSchmsCtrl}"/>
+                            <Label x:Name="lblPath" Content="{Binding UIString[LBL5], FallbackValue=Path}" Grid.Row="1" ToolTip="{Binding PathAndFileNameHandler.Path}" BorderThickness="1" />
+                            <TextBox x:Name="txtPath" VerticalAlignment="Stretch" Text="{Binding PathAndFileNameHandler.Path}" Grid.Row="1" Grid.Column="1" ToolTip="{Binding PathAndFileNameHandler.Path}" IsReadOnly="True" IsEnabled="False" BorderThickness="0,1,1,1" />
+                        </Grid>
+                    </Expander>
+                    <Grid x:Name="ButtonGrid" Style="{StaticResource ResourceKey=ButtonGridStyle}"
+                        Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="80" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="80" />
+                            <ColumnDefinition Width="20" />
+                            <ColumnDefinition Width="80" />
+                        </Grid.ColumnDefinitions>
+                        <Button Command="{Binding CloseWindowCommand, ElementName=AutoCADWindow}"
+                            IsEnabled="{Binding Properties.IsValid}" Grid.Column="2"
+                            Width="80" HorizontalAlignment="Right" VerticalAlignment="Center"
+                            ToolTipService.ShowOnDisabled="True" ToolTip="{Binding UIString[LBL35], FallbackValue=Cancel}"
+                            Content="{Binding UIString[BTN1], FallbackValue=OK}" IsDefault="True" Height="24" />
+                        <Button Grid.Column="4" Width="80" HorizontalAlignment="Right"
+                            VerticalAlignment="Center" Command="{Binding CancelWindowCommand, ElementName=AutoCADWindow}"
+                            IsCancel="true" Content="{Binding UIString[BTN2], FallbackValue=Cancel}" Height="24" />
+                        <Button x:Name="btnHelp" Content="{Binding UIString[MSDCE_BTN1], FallbackValue=Help}" 
+                            Command="{Binding PsCmd[mHelp(200)]}" ToolTip="F1" Height="24" />
+                    </Grid>
                 </Grid>
             </TabItem>
             <TabItem x:Name="tabTermsCatalog" Header="{Binding UIString[ClassTerms_01], FallbackValue='Terms Catalog'}">
-                <Grid x:Name="grdTermCatalog" Grid.ColumnSpan="2" Grid.Column="2" Margin="5" Width="750" Height="500">
+                <Grid x:Name="grdTermCatalog" Grid.ColumnSpan="2" Grid.Column="2" Margin="5" Width="{Binding ActualWidth, ElementName=grdFile, Mode=OneWay}" Height="{Binding ActualHeight, ElementName=grdFile, Mode=OneWay}" >
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
@@ -448,45 +469,6 @@
             </TabItem>
 
         </TabControl>
-        <Expander x:Name="expFilePath" Header="{Binding UIString[LBL6]}" Grid.ColumnSpan="2"
-			ToolTip="{Binding UIString[MSDCE_TT05]}" Style="{StaticResource ExpanderStyle}" Grid.Row="3" Grid.Column="1" Margin="6,10,0,0">
-            <Grid x:Name="grdFilePath" Background="#FFE5E5E5" Margin="0" RenderTransformOrigin="0.5,0.5" ToolTip="{Binding UIString[MSDCE_TT05]}" VerticalAlignment="Top">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="40*"/>
-                    <ColumnDefinition Width="169*"/>
-                </Grid.ColumnDefinitions>
-                <Label x:Name="lblFileName" Content="{Binding UIString[LBL6], FallbackValue=File Name}" />
-                <TextBox x:Name="FILENAME" Grid.Column="1" 	Style="{StaticResource Required}"
-                         Text="{WPF:ValidatedBinding Prop[GEN-TITLE-DWG].Value}" IsEnabled="{Binding CreateMode}" IsReadOnly="{Binding EditMode}"
-            		Visibility="{Binding NumSchmFieldsEmpty, Converter={StaticResource BooleanToVisibilityConverter}, ElementName=DSNumSchmsCtrl}"/>
-                <Label x:Name="lblPath" Content="{Binding UIString[LBL5], FallbackValue=Path}" Grid.Row="1" ToolTip="{Binding PathAndFileNameHandler.Path}" BorderThickness="1" />
-                <TextBox x:Name="txtPath" VerticalAlignment="Stretch" Text="{Binding PathAndFileNameHandler.Path}" Grid.Row="1" Grid.Column="1" ToolTip="{Binding PathAndFileNameHandler.Path}" IsReadOnly="True" IsEnabled="False" BorderThickness="0,1,1,1" />
-            </Grid>
-        </Expander>
-        <Grid x:Name="ButtonGrid" VerticalAlignment="Bottom" Style="{StaticResource ResourceKey=ButtonGridStyle}"
-              Grid.ColumnSpan="2" Grid.Row="4" Grid.Column="1" Margin="6,15,2,5">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="80" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="80" />
-                <ColumnDefinition Width="20" />
-                <ColumnDefinition Width="80" />
-            </Grid.ColumnDefinitions>
-            <Button Command="{Binding CloseWindowCommand, ElementName=AutoCADWindow}"
-                    IsEnabled="{Binding Properties.IsValid}" Grid.Column="2"
-                    Width="80" HorizontalAlignment="Right" VerticalAlignment="Center"
-                    ToolTipService.ShowOnDisabled="True" ToolTip="{Binding UIString[LBL35], FallbackValue=Cancel}"
-                    Content="{Binding UIString[BTN1], FallbackValue=OK}" IsDefault="True" Height="24" />
-            <Button Grid.Column="4" Width="80" HorizontalAlignment="Right"
-                    VerticalAlignment="Center" Command="{Binding CancelWindowCommand, ElementName=AutoCADWindow}"
-                    IsCancel="true" Content="{Binding UIString[BTN2], FallbackValue=Cancel}" Height="24" />
-            <Button x:Name="btnHelp" Content="{Binding UIString[MSDCE_BTN1], FallbackValue=Help}" 
-                    Command="{Binding PsCmd[mHelp(200)]}" ToolTip="F1" Height="24" />
-        </Grid>
         <Expander x:Name="expShortCutPane" Header="" Grid.RowSpan="5" ExpandDirection="Left" IsExpanded="True"
         	Style="{StaticResource ProjectFavorites}" ToolTip="{Binding UIString[MSDCE_TT24]}" Background="#FFF0F0F0">
             <GroupBox x:Name="GroupShortcuts" Header="{Binding UIString[MSDCE_LBL88], FallbackValue=Shortcuts}" BorderThickness="0">
