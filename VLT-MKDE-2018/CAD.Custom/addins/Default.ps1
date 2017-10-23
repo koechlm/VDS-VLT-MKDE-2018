@@ -860,11 +860,7 @@ function mActivateBreadCrumbCmbs ($paths)
 #endregion
 
 
-#region DynGridCommands
-function mCatalogClick
-{
-	$dsWindow.FindName("tabTermsCatalog").IsSelected = $true
-}
+#region DynGridCommands #toDo: modularize ItemLookup and move command to psm1 file; already done for catalog
 
 function mItemLookUpClick1
 {

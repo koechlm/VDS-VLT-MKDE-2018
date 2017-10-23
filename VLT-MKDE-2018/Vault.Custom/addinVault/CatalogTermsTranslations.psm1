@@ -67,12 +67,12 @@ function m_SearchTerms ([STRING] $mSearchText1) {
 
 		# the search conditions depend on the filters set (4 groups, 4 languages; the number has to match
 		$_NumConds = 1 #we have one condition as minimum, as we search for custom entities of category "term" 		
-		$breadCrumb = $dsWindow.FindName("wrpClassification")
-		$_t1 = $breadCrumb.Children[1].SelectedIndex
-		IF ($breadCrumb.Children[1].SelectedIndex -ge 0) { $_NumConds +=1}
-		IF ($breadCrumb.Children[2].SelectedIndex -ge 0) { $_NumConds +=1}
-		IF ($breadCrumb.Children[3].SelectedIndex -ge 0) { $_NumConds +=1}
-		IF ($breadCrumb.Children[4].SelectedIndex -ge 0) { $_NumConds +=1}
+		$mBreadCrumb = $dsWindow.FindName("wrpClassification")
+		$_t1 = $mBreadCrumb.Children[1].SelectedIndex
+		IF ($mBreadCrumb.Children[1].SelectedIndex -ge 0) { $_NumConds +=1}
+		IF ($mBreadCrumb.Children[2].SelectedIndex -ge 0) { $_NumConds +=1}
+		IF ($mBreadCrumb.Children[3].SelectedIndex -ge 0) { $_NumConds +=1}
+		IF ($mBreadCrumb.Children[4].SelectedIndex -ge 0) { $_NumConds +=1}
 
 		# check the language columns/properties to search in
 		IF ($dsWindow.FindName("chkDE").IsChecked -eq $true) { $_NumConds +=1} #default = checked
@@ -107,23 +107,23 @@ function m_SearchTerms ([STRING] $mSearchText1) {
 			$_i += 1
 		}
 		# if filters are used limit the search to the classification groups. Apply AND conditions
-		IF ($breadCrumb.Children[1].SelectedIndex -ge 0) {
-			$mSearchGroupName = $breadCrumb.Children[1].Text
+		IF ($mBreadCrumb.Children[1].SelectedIndex -ge 0) {
+			$mSearchGroupName = $mBreadCrumb.Children[1].Text
 			$srchConds[$_i]= mCreateSearchCond $UIString["Class_00"] $mSearchGroupName "AND" #search in Segment class
 			$_i += 1
 		}
-				IF ($breadCrumb.Children[2].SelectedIndex -ge 0) {
-			$mSearchGroupName = $breadCrumb.Children[2].Text
+				IF ($mBreadCrumb.Children[2].SelectedIndex -ge 0) {
+			$mSearchGroupName = $mBreadCrumb.Children[2].Text
 			$srchConds[$_i]= mCreateSearchCond $UIString["Class_01"] $mSearchGroupName "AND" 
 			$_i += 1
 		}
-		IF ($breadCrumb.Children[3].SelectedIndex -ge 0) {
-			$mSearchGroupName = $breadCrumb.Children[3].Text
+		IF ($mBreadCrumb.Children[3].SelectedIndex -ge 0) {
+			$mSearchGroupName = $mBreadCrumb.Children[3].Text
 			$srchConds[$_i]= mCreateSearchCond $UIString["Class_02"] $mSearchGroupName "AND" 
 			$_i += 1
 		}
-		IF ($breadCrumb.Children[4].SelectedIndex -ge 0) {
-			$mSearchGroupName = $breadCrumb.Children[4].Text
+		IF ($mBreadCrumb.Children[4].SelectedIndex -ge 0) {
+			$mSearchGroupName = $mBreadCrumb.Children[4].Text
 			$srchConds[$_i]= mCreateSearchCond $UIString["Class_03"] $mSearchGroupName "AND" 
 			$_i += 1
 		}
@@ -209,26 +209,12 @@ function m_SelectTerm {
 
 		IF ($dsWindow.Name -eq "AutoCADWindow")
 		{
-			#region for AutoCAD Mechanical Title Attribute Names
-			If ($Prop["GEN-TITLE-DES1"])
-			{
-				$Prop["GEN-TITLE-DES1"].Value = $mSelectedItem.Item 
+			If ($Prop["GEN-TITLE-DES1"]){ $Prop["GEN-TITLE-DES1"].Value = $mSelectedItem.Term_DE} #AutoCAD Mechanical Title Attribute Name
+			If ($Prop["Title"]){ $Prop["Title"].Value = $mSelectedItem.Term_DE} #Vanilla AutoCAD Title Attribute Name
+			Try{
+				$Prop["Title_EN"].Value = $mSelectedItem.Term_EN
 			}
-			If ($Prop["GEN-TITLE-NR"])
-			{
-				$Prop["GEN-TITLE-NR"].Value = $mSelectedItem.Item 
-			}
-			#endregion
-			#region for Vanilla AutoCAD Title Attribute Names
-			#If ($Prop["Title"])#ACM Attribute Name Mapping
-			#{
-			#	$Prop["Title"].Value = $mSelectedItem.Item 
-			#}
-			#If ($Prop["DocNumber"])#the UI Translation is used to get Vanilla property name scheme
-			#{
-			#	$Prop["DocNumber"].Value = $mSelectedItem.Item 
-			#}
-			#endregion
+			catch{ $dsDiag.Trace("Title_EN does not exist")}
 		}
 		IF ($dsWindow.Name -eq "InventorWindow")
 		{
@@ -289,7 +275,7 @@ function m_SelectTerm {
 		$dsDiag.Trace("Error writing term.value(s) to property field")
 	}
 	
-	$dsWindow.FindName("tabFileProp").IsSelected = $true
+	$dsWindow.FindName("tabProperties").IsSelected = $true
 }
 
 #endregion CatalogLookUp
@@ -298,9 +284,9 @@ function m_SelectTerm {
 function mAddCoCombo ([String] $_CoName, $_classes) {
 	$children = mgetCustomEntityList -_CoName $_CoName
 	if($children -eq $null) { return }
-	$breadCrumb = $dsWindow.FindName("wrpClassification")
+	$mBreadCrumb = $dsWindow.FindName("wrpClassification")
 	$cmb = New-Object System.Windows.Controls.ComboBox
-	$cmb.Name = "cmbBreadCrumb_" + $breadCrumb.Children.Count.ToString();
+	$cmb.Name = "cmbClassBreadCrumb_" + $mBreadCrumb.Children.Count.ToString();
 	$cmb.DisplayMemberPath = "Name";
 	$cmb.Tooltip = $UIString["ClassTerms_TT01"] #"Suche auf Hierarchieebene begrenzen..."
 	$cmb.ItemsSource = @($children)
@@ -325,8 +311,8 @@ function mAddCoCombo ([String] $_CoName, $_classes) {
 			$dsDiag.Trace("1. SelectionChanged, Sender = $sender, $e")
 			mCoComboSelectionChanged -sender $sender
 		});
-	$breadCrumb.RegisterName($cmb.Name, $cmb) #register the name to activate later via indexed name
-	$breadCrumb.Children.Add($cmb);
+	$mBreadCrumb.RegisterName($cmb.Name, $cmb) #register the name to activate later via indexed name
+	$mBreadCrumb.Children.Add($cmb);
 
 	#region EditMode CustomObjectTerm Window
 	If ($dsWindow.Name-eq "CustomObjectTermWindow")
@@ -370,9 +356,9 @@ function mAddCoComboChild ($data) {
 	$children = mGetCustomEntityUsesList -sender $data
 	$dsDiag.Trace("check data object: $children")
 	if($children -eq $null) { return }
-	$breadCrumb = $dsWindow.FindName("wrpClassification")
+	$mBreadCrumb = $dsWindow.FindName("wrpClassification")
 	$cmb = New-Object System.Windows.Controls.ComboBox
-	$cmb.Name = "cmbBreadCrumb_" + $breadCrumb.Children.Count.ToString();
+	$cmb.Name = "cmbClassBreadCrumb_" + $mBreadCrumb.Children.Count.ToString();
 	$cmb.DisplayMemberPath = "Name";
 	$cmb.ItemsSource = @($children)	
 	$cmb.BorderThickness = "1,1,1,1"
@@ -395,9 +381,9 @@ function mAddCoComboChild ($data) {
 			$dsDiag.Trace("next. SelectionChanged, Sender = $sender")
 			mCoComboSelectionChanged -sender $sender
 		});
-	$breadCrumb.RegisterName($cmb.Name, $cmb) #register the name to activate later via indexed name
-	$breadCrumb.Children.Add($cmb)
-	$_i = $breadCrumb.Children.Count
+	$mBreadCrumb.RegisterName($cmb.Name, $cmb) #register the name to activate later via indexed name
+	$mBreadCrumb.Children.Add($cmb)
+	$_i = $mBreadCrumb.Children.Count
 	$_Label = "lblGroup_" + $_i
 	$dsDiag.Trace("Label to display: $_Label - but not longer used")
 	# 	$dsWindow.FindName("$_Label").Visibility = "Visible"
@@ -480,10 +466,10 @@ function mgetCustomEntityList ([String] $_CoName) {
 function mGetCustomEntityUsesList ($sender) {
 	try {
 		$dsDiag.Trace(">> mGetCustomEntityUsesList started")
-		$breadCrumb = $dsWindow.FindName("wrpClassification")
-		$_i = $breadCrumb.Children.Count -1
-		$_CurrentCmbName = "cmbBreadCrumb_" + $breadCrumb.Children.Count.ToString()
-		$_CurrentClass = $breadCrumb.Children[$_i].SelectedValue.Name
+		$mBreadCrumb = $dsWindow.FindName("wrpClassification")
+		$_i = $mBreadCrumb.Children.Count -1
+		$_CurrentCmbName = "cmbBreadCrumb_" + $mBreadCrumb.Children.Count.ToString()
+		$_CurrentClass = $mBreadCrumb.Children[$_i].SelectedValue.Name
 		#[System.Windows.MessageBox]::Show("Currentclass: $_CurrentClass and Level# is $_i")
         switch($_i-1)
 		        {
@@ -513,21 +499,21 @@ function mGetCustomEntityUsesList ($sender) {
 }
 
 function mCoComboSelectionChanged ($sender) {
-	$breadCrumb = $dsWindow.FindName("wrpClassification")
+	$mBreadCrumb = $dsWindow.FindName("wrpClassification")
 	$position = [int]::Parse($sender.Name.Split('_')[1]);
-	$children = $breadCrumb.Children.Count - 1
+	$children = $mBreadCrumb.Children.Count - 1
 	while($children -gt $position )
 	{
-		$cmb = $breadCrumb.Children[$children]
-		$breadCrumb.UnregisterName($cmb.Name) #unregister the name to correct for later addition/registration
-		$breadCrumb.Children.Remove($breadCrumb.Children[$children]);
+		$cmb = $mBreadCrumb.Children[$children]
+		$mBreadCrumb.UnregisterName($cmb.Name) #unregister the name to correct for later addition/registration
+		$mBreadCrumb.Children.Remove($mBreadCrumb.Children[$children]);
 		$children--;
 	}
 	Try{
-		$Prop["_XLTN_SEGMENT"].Value = $breadCrumb.Children[1].SelectedItem.Name
-		$Prop["_XLTN_MAINGROUP"].Value = $breadCrumb.Children[2].SelectedItem.Name
-		$Prop["_XLTN_GROUP"].Value = $breadCrumb.Children[3].SelectedItem.Name
-		$Prop["_XLTN_SUBGROUP"].Value = $breadCrumb.Children[4].SelectedItem.Name
+		$Prop["_XLTN_SEGMENT"].Value = $mBreadCrumb.Children[1].SelectedItem.Name
+		$Prop["_XLTN_MAINGROUP"].Value = $mBreadCrumb.Children[2].SelectedItem.Name
+		$Prop["_XLTN_GROUP"].Value = $mBreadCrumb.Children[3].SelectedItem.Name
+		$Prop["_XLTN_SUBGROUP"].Value = $mBreadCrumb.Children[4].SelectedItem.Name
 	}
 	catch{}
 	#$dsDiag.Trace("---combo selection = $_selected, Position $position")
@@ -556,21 +542,17 @@ function mResetClassFilter
 			}
 				IF (($Prop["_CreateMode"].Value -eq $true) -or ($_Return -eq "Yes"))
 				{
-					$breadCrumb = $dsWindow.FindName("wrpClassification")
-					$breadCrumb.Children[1].SelectedIndex = -1
+					$mBreadCrumb = $dsWindow.FindName("wrpClassification")
+					$mBreadCrumb.Children[1].SelectedIndex = -1
 				}
 			}
 			default
 			{
-				$breadCrumb = $dsWindow.FindName("wrpClassification")
-				$breadCrumb.Children[1].SelectedIndex = -1
+				$mBreadCrumb = $dsWindow.FindName("wrpClassification")
+				$mBreadCrumb.Children[1].SelectedIndex = -1
 			}
 		}
-      
 
-
-	
-	
 	$dsDiag.Trace("...Reset Filter finished <<")
 }
 #endregion BreadCrumb ClassSelection

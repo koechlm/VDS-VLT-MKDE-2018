@@ -114,6 +114,28 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
+        <Style x:Key="DynamicDataGridBtnCellStyle" TargetType="{x:Type DataGridCell}">
+            <Setter Property="KeyboardNavigation.IsTabStop" Value="False" />
+            <Setter Property="IsHitTestVisible" Value="False" />
+            <Setter Property="Width" Value="0"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Name}" Value="Title">
+                    <Setter Property="IsHitTestVisible" Value="True" />
+                    <Setter Property="Width" Value="Auto"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate>
+                                <DockPanel>
+                                    <Button Content="{Binding DataContext.UIString[], FallbackValue=. . ., RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" 
+                                            Command="{Binding DataContext.PsCmd[mButtonTemplateClick], RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" HorizontalAlignment="Right"
+                                            ToolTip="{Binding DataContext.UIString[], FallbackValue=No tooltip defined yet, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" Grid.Column="1" Background="#FFDDDDDD" MinWidth="20" Padding="5,1"/>
+                                </DockPanel>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
         <Style x:Key="DynamicDataGridLabelStyle" TargetType="{x:Type DataGridCell}">
             <Setter Property="KeyboardNavigation.IsTabStop" Value="False" />
             <Setter Property="Height" Value="Auto" />
@@ -358,7 +380,9 @@
                     <Button x:Name="btnClsReset" Width="26" Command="{Binding PsCmd[mResetClassFilter]}" Content="X" FontWeight="Bold" ToolTip="{Binding UIString[MSDCE_TT15], FallbackValue='Reset Selection'}" Foreground="Red" IsEnabled="{Binding IsNotReadonly}" Height="24">
                         <Button.Template>
                             <ControlTemplate>
-                                <Image x:Name="imgTemplateReset" Source="C:\ProgramData\Autodesk\Vault 2018\Extensions\DataStandard\Vault.Custom\filter-delete.ico" Margin="2" />
+                                <Border BorderBrush="#FFABADB3" BorderThickness="1">
+                                    <Image x:Name="imgTemplateReset" Source="C:\ProgramData\Autodesk\Vault 2018\Extensions\DataStandard\Vault.Custom\filter-delete.ico" Margin="2" />
+                                </Border>
                             </ControlTemplate>
                         </Button.Template>
                     </Button>

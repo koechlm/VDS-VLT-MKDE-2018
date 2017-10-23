@@ -119,6 +119,7 @@
     <None Include="Vault.Custom\addinVault\Menus\ShowAboutDialog.ps1" />
     <None Include="Vault.Custom\addinVault\Menus\showCustomHelp.ps1" />
     <None Include="Vault.Custom\addinVault\Menus\ShowLog.ps1" />
+    <None Include="Vault.Custom\addinVault\ProjectOrganisationLink.ps1" />
     <None Include="Vault.Custom\addinVault\QuickstartExtension.ps1" />
     <None Include="Vault.Custom\addinVault\ReserveFileNumber.ps1" />
     <None Include="Vault.Custom\addinVault\UsesWhereUsed.ps1" />
@@ -204,10 +205,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Vault.Custom\Configuration\File\Jobs.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Vault.Custom\Configuration\File_.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

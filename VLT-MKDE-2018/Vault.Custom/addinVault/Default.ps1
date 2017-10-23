@@ -962,8 +962,8 @@ function m_CategoryChanged
 			If ($Prop["_Category"].Value -eq $UIString["CAT6"])
 			{
 				$dsWindow.FindName("tabFldLinks").Visibility = "Visible"
-				cOinitGetCustomObjects # located in ProjectOrganisationLink.ps1
-				$dsWindow.FindName("cmbOrganisation").ItemsSource = cOgetCompanies
+				mGetCustents # located in ProjectOrganisationLink.ps1
+				$dsWindow.FindName("cmbOrganisation").ItemsSource = mGetOrganisations
 				If ($dsWindow.FindName("cmbOrganisation").Items.Count -gt 1) { $dsWindow.FindName("cmbOrganisation").IsDropDownOpen = $true  }
 			}
 			Else 

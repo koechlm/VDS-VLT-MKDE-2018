@@ -204,7 +204,7 @@ function mSelectStockItem {
 			Try { $Prop["Material"].Value = $mSelectedItem.Material} Catch{}
 		}
 		#$dsWindow.FindName("txtPartNumber").Text = $mSelectedItem.Item
-		$dsWindow.FindName("tabFileProp").IsSelected = $true
+		$dsWindow.FindName("tabProperties").IsSelected = $true
 
 		$dsWindow.FindName("btnSearchItem").IsDefault = $false
 		$dsWindow.FindName("btnOK").IsDefault = $true

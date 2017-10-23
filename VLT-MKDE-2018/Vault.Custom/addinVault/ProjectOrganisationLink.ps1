@@ -2,6 +2,7 @@
 #=============================================================================#
 # PowerShell script sample for Vault Data Standard                            #
 #                                                                             #
+# Copyright (c) coolOrange s.r.l. - All rights reserved.                      #
 # Copyright (c) Autodesk - All rights reserved.                               #
 #                                                                             #
 # THIS SCRIPT/CODE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER   #
@@ -11,15 +12,15 @@
 #endregion
 
 #region Link_Organisation_Person
-function cOinitGetCustomObjects {
-	#$dsDiag.Trace(">> cOinitGetCustomObjects")
-	cOsaveID -filename cOcompanyID.txt -value $null #workaround, as remove-item did not work
+function mGetCustents {
+	#$dsDiag.Trace(">> mGetCustents")
+	mSaveCustentId -filename mOrganisationId.txt -value $null #workaround, as remove-item did not work
 	$dsWindow.FindName("cmbOrganisation").add_SelectionChanged(
 		{
 			param($sender, $SelectionChangedEventArgs)
 			#$dsDiag.Trace("cmbOrganisation.SelectionChanged!")
-			cOsaveID -filename cOcontactID.txt -value $null #workaround, as remove-item did not work
-			$dsWindow.FindName("cmbPerson").ItemsSource = cOgetContacts
+			mSaveCustentId -filename mPersonId.txt -value $null #workaround, as remove-item did not work
+			$dsWindow.FindName("cmbPerson").ItemsSource = mGetPersons
 			If($dsWindow.FindName("cmbOrganisation").SelectedIndex -ne -1) 
 			{
 				If ($Prop["_XLTN_CUSTOMER"]) { $Prop["_XLTN_CUSTOMER"].Value = $dsWindow.FindName("cmbOrganisation").SelectedValue }
@@ -32,19 +33,19 @@ function cOinitGetCustomObjects {
 		{
 			param($sender, $SelectionChangedEventArgs)
 			#$dsDiag.Trace(">> cmbContacts.SelectionChanged!")
-			$Global:contact = $dsWindow.FindName("cmbPerson").SelectedValue
-			$global:contact = $global:contacts | Where-Object { $_.Name -eq $global:contact }
+			$Global:mPerson = $dsWindow.FindName("cmbPerson").SelectedValue
+			$Global:mPerson = $Global:mPersons | Where-Object { $_.Name -eq $Global:mPerson }
 			If ($Prop["_XLTN_CONTACTNAME"] -and $dsWindow.FindName("cmbPerson").SelectedItem -ne -1)
 			{
 				$Prop["_XLTN_CONTACTNAME"].Value = $dsWindow.FindName("cmbPerson").SelectedValue
 			}
 			#$dsDiag.Trace("<< cmbContacts.SelectionChanged!")
 		})
-	#$dsDiag.Trace("<< cOinitGetCustomObjects")
+	#$dsDiag.Trace("<< mGetCustents")
 }
 
-function cOgetCompanies {
-	#$dsDiag.Trace(">> cOgetCompanies")
+function mGetOrganisations {
+	#$dsDiag.Trace(">> mGetOrganisations")
 	$customObjects = $vault.CustomEntityService.GetAllCustomEntityDefinitions()
 	$global:company = $customObjects | Where-Object { $_.dispName -eq "Organisation" }
 	$contacts = $customObjects | Where-Object { $_.dispName -eq "Person" }
@@ -91,18 +92,18 @@ function cOgetCompanies {
 	#$dsDiag.Trace(" search perfomed. "+$global:companies.Count+" elements found") 
 	$companyNames = @()
 	$global:companies | ForEach-Object { $companyNames += $_.Name }
-	#$dsDiag.Trace("<< cOgetCompanies $companyNames")
+	#$dsDiag.Trace("<< mGetOrganisations $companyNames")
 
 	return $companyNames 
 }
 
-function cOsaveID($filename, $value)
+function mSaveCustentId($filename, $value)
 {
 	$value | Out-File $env:TEMP"\$filename"
 }
 
-function cOgetContacts {
-	#$dsDiag.Trace(">> cOgetContacts")
+function mGetPersons {
+	#$dsDiag.Trace(">> mGetPersons")
 	$global:company = $dsWindow.FindName("cmbOrganisation").SelectedValue
 	$global:company = $global:companies | Where-Object { $_.Name -eq $global:company }
 	try {
@@ -117,9 +118,9 @@ function cOgetContacts {
 			#we need to filter the cat.catID = of the CUSTENT, as the parent links returned all available ones.
 			$global:mCoCategories = $vault.CategoryService.GetCategoriesByEntityClassId("CUSTENT", $true)
 			$mCoCat = $global:mCoCategories | Where-Object { $_.Name -eq "Person"}		
-			$global:contacts = $mLinkedCustObjects | Where-Object { $_.Cat.CatID -eq $mCoCat.Id}
+			$Global:mPersons = $mLinkedCustObjects | Where-Object { $_.Cat.CatID -eq $mCoCat.Id}
 			$contactNames = @()
-			$global:contacts | ForEach-Object { $contactNames += $_.Name }
+			$Global:mPersons | ForEach-Object { $contactNames += $_.Name }
 			If ($contactNames.Count -gt 1) { $dsWindow.FindName("cmbPerson").IsDropDownOpen = $true}
 			return $contactNames
 		}
@@ -129,7 +130,7 @@ function cOgetContacts {
 	{		
 		#[System.Windows.MessageBox]::Show($error)
 	}
-	#$dsDiag.Trace("<< cOgetContacts")
+	#$dsDiag.Trace("<< mGetPersons")
 }
 
 function mOrgLookUpClick()
@@ -142,14 +143,14 @@ function mOrgLinkActivate()
 	If ($Prop["_XLTN_CUSTOMER"]) 
 	{ 
 		$Prop["_XLTN_CUSTOMER"].Value = $dsWindow.FindName("cmbOrganisation").SelectedValue 
-		cOsaveID -filename cOcompanyID.txt -value $global:company.Id
+		mSaveCustentId -filename mOrganisationId.txt -value $global:company.Id
 	}
 	If ($Prop["_XLTN_CONTACTNAME"] -and $dsWindow.FindName("cmbPerson").SelectedItem -ne -1)
 	{
 		$Prop["_XLTN_CONTACTNAME"].Value = $dsWindow.FindName("cmbPerson").SelectedValue
-		cOsaveID -filename cOcontactID.txt -value $global:contact.Id
+		mSaveCustentId -filename mPersonId.txt -value $Global:mPerson.Id
 	}
-	$dsWindow.FindName("tabFldrProps").IsSelected = $true
+	$dsWindow.FindName("tabProperties").IsSelected = $true
 }
 
 function mOrgLinkReset()
@@ -158,34 +159,17 @@ function mOrgLinkReset()
 	{ 
 		$Prop["_XLTN_CUSTOMER"].Value = ""
 		$dsWindow.FindName("cmbOrganisation").SelectedIndex = -1
-		cOsaveID -filename cOcompanyID.txt -value $null
+		mSaveCustentId -filename mOrganisationId.txt -value $null
 	}
 	If ($Prop["_XLTN_CONTACTNAME"] -and $dsWindow.FindName("cmbPerson").SelectedItem -ne -1)
 	{
 		$Prop["_XLTN_CONTACTNAME"].Value = ""
 		$dsWindow.FindName("cmbPerson").SelectedIndex = -1
-		cOsaveID -filename cOcontactID.txt -value $null
+		mSaveCustentId -filename mPersonId.txt -value $null
 	}
 	$dsWindow.FindName("btnActivate").IsEnabled = $false
 	$dsWindow.FindName("btnOrgLinkReset").IsEnabled = $false
-	#$dsWindow.FindName("tabFldrProps").IsSelected = $true
-}
-
-function CallEditCODataSheet {
-	#$vaultContext.ForceRefresh = $true
-	#$id=$vaultContext.CurrentSelectionSet[0].Id
-	Try {
-		$_Temp = $dsCommands
-	}
-	catch {}
-	# 	$dsDiag.Inspect()
-	$dialog = $dsCommands.GetEditCustomObjectDialog(1)
-
-	$xamlFile = New-Object CreateObject.WPF.XamlFile "CustomEntityXaml", "%ProgramData%\Autodesk\Vault 2017\Extensions\DataStandard\Vault\Configuration\CustomObject.xaml"
-	$dialog.XamlFile = $xamlFile
-
-	$result = $dialog.Execute()
-	#$dsDiag.Trace($result)
+	#$dsWindow.FindName("tabProperties").IsSelected = $true
 }
 
 #endregion

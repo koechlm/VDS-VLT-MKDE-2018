@@ -71,6 +71,28 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
+        <Style x:Key="DynamicDataGridBtnCellStyle" TargetType="{x:Type DataGridCell}">
+            <Setter Property="KeyboardNavigation.IsTabStop" Value="False" />
+            <Setter Property="IsHitTestVisible" Value="False" />
+            <Setter Property="Width" Value="0"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Name}" Value="Title">
+                    <Setter Property="IsHitTestVisible" Value="True" />
+                    <Setter Property="Width" Value="Auto"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate>
+                                <DockPanel>
+                                    <Button Content="{Binding DataContext.UIString[], FallbackValue=. . ., RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" 
+                                            Command="{Binding DataContext.PsCmd[mButtonTemplateClick], RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" HorizontalAlignment="Right"
+                                            ToolTip="{Binding DataContext.UIString[], FallbackValue=No tooltip defined yet, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" Grid.Column="1" Background="#FFDDDDDD" MinWidth="20" Padding="5,1"/>
+                                </DockPanel>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
         <Style x:Key="DynamicDataGridLabelStyle" TargetType="{x:Type DataGridCell}">
             <Setter Property="KeyboardNavigation.IsTabStop" Value="False" />
             <Setter Property="Height" Value="Auto" />
@@ -289,8 +311,8 @@
         		Style="{StaticResource NumSchmCtrlStyle}" BorderThickness="0,1,1,1" />
         </Grid>
         <TabControl x:Name="tabCtrlMain" MinHeight="80" Grid.Column="1" Grid.Row="2"
-        	Grid.ColumnSpan="2" Margin="6,5,0,0" MaxWidth="680">
-            <TabItem x:Name="tabFileProp" Header="{Binding UIString[LBL63], FallbackValue=Category Properties}">
+        	Grid.ColumnSpan="2" Margin="6,10,0,0" MaxWidth="680">
+            <TabItem x:Name="tabProperties" Header="{Binding UIString[LBL63], FallbackValue=Category Properties}">
                 <Grid x:Name="grdFile" Background="#FFF0F0F0">
                     <Grid.RowDefinitions>
                         <RowDefinition/>
@@ -317,8 +339,7 @@
                                         </DataTemplate>
                                     </DataGridTextColumn.HeaderTemplate>
                                 </DataGridTextColumn>
-                                <DataGridTemplateColumn Header="Property Value"
-                                    CellStyle="{StaticResource DynamicDataGridCellStyle}" Width="*"
+                                <DataGridTemplateColumn Header="Property Value" CellStyle="{StaticResource DynamicDataGridCellStyle}" Width="*"
                                     MinWidth="180">
                                     <DataGridTemplateColumn.HeaderTemplate>
                                         <DataTemplate>
@@ -327,6 +348,7 @@
                                         </DataTemplate>
                                     </DataGridTemplateColumn.HeaderTemplate>
                                 </DataGridTemplateColumn>
+                                <DataGridTextColumn CellStyle="{StaticResource DynamicDataGridBtnCellStyle}"/>
                             </DataGrid.Columns>
                         </DataGrid>
                     </Grid>
@@ -386,7 +408,9 @@
                                 <Button x:Name="btnClsReset" Command="{Binding PsCmd[mResetClassFilter]}" Content="X" FontWeight="Bold" ToolTip="{Binding UIString[MSDCE_TT15]}" Foreground="Red" Width="24" Height="24">
                                     <Button.Template>
                                         <ControlTemplate>
-                                            <Image x:Name="imgTemplateReset" Source="C:\ProgramData\Autodesk\Vault 2018\Extensions\DataStandard\Vault.Custom\filter-delete.ico" Margin="2" />
+                                            <Border BorderBrush="#FFABADB3" BorderThickness="1">
+                                                <Image x:Name="imgTemplateReset" Source="C:\ProgramData\Autodesk\Vault 2018\Extensions\DataStandard\Vault.Custom\filter-delete.ico" Margin="2" />
+                                            </Border>
                                         </ControlTemplate>
                                     </Button.Template>
                                 </Button>
