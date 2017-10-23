@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Configuration>
+  <ConfigInfo Name="VDS VLT-MKDE" Version="2018.1.1">
+    <ConfigHistoryInfo>
+      <NewFeatures>
+        <!---->
+      </NewFeatures>
+      <Fixes>
+        <!--Renamed QuickstartExtension2018.0.2.ps1 back to neutral QuickstartExtensions.ps1 to enable override-->
+      </Fixes>
+      <Enhancements>
+        <!--CatalogTermsTranslations as Quickstart Extension Module-->
+        <!--All Dynamic Grids with 3rd column and button style-->
+      </Enhancements>
+    </ConfigHistoryInfo>
+  </ConfigInfo>
+</Configuration>

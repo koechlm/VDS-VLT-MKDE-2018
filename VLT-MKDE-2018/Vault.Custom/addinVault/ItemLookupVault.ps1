@@ -167,7 +167,7 @@ function mSelectMakeItem {
 		$dsWindow.FindName("Categories").SelectedIndex = $_temp1
 		$dsWindow.FindName("TemplateCB").SelectedIndex = $global:mSelectedTemplate
 		#endregion workaround
-		$dsWindow.FindName("tabFileProperties").IsSelected = $true
+		$dsWindow.FindName("tabProperties").IsSelected = $true
 	}
 	Catch 
 	{
@@ -225,7 +225,7 @@ function mSelectStockItem {
 		$dsWindow.FindName("Categories").SelectedIndex = $_temp1
 		$dsWindow.FindName("TemplateCB").SelectedIndex = $global:mSelectedTemplate
 		#endregion workaround
-		$dsWindow.FindName("tabFileProperties").IsSelected = $true
+		$dsWindow.FindName("tabProperties").IsSelected = $true
 	}
 	Catch 
 	{

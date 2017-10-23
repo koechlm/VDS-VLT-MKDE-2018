@@ -125,7 +125,6 @@
     <None Include="Vault.Custom\addinVault\UsesWhereUsed.ps1" />
     <None Include="Vault.Custom\addinVault\VDSReportViewer.ps1" />
     <None Include="Vault\CustomEntityDefinitions.json" />
-    <None Include="Modules\VDSQuickstartExtension2018.0.2.psm1" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="CAD.Custom\Configuration\AutoCAD.xaml">
@@ -262,6 +261,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Vault.Custom\Configuration\ConfigurationVersionHistory.xml" />
     <Resource Include="Vault.Custom\Configuration\Item\DragFilesActive.png" />
     <Resource Include="Vault.Custom\Configuration\Item\DragFilesLocked.png" />
     <Resource Include="Vault.Custom\PDF.ico" />
