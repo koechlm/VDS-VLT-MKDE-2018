@@ -69,6 +69,17 @@
                         </Setter.Value>
                     </Setter>
                 </DataTrigger>
+                <DataTrigger Binding="{Binding Name}" Value="Title">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate>
+                                <TextBox Text="{WPF:ValidatedBinding Value}" BorderThickness="0" Background="WhiteSmoke"
+                                ToolTip="{Binding DataContext.UIString[LBL27], RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, FallbackValue='Filled by Inventor'}"
+                                IsReadOnly="True" IsTabStop="False"/>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
             </Style.Triggers>
         </Style>
         <Style x:Key="DynamicDataGridBtnCellStyle" TargetType="{x:Type DataGridCell}">
@@ -83,9 +94,9 @@
                         <Setter.Value>
                             <ControlTemplate>
                                 <DockPanel>
-                                    <Button Content="{Binding DataContext.UIString[], FallbackValue=. . ., RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" 
+                                    <Button Content="{Binding DataContext.UIString[], FallbackValue='. . .', RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" 
                                             Command="{Binding DataContext.PsCmd[mButtonTemplateClick], RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" HorizontalAlignment="Right"
-                                            ToolTip="{Binding DataContext.UIString[], FallbackValue=No tooltip defined yet, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" Grid.Column="1" Background="#FFDDDDDD" MinWidth="20" Padding="5,1"/>
+                                            ToolTip="{Binding DataContext.UIString[ClassTerms_TT05], FallbackValue='No hand typed values, select from Catalog ...', RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" Grid.Column="1" Background="#FFDDDDDD" MinWidth="20" Padding="5,1"/>
                                 </DockPanel>
                             </ControlTemplate>
                         </Setter.Value>

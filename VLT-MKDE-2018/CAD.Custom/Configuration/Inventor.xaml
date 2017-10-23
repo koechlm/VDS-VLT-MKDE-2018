@@ -173,20 +173,6 @@
                         </Setter.Value>
                     </Setter>
                 </DataTrigger>
-                <DataTrigger Binding="{Binding Name}" Value="MyPropName">
-                    <Setter Property="IsHitTestVisible" Value="True" />
-                    <Setter Property="Width" Value="Auto"/>
-                    <Setter Property="Template">
-                        <Setter.Value>
-                            <ControlTemplate>
-                                <Button Content="{Binding DataContext.UIString[], FallbackValue=. . ., RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" 
-                                    Command="{Binding DataContext.PsCmd[mItemLookupClick2], RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" HorizontalAlignment="Right"
-                                    ToolTip="{Binding DataContext.UIString[ADSK-ItemTab-05], FallbackValue='No hand typed values, select from Catalog ...', RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" 
-                                    Grid.Column="1" Padding="10,1" Background="#FFDDDDDD" MinWidth="20"/>
-                            </ControlTemplate>
-                        </Setter.Value>
-                    </Setter>
-                </DataTrigger>
             </Style.Triggers>
         </Style>
         <Style x:Key="DynamicDataGridLabelStyle" TargetType="{x:Type DataGridCell}">
