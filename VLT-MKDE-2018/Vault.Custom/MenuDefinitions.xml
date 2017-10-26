@@ -23,15 +23,18 @@ MultiSelectEnabled: If true, command is active for multiple selections, can be t
       PSFile = "ADSKFilePropProvider.ps1" Image="ADSKMetaImport.ico" ToolbarPaintStyle = "TextAndGlyph"
       MultiSelectEnabled = "true"/>
     <!--ADSK-File Property Provider-->
-    
-    <!--GoToSourceFile-GoToReplacement MenuItem Start-->
-    <GoToSourceFile Label = "$UIString[ADSK-GoToSource_MNU01]" Description = "$UIString[ADSK-GoToSource_MNU01]" Hint = "$UIString[ADSK-GoToSource_MNU01]"
+
+    <!--GoToNavigation MenuItem Start-->
+    <GoToSourceFile Label = "$UIString[ADSK-GoToNavigation_MNU01]" Description = "$UIString[ADSK-GoToNavigation_MNU01]" Hint = "$UIString[ADSK-GoToNavigation_MNU01]"
       PSFile = "GoToSourceFile.ps1" Image="GoToSource.ico" ToolbarPaintStyle = "TextAndGlyph"
-      MultiSelectEnabled = "false"/>
-    <GoToReplacedBy Label = "$UIString[ADSK-GoToSource_MNU02]" Description = "$UIString[ADSK-GoToSource_MNU02]" Hint = "GoToReplacedBy"
+      MultiSelectEnabled = "false" NavigationTypes="File"/>
+    <GoToReplacedBy Label = "$UIString[ADSK-GoToNavigation_MNU02]" Description = "$UIString[ADSK-GoToNavigation_MNU02]" Hint = "$UIString[ADSK-GoToNavigation_MNU02]"
       PSFile = "GoToReplacedBy.ps1" Image="GoToReplacedBy.ico" ToolbarPaintStyle = "TextAndGlyph"
-      MultiSelectEnabled = "false"/>
-    <!--GoToSourceFile-GoToReplacement MenuItem End-->
+      MultiSelectEnabled = "false" NavigationTypes="File"/>
+    <GoToSelectedFile Label = "$UIString[ADSK-GoToNavigation_MNU03]" Description = "$UIString[ADSK-GoToNavigation_MNU03]" Hint = "$UIString[ADSK-GoToNavigation_MNU03]"
+      PSFile = "GoToSelectedFile.ps1" Image="GoToSelectedFile.ico" ToolbarPaintStyle = "TextAndGlyph"
+      MultiSelectEnabled = "false" />
+    <!--GoToNavigation MenuItem End-->
 
     <newTermObject Label = "$UIString[ClassTerms_MNU10]" Description = "$UIString[ClassTerms_MNU11]" Hint = "$UIString[ClassTerms_MNU11]"
       PSFile = "CreateCustomObjectTerm.ps1" Image="Term-add.ico" ToolbarPaintStyle = "TextAndGlyph"
@@ -153,12 +156,16 @@ MultiSelectEnabled: If true, command is active for multiple selections, can be t
   -->
 
   <CommandSite>
-
     <FileContext Label="Navigation" DeployAsPullDown="True" Location="FileContextMenu">
       <Item Name="GoToReplacedBy"></Item>
       <Item Name="GoToSourceFile"></Item>
+      <Item Name="GoToSelectedFile"></Item>
     </FileContext>
-    
+    <FileContext Label="Navigation" DeployAsPullDown="True" Location="StandardToolbar">
+      <Item Name="GoToReplacedBy"></Item>
+      <Item Name="GoToSourceFile"></Item>
+      <Item Name="GoToSelectedFile"></Item>
+    </FileContext>
     <FileContext Label="myMenu" DeployAsPullDown="False" Location="FileContextMenu">
       <Item Name="NewFile"></Item>
       <Item Name="EditFile"></Item>
@@ -168,11 +175,6 @@ MultiSelectEnabled: If true, command is active for multiple selections, can be t
       <Item Name="NewFolder"></Item>
       <Item Name="EditFolder"></Item>
     </FolderContex>
-    <StandardToolbar Label="myMenu" DeployAsPullDown="False" Location="StandardToolbar">
-      <Item Name="NewFile"></Item>
-      <Item Name="EditFile"></Item>
-    </StandardToolbar>
-
     <ActionsMenu Label="myMenu" DeployAsPullDown="False" Location="ActionsMenu">
       <Item Name="AddPdfDsgnRepToQu"></Item>
     </ActionsMenu>

@@ -263,14 +263,15 @@
   <!--Reserve Numbers Snippet end-->
 
   <!--GoToSourceFile-GoToReplacement Snippet Start-->
-  <UIString ID="ADSK-GoToSource_MNU00">Datei-Navigation</UIString>
-  <UIString ID="ADSK-GoToSource_MNU01">Gehe zu Ursprung</UIString>
-  <UIString ID="ADSK-GoToSource_MNU02">Gehe zu Nachfolger</UIString>
-  <UIString ID="ADSK-GoToSource_Prop01">Entstanden aus</UIString>
-  <UIString ID="ADSK-GoToSource_Prop02">Ersetzt durch</UIString>
-  <UIString ID="ADSK-GoToSource_MSG00">Eigenschaft '{0}' ist entweder nicht vorhanden oder leer.</UIString>
-  <UIString ID="ADSK-GoToSource_MSG01">Angegebene Datei '{0}' im Feld '{1}' konnte nicht gefunden werden.</UIString>
-<!--GoToSourceFile-GoToReplacement Snippet Start-->
+  <UIString ID="ADSK-GoToNavigation_MNU00">Datei-Navigation</UIString>
+  <UIString ID="ADSK-GoToNavigation_MNU01">Gehe zu Ursprung</UIString>
+  <UIString ID="ADSK-GoToNavigation_MNU02">Gehe zu Nachfolger</UIString>
+  <UIString ID="ADSK-GoToNavigation_MNU03">Gehe zur Auswahl *struktur Register</UIString>
+  <UIString ID="ADSK-GoToNavigation_Prop01">Entstanden aus</UIString>
+  <UIString ID="ADSK-GoToNavigation_Prop02">Ersetzt durch</UIString>
+  <UIString ID="ADSK-GoToNavigation_MSG00">Eigenschaft '{0}' ist entweder nicht vorhanden oder leer.</UIString>
+  <UIString ID="ADSK-GoToNavigation_MSG01">Angegebene Datei '{0}' im Feld '{1}' konnte nicht gefunden werden.</UIString>
+  <!--GoToSourceFile-GoToReplacement Snippet Start-->
 
   <!--Derivation Tree-->
   <UIString ID="DerivationTree_00">Ableitungsstruktur</UIString>
@@ -294,6 +295,8 @@
 
   <!--Document Structure Tab Extension-->
   <UIString ID="ADSK-DocStructure_00">Dokumentstruktur</UIString>
+  <UIString ID="ADSK-DocStructure_01">Kopiere Dateiname in Zwischenablage</UIString>
+  <UIString ID="ADSK-DocStructure_02">Angegebene Datei '{0}' im Feld '{1}' konnte nicht gefunden werden.</UIString>
   <!--Document Structure Tab Extension End-->
 
   <!--Classification-->

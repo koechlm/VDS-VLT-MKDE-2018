@@ -342,12 +342,19 @@ function OnTabContextChanged
 		$dsWindow.FindName("AssoicatedFiles").ItemsSource = $assocFiles
 	}
 	#region Documentstructure Extension
-		Add-Type -Path 'C:\ProgramData\Autodesk\Vault 2018\Extensions\DataStandard\Vault.Custom\addinVault\UsesWhereUsed.dll'
 		if ($VaultContext.SelectedObject.TypeId.SelectionContext -eq "FileMaster" -and $xamlFile -eq "DocumentStructure.xaml")
 		{
+			Add-Type -Path 'C:\ProgramData\Autodesk\Vault 2018\Extensions\DataStandard\Vault.Custom\addinVault\UsesWhereUsed.dll'
 			$file = $vault.DocumentService.GetLatestFileByMasterId($vaultContext.SelectedObject.Id)
 			$treeNode = New-Object UsesWhereUsed.TreeNode($file, $vaultConnection)
 			$dsWindow.FindName("Uses").ItemsSource = @($treeNode)
+			$dsWindow.FindName("Uses").add_SelectedItemChanged({
+				mUwUsdChldrnClick
+			})
+			$dsWindow.FindName("WhereUsed").add_SelectedItemChanged({
+				mUwUsdPrntClick
+			})
+
 		}
 	#endregion documentstructure
 
@@ -408,6 +415,7 @@ function OnTabContextChanged
 	#region derivation tree
 	if ($VaultContext.SelectedObject.TypeId.SelectionContext -eq "FileMaster" -and $xamlFile -eq "Derivation Tree.xaml")
 	{
+		mDerivativesSelectNothing
 		$fileMasterId = $vaultContext.SelectedObject.Id
 		$file = $vault.DocumentService.GetLatestFileByMasterId($fileMasterId)
 
@@ -417,38 +425,52 @@ function OnTabContextChanged
 			$dsWindow.FindName("txtBlck_Notification1").Text = $UIString["DerivationTree_13"]
 			$dsWindow.FindName("txtBlck_Notification1").Visibility = "Visible"
 			$dsWindow.FindName("SourceTree").IsExpanded = $false
+			mDerivativesSelectNothing
 		}
 		Else{
 			$dsWindow.FindName("mDerivatives").ItemsSource = $mDerivativesSource
 			$dsWindow.FindName("mDerivatives").Visibility = "Visible"
 			$dsWindow.FindName("SourceTree").IsExpanded = $true
+			
 		}
-		
+		$dsWindow.FindName("mDerivatives").add_SelectionChanged({
+				mDerivativesClick
+			})
+
 		$mDerivativesParallels = @(mGetDerivativeParallels($file)) #querying all file versions (historical) of the source
 		if($mDerivativesParallels.Count -eq 0) { 
 			$dsWindow.FindName("mDerivatives1").Visibility = "Collapsed"
 			$dsWindow.FindName("txtBlck_Notification2").Text = $UIString["DerivationTree_14"]
 			$dsWindow.FindName("txtBlck_Notification2").Visibility = "Visible"
 			$dsWindow.FindName("ParallelsTree").IsExpanded = $false
+			mDerivativesSelectNothing
 		}
 		Else{
 			$dsWindow.FindName("mDerivatives1").ItemsSource = $mDerivativesParallels
 			$dsWindow.FindName("mDerivatives1").Visibility = "Visible"
 			$dsWindow.FindName("ParallelsTree").IsExpanded = $true
+			
 		}
-		
+		$dsWindow.FindName("mDerivatives1").add_SelectionChanged({
+				mDerivatives1Click
+			})
 		$mDerivativesCopies = @(mGetDerivativeCopies($file)) #querying all file versions (historical) of the source
 		if($mDerivativesCopies.Count -eq 0) { 
 			$dsWindow.FindName("mDerivatives2").Visibility = "Collapsed"
 			$dsWindow.FindName("txtBlck_Notification3").Text = $UIString["DerivationTree_15"]
 			$dsWindow.FindName("txtBlck_Notification3").Visibility = "Visible"
 			$dsWindow.FindName("DerivedTree").IsExpanded = $false
+			mDerivativesSelectNothing
 		}
 		Else{
 			$dsWindow.FindName("mDerivatives2").ItemsSource = $mDerivativesCopies
 			$dsWindow.FindName("mDerivatives2").Visibility = "Visible"
 			$dsWindow.FindName("DerivedTree").IsExpanded = $true
+			
 		}
+		$dsWindow.FindName("mDerivatives2").add_SelectionChanged({
+				mDerivatives2Click
+			})
 	}
 	#endregion derivation tree
 

@@ -366,7 +366,7 @@
   <DynamicPropertiesCategory Category="Baugruppe" Type="File">
     <DynamicProperty>Teilenummer</DynamicProperty>
     <DynamicProperty>Titel</DynamicProperty>
-    <DynamicProperty>Titel EN</DynamicProperty>   
+    <DynamicProperty>Titel EN</DynamicProperty>
     <DynamicProperty>Beschreibung</DynamicProperty>
     <DynamicProperty>Material</DynamicProperty>
     <DynamicProperty>Gewicht</DynamicProperty>

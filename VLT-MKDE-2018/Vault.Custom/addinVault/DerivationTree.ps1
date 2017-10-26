@@ -29,7 +29,7 @@ function mGetDerivativeSource($mFile) #expects the (master) file object
 {
 	#region variables
 	# change the quoted display name according your Vault Property Definition
-		$_SourceFilePropDispName = $UIString["ADSK-GoToSource_Prop01"]
+		$_SourceFilePropDispName = $UIString["ADSK-GoToNavigation_Prop01"]
 	#endregion
 	
 	$PropDefs = $vault.PropertyService.GetPropertyDefinitionsByEntityClassId("FILE")
@@ -142,7 +142,7 @@ function mGetDerivativeParallels($mFile) #expects the (master) file object
 {
 	#region variables
 	# change the quoted display name according your Vault Property Definition
-		$_SourceFilePropDispName = $UIString["ADSK-GoToSource_Prop01"]
+		$_SourceFilePropDispName = $UIString["ADSK-GoToNavigation_Prop01"]
 	#endregion
 	
 	$PropDefs = $vault.PropertyService.GetPropertyDefinitionsByEntityClassId("FILE")
@@ -214,7 +214,7 @@ function mGetDerivativeCopies($mFile) #expects the (master) file object
 {
 	#region variables
 	# change the quoted display name according your Vault Property Definition
-		$_SourceFilePropDispName = $UIString["ADSK-GoToSource_Prop01"]
+		$_SourceFilePropDispName = $UIString["ADSK-GoToNavigation_Prop01"]
 	#endregion
 	
 	$PropDefs = $vault.PropertyService.GetPropertyDefinitionsByEntityClassId("FILE")
@@ -307,6 +307,43 @@ function mSelectedDerivativesToClipBoard()
         $mSelectedNames += $item.Name
     }
     [Windows.Forms.Clipboard]::SetText($mSelectedNames)
+}
+
+function mDerivativesSelectNothing()
+{
+	$mSelItem = ""
+    $mOutFile = "mStrTabClick.txt"
+	$mSelItem | Out-File $env:TEMP"\$mOutFile"
+}
+
+function mDerivativesClick()
+{
+	$mSelItem = $dsWindow.FindName("mDerivatives").SelectedItem
+    $mOutFile = "mStrTabClick.txt"
+	foreach($mItem in $mSelItem)
+	{
+		$mItem.Name | Out-File $env:TEMP"\$mOutFile"
+	}
+}
+
+function mDerivatives1Click()
+{
+	$mSelItem = $dsWindow.FindName("mDerivatives1").SelectedItem
+    $mOutFile = "mStrTabClick.txt"
+	foreach($mItem in $mSelItem)
+	{
+		$mItem.Name | Out-File $env:TEMP"\$mOutFile"
+	}
+}
+
+function mDerivatives2Click()
+{
+	$mSelItem = $dsWindow.FindName("mDerivatives2").SelectedItem
+    $mOutFile = "mStrTabClick.txt"
+	foreach($mItem in $mSelItem)
+	{
+		$mItem.Name | Out-File $env:TEMP"\$mOutFile"
+	}
 }
 
 function mCreateSearchCond ([String] $PropName, [String] $mSearchTxt, [String] $AndOr) {

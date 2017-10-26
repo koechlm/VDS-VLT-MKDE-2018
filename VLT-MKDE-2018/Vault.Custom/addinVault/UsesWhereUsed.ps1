@@ -1,13 +1,37 @@
-﻿
-Add-Type -Path 'C:\ProgramData\Autodesk\Vault 2018\Extensions\DataStandard\Vault.Custom\addinVault\UsesWhereUsed.dll'
+﻿#region disclaimer
+#=============================================================================#
+# PowerShell script sample for Vault Data Standard                            #
+#                                                                             #
+# Copyright (c) Autodesk - All rights reserved.                               #
+#                                                                             #
+# THIS SCRIPT/CODE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER   #
+# EXPRESSED OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES #
+# OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT.  #
+#=============================================================================#
+#endregion
 
-function OnTabContextChanged_UsesWhereUsed
+function mUwUsdChldrnClick()
 {
-	$xamlFile = [System.IO.Path]::GetFileName($VaultContext.UserControl.XamlFile)
-	if ($VaultContext.SelectedObject.TypeId.SelectionContext -eq "FileMaster" -and $xamlFile -eq "Uses - Where used.xaml")
+	$mSelItem = $dsWindow.FindName("Uses").SelectedItem
+    $mOutFile = "mStrTabClick.txt"
+	foreach($mItem in $mSelItem)
 	{
-		$file = $vault.DocumentService.GetLatestFileByMasterId($vaultContext.SelectedObject.Id)
-		$treeNode = New-Object UsesWhereUsed.TreeNode($file, $vaultConnection)
-		$dsWindow.FindName("Uses").ItemsSource = @($treeNode)
+		$mItem.Name | Out-File $env:TEMP"\$mOutFile"
 	}
+}
+
+function mUwUsdPrntClick()
+{
+	$mSelItem = $dsWindow.FindName("WhereUsed").SelectedItem
+    $mOutFile = "mStrTabClick.txt"
+	foreach($mItem in $mSelItem)
+	{
+		$mItem.Name | Out-File $env:TEMP"\$mOutFile"
+	}
+}
+
+function mUwUsdCopyToClipBoard ()
+{
+	$mSelItem = $dsWindow.FindName("WhereUsed").SelectedItem
+	[Windows.Forms.Clipboard]::SetText($mSelItem.Name)
 }

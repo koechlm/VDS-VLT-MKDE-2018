@@ -262,13 +262,14 @@
   <!--Reserve Numbers Snippet-->
 
   <!--GoToSourceFile-GoToReplacement Snippet Start-->
-  <UIString ID="ADSK-GoToSource_MNU00">File-Navigation</UIString>
-  <UIString ID="ADSK-GoToSource_MNU01">Go to source</UIString>
-  <UIString ID="ADSK-GoToSource_MNU02">Go to replacement</UIString>
-  <UIString ID="ADSK-GoToSource_Prop01">Source File</UIString>
-  <UIString ID="ADSK-GoToSource_Prop02">Replacement for</UIString>
-  <UIString ID="ADSK-GoToSource_MSG00">Property '{0}' is empty or doesn't exist.</UIString>
-  <UIString ID="ADSK-GoToSource_MSG01">Designated file '{0}' in property '{1}' not found.</UIString>
+  <UIString ID="ADSK-GoToNavigation_MNU00">File-Navigation</UIString>
+  <UIString ID="ADSK-GoToNavigation_MNU01">Go to source</UIString>
+  <UIString ID="ADSK-GoToNavigation_MNU02">Go to replacement</UIString>
+  <UIString ID="ADSK-GoToNavigation_MNU03">Go to selection of *structure tab</UIString>
+  <UIString ID="ADSK-GoToNavigation_Prop01">Copy Source</UIString>
+  <UIString ID="ADSK-GoToNavigation_Prop02">Replacement for</UIString>
+  <UIString ID="ADSK-GoToNavigation_MSG00">Property '{0}' is empty or doesn't exist.</UIString>
+  <UIString ID="ADSK-GoToNavigation_MSG01">Designated file '{0}' in property '{1}' not found.</UIString>
   <!--GoToSourceFile-GoToReplacement Snippet Start-->
 
   <!--Derivation Tree-->
@@ -292,7 +293,9 @@
   <!--Derivation Tree end-->
 
   <!--Document Structure Tab Extension-->
-  <UIString ID="ADSK-DocStructure_00">Dokumentstruktur</UIString>
+  <UIString ID="ADSK-DocStructure_00">File Structure</UIString>
+  <UIString ID="ADSK-DocStructure_01">Copy file name to clipboard</UIString>
+  <UIString ID="ADSK-DocStructure_02">Designated file '{0}' in property '{1}' not found.</UIString>
   <!--Document Structure Tab Extension End-->
 
   <!--Classification-->

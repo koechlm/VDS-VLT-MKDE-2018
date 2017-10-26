@@ -13,10 +13,10 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-                <TreeView x:Name="Uses" Background="{x:Null}" >
+                <TreeView x:Name="Uses" Background="{x:Null}">
                     <TreeView.ItemContainerStyle>
                         <Style TargetType="{x:Type TreeViewItem}">
-                            <Setter Property="IsExpanded" Value="True"/>
+                            <Setter Property="IsExpanded" Value="False"/>
                         </Style>
                     </TreeView.ItemContainerStyle>
                     <TreeView.ItemTemplate>
@@ -34,10 +34,10 @@
                 </TreeView>
             </ScrollViewer>
             <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-                <TreeView x:Name="WhereUsed"  ItemsSource="{Binding SelectedItem.Parents, ElementName=Uses, Mode=OneWay}" Background="{x:Null}">
+                <TreeView x:Name="WhereUsed" ItemsSource="{Binding SelectedItem.Parents, ElementName=Uses, Mode=OneWay}" Background="{x:Null}">
                     <TreeView.ItemContainerStyle>
                         <Style TargetType="{x:Type TreeViewItem}">
-                            <Setter Property="IsExpanded" Value="True"/>
+                            <Setter Property="IsExpanded" Value="False"/>
                         </Style>
                     </TreeView.ItemContainerStyle>
                     <TreeView.ItemTemplate>
@@ -52,9 +52,13 @@
                             </Grid>
                         </HierarchicalDataTemplate>
                     </TreeView.ItemTemplate>
+                    <TreeView.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Command="{Binding PsCmd[mUwUsdCopyToClipBoard]}" Header="{Binding UIString[ADSK-DocStructure_01], FallbackValue='Copy File Name to Clipboard'}"/>
+                        </ContextMenu>
+                    </TreeView.ContextMenu>
                 </TreeView>
             </ScrollViewer>
         </Grid>
-
     </Grid>
 </UserControl>
