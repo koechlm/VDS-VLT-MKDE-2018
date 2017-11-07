@@ -10,7 +10,7 @@
 #=============================================================================#
 #endregion
 
-# Version Info - VDS Quickstart Extension 2018.0.4
+# Version Info - VDS Quickstart Extension 2018.0.5
 
 #retrieve property value given by displayname from folder (ID)
 function mGetFolderPropValue ([Int64] $mFldID, [STRING] $mDispName)
@@ -180,4 +180,58 @@ function mGetPropTranslations
 		$mPrpTrnsltns.Add($mKey, $mValue)
 		}
 	return $mPrpTrnsltns
+}
+
+function Adsk.CreateTcFileLink([string]$FileFullVaultPath )
+{
+    $FullPaths = @($FileFullVaultPath)
+
+    $Files = $vault.DocumentService.FindLatestFilesByPaths($FullPaths)
+
+    $IDs = @($Files[0].Id)
+     
+    $PersIDs = $vault.KnowledgeVaultService.GetPersistentIds("FILE", $IDs, [Autodesk.Connectivity.WebServices.EntPersistOpt]::Latest)
+    $PersID = $PersIDs[0].TrimEnd("=")
+
+    $serverUri = [System.Uri]$Vault.InformationService.Url
+
+    $vaultName = $VaultConnection.Vault
+    $Server = $VaultConnection.Server
+
+    $TCLink = $serverUri.Scheme + "://" + $Server + "/AutodeskTC/" + $Server + "/" + $vaultName + "/#/Entity/Details?id=m" + "$PersID" + "&itemtype=File"
+    
+    return $TCLink
+}
+
+function Adsk.CreateTcFolderLink([string]$FolderFullVaultPath)
+{
+    $Folder = $vault.DocumentService.GetFolderByPath($FolderFullVaultPath)
+
+    $IDs = @($Folder.Id)
+     
+    $PersIDs = $vault.KnowledgeVaultService.GetPersistentIds("FLDR", $IDs, [Autodesk.Connectivity.WebServices.EntPersistOpt]::Latest)
+    $PersID = $PersIDs[0].TrimEnd("=")
+
+    $serverUri = [System.Uri]$Vault.InformationService.Url
+
+    $vaultName = $VaultConnection.Vault
+    $Server = $VaultConnection.Server
+
+    $TCLink = $serverUri.Scheme + "://" + $Server + "/AutodeskTC/" + $Server + "/" + $vaultName + "/#/Entity/Entities?folder=m" + "$PersID" + "&start=0"
+    return $TCLink
+}
+
+function Adsk.CreateTCItemLink ([Long]$ItemId)
+{
+	$IDs = @($ItemId)
+    $PersIDs = $vault.KnowledgeVaultService.GetPersistentIds("ITEM", $IDs, [Autodesk.Connectivity.WebServices.EntPersistOpt]::Latest)
+    $PersID = $PersIDs[0].TrimEnd("=")
+
+    $serverUri = [System.Uri]$Vault.InformationService.Url
+
+    $vaultName = $VaultConnection.Vault
+    $Server = $VaultConnection.Server
+
+    $TCLink = $serverUri.Scheme + "://" + $Server + "/AutodeskTC/" + $Server + "/" + $vaultName + "/#/Entity/Details?id=m" + "$PersID" + "&itemtype=Item"
+    return $TCLink
 }

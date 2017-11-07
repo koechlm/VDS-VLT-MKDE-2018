@@ -200,9 +200,7 @@
   <UIString ID="MSDCE_FrameMember_01">Profile Bar</UIString>
   <UIString ID="MSDCE_TubePipe_01">Tube and Pipe</UIString>
   <!--Quickstart Functional Dialogs (FG, DA, TP, CH) end-->
-  
-  <UIString ID="MSDCE_FrameMember_01">Structural Steel Component</UIString>
-   
+     
   
     <!--Quickstart Custom Object Names-->
       <UIString ID="MSDCE_CO01">Organisation</UIString>
