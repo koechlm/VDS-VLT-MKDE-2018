@@ -64,6 +64,10 @@ function InitializeWindow
 			If(!$paths){ $paths = mReadLastUsedFolder}
 			mActivateBreadCrumbCmbs $paths		
 		#endregion
+
+		#Set author
+		$Prop["Author"].Value = ($vault.AdminService.GetUserByUserId($VaultConnection.UserId)).Name #(FirstName; LastName are available as well)
+
     }
 
 	#end rules applying commonly
