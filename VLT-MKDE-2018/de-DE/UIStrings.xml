@@ -399,6 +399,7 @@
   <UIString ID="ADSK-ItemTab-07">Verwenden sie '*' für gekürzte Begriffe</UIString>
   <UIString ID="ADSK-ItemTab-08">Suchbegriff leer. Geben Sie einen Suchbegriff oder '*' für Suche über alles an.</UIString>
   <UIString ID="ADSK-ItemTab-09">Achtung - Sie sind im Begriff das Material zu ändern. Das Material kann nur in Inventor geändert werden.</UIString>
+  <UIString ID="ADSK-ItemTab-10">Filter zurücksetzen</UIString>
 
   <!--Vault Item Lookup Tab End-->
 

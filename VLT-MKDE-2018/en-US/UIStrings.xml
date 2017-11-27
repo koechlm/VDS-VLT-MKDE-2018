@@ -359,6 +359,7 @@
   <UIString ID="ADSK-ItemTab-07">Apply '*' for partial terms</UIString>
   <UIString ID="ADSK-ItemTab-08">No items found. Enter search term or '*' to search for all</UIString>
   <UIString ID="ADSK-ItemTab-09">Attention - You are about to change the material through raw material; only Inventor application is allowed to set the material</UIString>
+  <UIString ID="ADSK-ItemTab-10">Reset Filter</UIString>
   <!--Vault Item Lookup Tab End-->
 
   <!--Vault Link Lookup Tab-->

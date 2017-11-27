@@ -416,7 +416,7 @@
                     <GroupBox x:Name="grpClassification" Header="Filter" Grid.Row="0">
                         <Grid x:Name="grdContentFilter">
                             <WrapPanel x:Name="wrpClassification" Grid.Row="2">
-                                <Button x:Name="btnClsReset" Command="{Binding PsCmd[mResetClassFilter]}" Content="X" FontWeight="Bold" ToolTip="{Binding UIString[MSDCE_TT15]}" Foreground="Red" Width="24" Height="24">
+                                <Button x:Name="btnClsReset" Command="{Binding PsCmd[mResetClassFilter]}" Content="X" FontWeight="Bold" ToolTip="{Binding UIString[ClassTerms_TT07]}" Foreground="Red" Width="24" Height="24">
                                     <Button.Template>
                                         <ControlTemplate>
                                             <Border BorderBrush="#FFABADB3" BorderThickness="1">

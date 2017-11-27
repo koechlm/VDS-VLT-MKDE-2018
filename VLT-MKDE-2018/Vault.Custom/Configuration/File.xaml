@@ -469,7 +469,7 @@
                 <GroupBox x:Name="grpClassification" Header="Filter" Grid.Row="0">
                     <Grid x:Name="grdContentFilter">
                         <WrapPanel x:Name="wrpClassification" Grid.Row="2">
-                            <Button x:Name="btnClsReset" Command="{Binding PsCmd[mResetClassFilter]}" Content="X" FontWeight="Bold" ToolTip="{Binding UIString[MSDCE_TT15]}" Foreground="Red" Width="24" Height="24">
+                            <Button x:Name="btnClsReset" Command="{Binding PsCmd[mResetClassFilter]}" Content="X" FontWeight="Bold" ToolTip="{Binding UIString[ClassTerms_TT07], FallbackValue='Reset Filter'}" Foreground="Red" Width="24" Height="24">
                                 <Button.Template>
                                     <ControlTemplate>
                                         <Border BorderBrush="#FFABADB3" BorderThickness="1">
@@ -569,7 +569,7 @@
                             <ColumnDefinition Width="24"/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
-                        <Button x:Name="btnItemCategoryFilterReset" Command="{Binding PsCmd[mResetItemCatFilter]}" Content="X" FontWeight="Bold" ToolTip="{Binding UIString[MSDCE_TT15]}" Foreground="Red" Width="24" Height="24">
+                        <Button x:Name="btnItemCategoryFilterReset" Command="{Binding PsCmd[mResetItemCatFilter]}" Content="X" FontWeight="Bold" ToolTip="{Binding UIString[ADSK-ItemTab-10], FallbackValue='Reset Filter'}" Foreground="Red" Width="24" Height="24">
                             <Button.Template>
                                 <ControlTemplate>
                                     <Border BorderBrush="#FFABADB3" BorderThickness="1">
@@ -588,7 +588,7 @@
                         <ColumnDefinition Width="300*" />
                         <ColumnDefinition Width="auto"/>
                     </Grid.ColumnDefinitions>
-                    <TextBox x:Name="SearchText" Grid.Column="0" ToolTip="{Binding UIString[ADSK-ItemTab-07]}" BorderThickness="1" Grid.Row="1"/>
+                    <TextBox x:Name="SearchText" Grid.Column="0" ToolTip="{Binding UIString[ADSK-ItemTab-07], FallbackValue='Apply * for partial terms'}" BorderThickness="1" Grid.Row="1"/>
                     <Button x:Name="btnSearchItem" Grid.Column="1" Content="{Binding UIString[ADSK-ItemTab-04], FallbackValue=Search...}" Command="{Binding PsCmd[mSearchItem]}" CommandParameter="{Binding Text, ElementName=SearchText}" Margin="2,0,0,0" Padding="20,1" Grid.Row="1" Height="24"/>
                 </Grid>
                 <DataGrid Grid.Row="2" x:Name="ItemsFound" AutoGenerateColumns="True" IsTabStop="False" IsReadOnly="True" ColumnWidth="Auto" 
