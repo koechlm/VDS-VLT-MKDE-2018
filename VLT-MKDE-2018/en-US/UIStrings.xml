@@ -269,6 +269,14 @@
   <UIString ID="ADSK-GoToNavigation_MSG01">Designated file '{0}' in property '{1}' not found.</UIString>
   <!--GoToSourceFile-GoToReplacement Snippet Start-->
 
+  <!--GoToInvSibling-->
+  <UIString ID="ADSK-GoToInvSibl_LBL00">Search Inventor Sibling </UIString>
+  <UIString ID="ADSK-GoToInvSibl_BTN00">Go To</UIString>
+  <UIString ID="ADSK-GoToInvSibl_MNU00">Search Sibling (Inventor)</UIString>
+  <UIString ID="ADSK-GoToInvSibl_MSG00">Search result is limited to page size {0}; Total number of files found: {1}</UIString>
+  <UIString ID="ADSK-GoToInvSibl_MSG01">No Sibling Found!</UIString>
+  <!--GoToInvSibling End-->
+
   <!--Derivation Tree-->
   <UIString ID="DerivationTree_00">Derivation Tree</UIString>
   <UIString ID="DerivationTree_01">Source File Versions/Revisions</UIString>
