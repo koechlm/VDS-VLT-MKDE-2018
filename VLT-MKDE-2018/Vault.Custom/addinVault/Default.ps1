@@ -105,11 +105,11 @@ function InitializeWindow
 			#endregion
         }		
     })
-
+	
 	#end rules applying commonly
 	$mWindowName = $dsWindow.Name
 	switch($mWindowName)
-	{
+	{	
 		"FileWindow"
 		{
 			#rules applying for File
@@ -124,9 +124,8 @@ function InitializeWindow
 				{
 					$Prop["_Category"].Value = $UIString["CAT1"]
 				}
-			}
 
-			#region workaround template selection reset
+				#region workaround template selection reset
 				$dsWindow.FindName("DocTypeCombo").add_SelectionChanged({
 					mResetTemplates
 				})
@@ -134,9 +133,10 @@ function InitializeWindow
 				#$dsWindow.FindName("btnTemplateReset").IsEnabled = $false
 				$dsWindow.FindName("btnTemplateReset").Opacity = 0.3
 				$dsWindow.FindName("TemplateCB").add_SelectionChanged({
-				m_TemplateChanged
-			})
-			#endregion workaround template selection reset
+					m_TemplateChanged
+				})
+				#endregion workaround template selection reset
+			}
 			
 			#region CatalogTerm FileWindow switch option
 			If ($dsWindow.FindName("tabTermsCatalog"))
@@ -684,9 +684,9 @@ function GetNewFileName
 		$dsDiag.Trace("fileName = $fileName")
 	}
 	else{
-		$dsDiag.Trace("-> GenerateNumber")
+		#$dsDiag.Trace("-> GenerateNumber")
 		$fileName = $Prop["_GeneratedNumber"].Value
-		$dsDiag.Trace("fileName = $fileName")
+		#$dsDiag.Trace("fileName = $fileName")
 		#Quickstart
 			If($Prop["_XLTN_PARTNUMBER"]) { $Prop["_XLTN_PARTNUMBER"].Value = $Prop["_GeneratedNumber"].Value }
 		#Quickstart
@@ -763,11 +763,23 @@ function GetNumSchms
 					{
 						"FileWindow"
 						{
-							#$_FilteredNumSchems = $numSchems | Where { $_.IsDflt -eq $true}
-							#$Prop["_NumSchm"].Value = $_FilteredNumSchems[0].Name
-							#$dsWindow.FindName("NumSchms").IsEnabled = $false
-							#return $_FilteredNumSchems
 							$numSchems = $numSchems | Sort-Object -Property IsDflt -Descending
+							
+							#region	InheritProjectIdToFile
+									$_Templist = @()
+									$_Templist += $numSchems |? { $_.Name -eq "Projekt-Dokument-Nr"} #toDo: adopt custom name of numbering scheme used					
+									IF ($_Templist.Count -gt 0) {
+										#only if a parent project is found
+										$_ProjectID = mGetParentProjectId
+										If ($_ProjectID)
+										{
+											#$dsWindow.FindName("NumSchms").SelectedIndex = 0
+											$_Templist[0].FieldArray[0].DfltVal = $_ProjectID
+											$numSchems = $_Templist
+										}
+									}
+							#endregion InheritProjectIdToFile
+							
 							return $numSchems
 						}
 
@@ -809,7 +821,7 @@ function GetNumSchms
 				#region
 			}
 			Else {
-				$dsWindow.FindName("NumSchms").IsEnabled = $false				
+				$dsWindow.FindName("NumSchms").IsEnabled = $false
 			}
 			return $numSchems
 		}
@@ -853,30 +865,30 @@ function ShouldEnableNumSchms
 #define the parametrisation for the number generator here
 function GenerateNumber
 {
-	$dsDiag.Trace(">> GenerateNumber")
-	$selected = $dsWindow.FindName("NumSchms").Text
-	if($selected -eq "") { return "na" }
+	#$dsDiag.Trace(">> GenerateNumber")
+	#$selected = $dsWindow.FindName("NumSchms").Text
+	#if($selected -eq "") { return "na" }
 
-	$ns = $global:numSchems | Where-Object { $_.Name.Equals($selected) }
-	switch ($selected) {
-		"Sequential" { $NumGenArgs = @(""); break; }
-		default      { $NumGenArgs = @(""); break; }
-	}
-	$dsDiag.Trace("GenerateFileNumber($($ns.SchmID), $NumGenArgs)")
-	$vault.DocumentService.GenerateFileNumber($ns.SchmID, $NumGenArgs)
-	$dsDiag.Trace("<< GenerateNumber")
+	#$ns = $global:numSchems | Where-Object { $_.Name.Equals($selected) }
+	#switch ($selected) {
+	#	"Sequential" { $NumGenArgs = @(""); break; }
+	#	default      { $NumGenArgs = @(""); break; }
+	#}
+	#$dsDiag.Trace("GenerateFileNumber($($ns.SchmID), $NumGenArgs)")
+	#$vault.DocumentService.GenerateFileNumber($ns.SchmID, $NumGenArgs)
+	#$dsDiag.Trace("<< GenerateNumber")
 }
 
 #define here how the numbering preview should look like
 function GetNumberPreview
 {
-	$selected = $dsWindow.FindName("NumSchms").Text
-	switch ($selected) {
-		"Sequential" { $Prop["_FileName"].Value="???????"; break; }
-		"Short" { $Prop["_FileName"].Value=$Prop["Project"].Value + "-?????"; break; }
-		"Long" { $Prop["_FileName"].Value=$Prop["Project"].Value + "." + $Prop["Material"].Value + "-?????"; break; }
-		default { $Prop["_FileName"].Value="NA" }
-	}
+	#$selected = $dsWindow.FindName("NumSchms").Text
+	#switch ($selected) {
+	#	"Sequential" { $Prop["_FileName"].Value="???????"; break; }
+	#	"Short" { $Prop["_FileName"].Value=$Prop["Project"].Value + "-?????"; break; }
+	#	"Long" { $Prop["_FileName"].Value=$Prop["Project"].Value + "." + $Prop["Material"].Value + "-?????"; break; }
+	#	default { $Prop["_FileName"].Value="NA" }
+	#}
 }
 
 #Workaround for Property names containing round brackets
@@ -944,7 +956,7 @@ function m_CategoryChanged
 			$Prop["_NumSchm"].Value = $Prop["_Category"].Value
 			IF ($dsWindow.FindName("DSNumSchmsCtrl").Scheme.Name -eq $Prop["_Category"].Value) 
 			{
-				#$dsWindow.FindName("NumSchms").SelectedValue = $Prop["_Category"].Value
+				$dsWindow.FindName("NumSchms").SelectedValue = $Prop["_Category"].Value
 				$dsWindow.FindName("NumSchms").IsEnabled = $false
 			}
 			Else
@@ -952,7 +964,6 @@ function m_CategoryChanged
 				$dsWindow.FindName("NumSchms").SelectedIndex = 0
 				$dsWindow.FindName("NumSchms").IsEnabled = $false
 			}
-
 		}
 
 		"FolderWindow" 
@@ -1005,6 +1016,30 @@ function m_CategoryChanged
 		}			
 	} #end switch window
 } #end function m_CategoryChanged
+
+
+function mGetParentProjectId
+{
+			$mProjectFound = $false
+			$mPath = $Prop["_FilePath"].Value #the selected folder, where the New File... command started
+			$mFld = $vault.DocumentService.GetFolderByPath($mPath)
+
+			IF ($mFld.Cat.CatName -eq $UIString["CAT6"]) { $mProjectFound = $true} #CAT6: localization string for folder category project
+			Else {
+				Do {
+					$mParID = $mFld.ParID
+					$mFld = $vault.DocumentService.GetFolderByID($mParID)
+					IF ($mFld.Cat.CatName -eq $UIString["CAT6"]) { $mProjectFound = $true}
+				} Until (($mFld.Cat.CatName -eq $UIString["CAT6"]) -or ($mFld.FullName -eq "$"))
+			}
+
+			If ($mProjectFound -eq $true) 
+			{
+				$mProjectID = mGetFolderPropValue $mFld.Id $UIString["LBL19"] #toDo: adopt custom field name containing project number, if not the folder's name equals 
+				return $mProjectID
+			} 
+}
+
 
 function mHelp ([Int] $mHContext) {
 	Try
