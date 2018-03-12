@@ -444,4 +444,8 @@
   <UIString ID="ADSK-ItemFileImport_07">Ziehen Sie Datein zum Import/Anhang hierher.</UIString>
   <!--Item-File-Importer de-->
   
+  <!--Insert CAD Copy-->
+  <UIString ID="ADSK-InsertInvCopy_00">In CAD als Kopie einfügen</UIString>
+  <!--Insert CAD Copy-->
+
 </UIStrings>

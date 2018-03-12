@@ -403,4 +403,8 @@
   <UIString ID="ADSK-ItemFileImport_07">Drop files to import and attach.</UIString>
   <!--Item-File-Importer en-->
 
+  <!--Insert CAD Copy-->
+  <UIString ID="ADSK-InsertInvCopy_00">Insert CAD: Component Copy</UIString>
+  <!--Insert CAD Copy-->
+  
 </UIStrings>

@@ -12,6 +12,11 @@ MultiSelectEnabled: If true, command is active for multiple selections, can be t
 -->
 <mymenu>
   <MenuItem>
+    <!--Insert CAD Copy-->
+    <mInsertInvCompCopy Label = "$UIString[ADSK-InsertInvCopy_00]" Description = "$UIString[ADSK-InsertInvCopy_00]" Hint = "$UIString[ADSK-InsertInvCopy_00]"
+      PSFile = "mInvInsertCopy.ps1" Image="PlaceFromVault.ico" ToolbarPaintStyle = "TextAndGlyph" NavigationTypes="File"
+      MultiSelectEnabled = "false" />
+    <!--Insert CAD Copy-->
     <!--AddPdfDsgnRepToQu Menu item start-->
     <AddPdfDsgnRepToQu Label = "$UIString[ADSK-AddPdfDsgnRepToQu-MNU00]" Description = "$UIString[ADSK-AddPdfDsgnRepToQu-MNU00]" Hint = "$UIString[ADSK-AddPdfDsgnRepToQu-MNU00]"
       PSFile = "AddPdfDsgnRepToQu.ps1" Image="PDF.ico" ToolbarPaintStyle = "TextAndGlyph"
@@ -172,6 +177,7 @@ MultiSelectEnabled: If true, command is active for multiple selections, can be t
     <FileContext Label="myMenu" DeployAsPullDown="False" Location="FileContextMenu">
       <Item Name="NewFile"></Item>
       <Item Name="EditFile"></Item>
+      <Item Name="mInsertInvCompCopy"></Item>
     </FileContext>
     <FolderContex Label="myMenu" DeployAsPullDown="False" Location="FolderContextMenu">
       <Item Name="NewFile"></Item>

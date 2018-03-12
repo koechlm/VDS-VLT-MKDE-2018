@@ -756,8 +756,6 @@ function GetNumSchms
 			[System.Collections.ArrayList]$numSchems = @($vault.DocumentService.GetNumberingSchemesByType('Activated'))
 			if ($numSchems.Count -gt 1)
 			{
-				#$numSchems = $numSchems | Sort-Object -Property IsDflt -Descending
-				#region Quickstart
 					$mWindowName = $dsWindow.Name
 					switch($mWindowName)
 					{
@@ -818,7 +816,6 @@ function GetNumSchms
 							return $numSchems
 						}
 					}
-				#region
 			}
 			Else {
 				$dsWindow.FindName("NumSchms").IsEnabled = $false
